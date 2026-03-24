@@ -7,27 +7,30 @@
     <style>
         body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f4f4f4; }
         .header { background: #111; color: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; }
+        
+        /* Banner Fix: Added leading slash and z-index for search */
         .banner { 
-            background: url('construction-banner.png') center/cover; 
+            background: #888 url('/construction-banner.png') center/cover no-repeat; 
             height: 250px; display: flex; align-items: center; justify-content: center; position: relative;
         }
         .banner-overlay { background: rgba(0,0,0,0.5); position: absolute; top:0; left:0; right:0; bottom:0; }
         
-        .search-container { position: relative; z-index: 2; width: 80%; max-width: 600px; }
-        .search-bar { width: 100%; padding: 15px; border: 3px solid #ff9800; border-radius: 8px; font-size: 18px; outline: none; }
+        .search-container { position: relative; z-index: 10; width: 80%; max-width: 600px; }
+        .search-bar { width: 100%; padding: 15px; border: 4px solid #ff9800; border-radius: 8px; font-size: 18px; outline: none; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
         
-        .submit-box { background: #4caf50; color: white; padding: 20px; text-align: center; cursor: pointer; margin: 20px auto; width: 80%; max-width: 600px; border-radius: 8px; font-weight: bold; font-size: 18px; }
+        .submit-box { background: #4caf50; color: white; padding: 20px; text-align: center; cursor: pointer; margin: 20px auto; width: 80%; max-width: 600px; border-radius: 8px; font-weight: bold; font-size: 18px; transition: 0.3s; }
+        .submit-box:hover { background: #45a049; }
         
-        .container { max-width: 800px; margin: 20px auto; padding: 20px; background: white; border-radius: 8px; }
+        .container { max-width: 800px; margin: 20px auto; padding: 20px; background: white; border-radius: 8px; min-height: 50px; }
         
-        /* Modals & Forms */
-        .modal { display: none; margin-top: 15px; background: #eee; padding: 15px; border-radius: 8px; }
-        input, textarea { width: 100%; padding: 10px; margin-top: 10px; box-sizing: border-box; }
-        button { background: #111; color: white; padding: 10px 15px; border: none; margin-top: 10px; cursor: pointer; border-radius: 5px; }
-        button.green { background: #4caf50; }
+        /* Modal Fix: Ensure it's hidden by default and clean */
+        .modal { display: none; background: #f9f9f9; padding: 20px; border-radius: 8px; border: 1px solid #ddd; margin-bottom: 20px; }
+        input, textarea { width: 100%; padding: 12px; margin-top: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
+        button { background: #111; color: white; padding: 10px 20px; border: none; margin-top: 10px; cursor: pointer; border-radius: 5px; font-weight: bold; }
+        button.green { background: #4caf50; width: 100%; font-size: 16px; }
         
-        .result-card { border: 1px solid #ccc; padding: 15px; margin-top: 15px; border-radius: 5px; }
-        .review-list { margin-top: 10px; padding-left: 20px; color: #555; }
+        .result-card { border-left: 5px solid #ff9800; background: #fff; padding: 15px; margin-top: 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .review-list { margin-top: 10px; padding-left: 20px; color: #555; font-size: 14px; }
     </style>
 </head>
 <body>
@@ -52,9 +55,9 @@
         <div id="submit-form" class="modal">
             <h3 id="form-title">Report a New Company</h3>
             <input type="text" id="company-name" placeholder="Exact Company Name">
-            <textarea id="company-activity" placeholder="Describe the fraudulent activity..."></textarea>
+            <textarea id="company-activity" rows="4" placeholder="Describe the fraudulent activity..."></textarea>
             <button class="green" onclick="submitCompany()" id="submit-btn">Submit Report</button>
-            <p id="submit-status" style="color: red;"></p>
+            <p id="submit-status" style="margin-top:10px; font-weight:bold;"></p>
         </div>
 
         <div id="results-container"></div>
@@ -63,6 +66,6 @@
     <script src="/src/app.js"></script>
     <script src="/src/search.js"></script>
     <script src="/src/submit.js"></script>
+
 </body>
 </html>
-
