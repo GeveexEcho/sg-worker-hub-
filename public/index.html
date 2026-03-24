@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SG Worker Hub</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f4f4f4; }
+        .header { background: #111; color: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; }
+        .banner { 
+            background: url('construction-banner.png') center/cover; 
+            height: 250px; display: flex; align-items: center; justify-content: center; position: relative;
+        }
+        .banner-overlay { background: rgba(0,0,0,0.5); position: absolute; top:0; left:0; right:0; bottom:0; }
+        
+        .search-container { position: relative; z-index: 2; width: 80%; max-width: 600px; }
+        .search-bar { width: 100%; padding: 15px; border: 3px solid #ff9800; border-radius: 8px; font-size: 18px; outline: none; }
+        
+        .submit-box { background: #4caf50; color: white; padding: 20px; text-align: center; cursor: pointer; margin: 20px auto; width: 80%; max-width: 600px; border-radius: 8px; font-weight: bold; font-size: 18px; }
+        
+        .container { max-width: 800px; margin: 20px auto; padding: 20px; background: white; border-radius: 8px; }
+        
+        /* Modals & Forms */
+        .modal { display: none; margin-top: 15px; background: #eee; padding: 15px; border-radius: 8px; }
+        input, textarea { width: 100%; padding: 10px; margin-top: 10px; box-sizing: border-box; }
+        button { background: #111; color: white; padding: 10px 15px; border: none; margin-top: 10px; cursor: pointer; border-radius: 5px; }
+        button.green { background: #4caf50; }
+        
+        .result-card { border: 1px solid #ccc; padding: 15px; margin-top: 15px; border-radius: 5px; }
+        .review-list { margin-top: 10px; padding-left: 20px; color: #555; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h2 id="header-title">SG Worker Hub</h2>
+        <button id="lang-toggle" onclick="toggleLanguage()">বাংলা / English</button>
+    </div>
+
+    <div class="banner">
+        <div class="banner-overlay"></div>
+        <div class="search-container">
+            <input type="text" id="search-input" class="search-bar" placeholder="Search company by name..." onkeyup="handleSearch()">
+        </div>
+    </div>
+
+    <div class="submit-box" id="submit-trigger" onclick="toggleSubmitForm()">
+        ➕ Submit Company Name & Activities
+    </div>
+
+    <div class="container">
+        <div id="submit-form" class="modal">
+            <h3 id="form-title">Report a New Company</h3>
+            <input type="text" id="company-name" placeholder="Exact Company Name">
+            <textarea id="company-activity" placeholder="Describe the fraudulent activity..."></textarea>
+            <button class="green" onclick="submitCompany()" id="submit-btn">Submit Report</button>
+            <p id="submit-status" style="color: red;"></p>
+        </div>
+
+        <div id="results-container"></div>
+    </div>
+
+    <script src="/src/app.js"></script>
+    <script src="/src/search.js"></script>
+    <script src="/src/submit.js"></script>
+</body>
+</html>
+
