@@ -7,7 +7,7 @@ exports.handler = async (event) => {
         const payload = JSON.parse(event.body);
         const { action, name, activity, review } = payload;
 
-        const GITHUB_TOKEN = process.env.GITHUB_PAT; 
+        const GITHUB_TOKEN = process.env.PAT; 
         const REPO_OWNER = 'GeveexEcho';
         const REPO_NAME = 'sg-worker-hub';
         const FILE_PATH = 'data/data.json';
