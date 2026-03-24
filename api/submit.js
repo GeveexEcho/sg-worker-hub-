@@ -1,5 +1,3 @@
-const fetch = require('node-fetch'); // Only needed if using Node < 18
-
 exports.handler = async (event) => {
     if (event.httpMethod !== 'POST') {
         return { statusCode: 405, body: 'Method Not Allowed' };
