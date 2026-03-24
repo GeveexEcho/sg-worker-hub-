@@ -1,7 +1,7 @@
 let database = [];
 
 // Fetch the database on load
-fetch('https://raw.githubusercontent.com/YOUR_GITHUB_USERNAME/sg-worker-hub/main/data/data.json')
+fetch('https://raw.githubusercontent.com/GeveexEcho/sg-worker-hub-/sg-worker-hub/main/data/data.json')
     .then(res => res.json())
     .then(data => database = data)
     .catch(err => console.error("Could not load data", err));
