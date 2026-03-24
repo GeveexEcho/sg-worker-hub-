@@ -9,7 +9,7 @@ exports.handler = async (event) => {
 
         const GITHUB_TOKEN = process.env.GITHUB_PAT || process.env.PAT; 
         const REPO_OWNER = 'GeveexEcho';
-        const REPO_NAME = 'sg-worker-hub'; 
+        const REPO_NAME = 'sg-worker-hub-'; 
         const FILE_PATH = 'data/data.json';
         
         const url = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`;
