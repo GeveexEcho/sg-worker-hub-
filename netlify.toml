@@ -1,0 +1,14 @@
+[build]
+  publish = "public"
+  functions = "api"
+
+[[edge_functions]]
+  function = "geo-block"
+  path = "/*"
+
+# To allow the public folder to access the src folder without a bundler:
+[[redirects]]
+  from = "/src/*"
+  to = "/../src/:splat"
+  status = 200
+  
