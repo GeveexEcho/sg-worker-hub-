@@ -6,7 +6,7 @@ exports.handler = async (event) => {
 
     // --- SETUP YOUR REPO DETAILS HERE ---
     const GITHUB_TOKEN = process.env.GITHUB_PAT; 
-    const REPO_OWNER = 'YOUR_GITHUB_USERNAME';
+    const REPO_OWNER = 'GeveexEcho';
     const REPO_NAME = 'sg-worker-hub';
     const FILE_PATH = 'data/data.json';
     
