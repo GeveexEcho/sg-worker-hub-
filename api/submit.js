@@ -32,17 +32,31 @@ exports.handler = async (event) => {
         
         let db = JSON.parse(content || "[]");
 
+        // Clean values to avoid issues with extra spaces
+        const cleanName = name ? name.trim() : "";
+
         if (action === 'new_company') {
-            const exists = db.find(c => c.name.toLowerCase() === name.toLowerCase());
+            // Advanced Duplicate Check (Case-insensitive + Trimmed)
+            const exists = db.find(c => c.name.toLowerCase().trim() === cleanName.toLowerCase());
+            
             if (exists) {
-                return { statusCode: 400, body: JSON.stringify({ message: "Company already exists!" }) };
+                return { 
+                    statusCode: 400, 
+                    body: JSON.stringify({ message: "This company is already reported! Please search for it and add a review instead." }) 
+                };
             }
-            db.push({ name, activity, reviews: [], timestamp: new Date().toISOString() });
+            
+            db.push({ 
+                name: cleanName, 
+                activity: activity.trim(), 
+                reviews: [], 
+                timestamp: new Date().toISOString() 
+            });
         } 
         else if (action === 'add_review') {
-            const companyIndex = db.findIndex(c => c.name.toLowerCase() === name.toLowerCase());
+            const companyIndex = db.findIndex(c => c.name.toLowerCase().trim() === cleanName.toLowerCase());
             if (companyIndex !== -1) {
-                db[companyIndex].reviews.push(`${new Date().toLocaleDateString()}: ${review}`);
+                db[companyIndex].reviews.push(`${new Date().toLocaleDateString()}: ${review.trim()}`);
             }
         }
 
@@ -52,7 +66,7 @@ exports.handler = async (event) => {
             method: 'PUT',
             headers,
             body: JSON.stringify({
-                message: `Update by User: ${name}`,
+                message: `Update by User: ${cleanName}`,
                 content: updatedContentBase64,
                 sha: fileData.sha
             })
@@ -60,7 +74,7 @@ exports.handler = async (event) => {
 
         if (!putRes.ok) throw new Error("GitHub Save Failed");
 
-        return { statusCode: 200, body: JSON.stringify({ message: "Success! Data saved to GitHub." }) };
+        return { statusCode: 200, body: JSON.stringify({ message: "Success! Data saved." }) };
 
     } catch (error) {
         return { statusCode: 500, body: JSON.stringify({ message: error.message }) };
