@@ -8,26 +8,20 @@
         body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f4f4f4; }
         .header { background: #111; color: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; }
         
+        /* Banner Fixed with Direct GitHub Link */
         .banner { 
-    background: #444 url('https://raw.githubusercontent.com/GeveexEcho/sg-worker-hub/main/public/construction-banner.png') center/cover no-repeat; 
-    height: 250px; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    position: relative;
+            background: #222 url('https://raw.githubusercontent.com/GeveexEcho/sg-worker-hub/main/public/construction-banner.png') center/cover no-repeat; 
+            height: 250px; display: flex; align-items: center; justify-content: center; position: relative;
+            border-bottom: 5px solid #ff9800;
         }
-        
         .banner-overlay { background: rgba(0,0,0,0.5); position: absolute; top:0; left:0; right:0; bottom:0; }
         
         .search-container { position: relative; z-index: 10; width: 80%; max-width: 600px; }
         .search-bar { width: 100%; padding: 15px; border: 4px solid #ff9800; border-radius: 8px; font-size: 18px; outline: none; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
         
-        .submit-box { background: #4caf50; color: white; padding: 20px; text-align: center; cursor: pointer; margin: 20px auto; width: 80%; max-width: 600px; border-radius: 8px; font-weight: bold; font-size: 18px; transition: 0.3s; }
-        .submit-box:hover { background: #45a049; }
+        .submit-box { background: #4caf50; color: white; padding: 20px; text-align: center; cursor: pointer; margin: 20px auto; width: 80%; max-width: 600px; border-radius: 8px; font-weight: bold; font-size: 18px; }
+        .container { max-width: 800px; margin: 20px auto; padding: 20px; background: white; border-radius: 8px; }
         
-        .container { max-width: 800px; margin: 20px auto; padding: 20px; background: white; border-radius: 8px; min-height: 50px; }
-        
-        /* Modal Fix: Ensure it's hidden by default and clean */
         .modal { display: none; background: #f9f9f9; padding: 20px; border-radius: 8px; border: 1px solid #ddd; margin-bottom: 20px; }
         input, textarea { width: 100%; padding: 12px; margin-top: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
         button { background: #111; color: white; padding: 10px 20px; border: none; margin-top: 10px; cursor: pointer; border-radius: 5px; font-weight: bold; }
@@ -63,7 +57,6 @@
             <button class="green" onclick="submitCompany()" id="submit-btn">Submit Report</button>
             <p id="submit-status" style="margin-top:10px; font-weight:bold;"></p>
         </div>
-
         <div id="results-container"></div>
     </div>
 
