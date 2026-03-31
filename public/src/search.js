@@ -4,7 +4,7 @@ let isLoaded = false;
 async function loadDatabase() {
     if (isLoaded) return;
     try {
-        const res = await fetch('https://raw.githubusercontent.com/GeveexEcho/sg-worker-hub-/main/data/data.json?nocache=' + new Date().getTime());
+        const res = await fetch('https://raw.githubusercontent.com/GeveexEcho/sg-worker-hub-/main/data/bca_data.json?nocache=' + new Date().getTime());
         database = await res.json();
         isLoaded = true;
     } catch (err) {
