@@ -12,7 +12,7 @@ exports.handler = async (event) => {
         const REPO_NAME = 'sg-worker-hub-'; 
         const FILE_PATH = 'data/bca_data.json';
         
-        const url = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`;
+        const contentsUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`;
         
         const headers = {
             'Authorization': `token ${GITHUB_TOKEN}`,
@@ -20,7 +20,7 @@ exports.handler = async (event) => {
             'User-Agent': 'SG-Worker-Hub-App'
         };
 
-        const getRes = await fetch(url, { headers });
+        const getRes = await fetch(contentsUrl, { headers });
         
         if (!getRes.ok) {
             const errorText = await getRes.text();
@@ -28,15 +28,22 @@ exports.handler = async (event) => {
         }
         
         const fileData = await getRes.json();
-        const content = Buffer.from(fileData.content, 'base64').toString('utf-8');
+        
+        const blobUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/git/blobs/${fileData.sha}`;
+        const blobRes = await fetch(blobUrl, { headers });
+        
+        if (!blobRes.ok) {
+            throw new Error("Failed to fetch file content from Blob API");
+        }
+        
+        const blobData = await blobRes.json();
+        const content = Buffer.from(blobData.content, 'base64').toString('utf-8');
         
         let db = JSON.parse(content || "[]");
 
-        // Clean values to avoid issues with extra spaces
         const cleanName = name ? name.trim() : "";
 
         if (action === 'new_company') {
-            // Advanced Duplicate Check (Case-insensitive + Trimmed)
             const exists = db.find(c => c.name.toLowerCase().trim() === cleanName.toLowerCase());
             
             if (exists) {
@@ -62,7 +69,7 @@ exports.handler = async (event) => {
 
         const updatedContentBase64 = Buffer.from(JSON.stringify(db, null, 2)).toString('base64');
         
-        const putRes = await fetch(url, {
+        const putRes = await fetch(contentsUrl, {
             method: 'PUT',
             headers,
             body: JSON.stringify({
