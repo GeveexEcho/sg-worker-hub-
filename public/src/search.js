@@ -1,18 +1,23 @@
-let database = [];
-let isLoaded = false;
+const loadedFiles = {};
 
-async function loadDatabase() {
-    if (isLoaded) return;
-    try {
-        const res = await fetch('https://raw.githubusercontent.com/GeveexEcho/sg-worker-hub-/main/data/bca_data.json?nocache=' + new Date().getTime());
-        database = await res.json();
-        isLoaded = true;
-    } catch (err) {
-        console.error(err);
-    }
+function getFileName(query) {
+    if (!query) return '0-9-special_character.json';
+    const firstChar = query.charAt(0).toLowerCase();
+    if (firstChar >= 'a' && firstChar <= 'b') return 'a-b.json';
+    if (firstChar >= 'c' && firstChar <= 'd') return 'c-d.json';
+    if (firstChar >= 'e' && firstChar <= 'f') return 'e-f.json';
+    if (firstChar >= 'g' && firstChar <= 'h') return 'g-h.json';
+    if (firstChar >= 'i' && firstChar <= 'j') return 'i-j.json';
+    if (firstChar >= 'k' && firstChar <= 'l') return 'k-l.json';
+    if (firstChar >= 'm' && firstChar <= 'n') return 'm-n.json';
+    if (firstChar >= 'o' && firstChar <= 'p') return 'o-p.json';
+    if (firstChar >= 'q' && firstChar <= 'r') return 'q-r.json';
+    if (firstChar >= 's' && firstChar <= 't') return 's-t.json';
+    if (firstChar >= 'u' && firstChar <= 'v') return 'u-v.json';
+    if (firstChar >= 'w' && firstChar <= 'x') return 'w-x.json';
+    if (firstChar >= 'y' && firstChar <= 'z') return 'y-z.json';
+    return '0-9-special_character.json';
 }
-
-window.onload = loadDatabase;
 
 async function handleSearch() {
     const query = document.getElementById('search-input').value.toLowerCase().trim();
@@ -23,19 +28,30 @@ async function handleSearch() {
         return;
     }
 
-    if (!isLoaded) {
+    const fileName = getFileName(query);
+
+    if (!loadedFiles[fileName]) {
         container.innerHTML = '<p>Loading database...</p>';
-        await loadDatabase();
+        try {
+            const res = await fetch(`https://raw.githubusercontent.com/GeveexEcho/sg-worker-hub-/main/data/${fileName}?nocache=${new Date().getTime()}`);
+            if (res.ok) {
+                loadedFiles[fileName] = await res.json();
+            } else {
+                loadedFiles[fileName] = [];
+            }
+        } catch (err) {
+            loadedFiles[fileName] = [];
+        }
     }
 
-    const results = database.filter(company => 
+    const results = loadedFiles[fileName].filter(company => 
         company.name.toLowerCase().includes(query)
     ).slice(0, 15);
 
     container.innerHTML = '';
 
     if (results.length === 0) {
-        container.innerHTML = `<p style="color: red; padding: 10px;">No company found in 24k database.</p>`;
+        container.innerHTML = `<p style="color: red; padding: 10px;">No company found in database.</p>`;
         return;
     }
 
@@ -84,11 +100,7 @@ async function addReviewProcess(companyName, safeId) {
         const response = await fetch('/.netlify/functions/submit', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                action: 'add_review',
-                name: companyName,
-                review: reviewValue
-            })
+            body: JSON.stringify({ action: 'add_review', name: companyName, review: reviewValue })
         });
 
         if (response.ok) {
@@ -105,4 +117,5 @@ async function addReviewProcess(companyName, safeId) {
         actionBtn.disabled = false;
         actionBtn.innerText = "Add Review";
     }
-}
+        }
+    
