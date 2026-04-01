@@ -9,6 +9,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/GeveexEcho/sg-worker-hub-/main/public/construction_banner.png">
 
     <style>
         body { 
@@ -20,7 +21,7 @@
         }
 
         .page-overlay {
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.6);
             min-height: 100vh;
             width: 100%;
             padding-bottom: 50px;
@@ -40,12 +41,15 @@
             left: 0;
             right: 0;
             z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         #header-title {
             margin: 0;
             font-size: 20px;
+            letter-spacing: 1px;
             color: #ff9800;
+            text-shadow: 0 0 10px rgba(255, 152, 0, 0.5);
         }
 
         #lang-toggle {
@@ -55,10 +59,11 @@
             padding: 6px 12px;
             border-radius: 20px;
             cursor: pointer;
+            font-size: 13px;
         }
 
         .banner { 
-            height: 250px;
+            height: 280px;
             display: flex; 
             align-items: center; 
             justify-content: center; 
@@ -74,11 +79,13 @@
             border-radius: 15px; 
             font-size: 18px; 
             outline: none; 
-            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-sizing: border-box;
+            background: rgba(255, 255, 255, 0.95);
         }
         
         .submit-box { 
-            background: rgba(76, 175, 80, 0.8); 
+            background: rgba(76, 175, 80, 0.9); 
             color: white; 
             padding: 18px; 
             text-align: center; 
@@ -88,25 +95,29 @@
             max-width: 600px; 
             border-radius: 15px; 
             font-weight: bold; 
+            font-size: 17px; 
+            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
 
         .container { 
             max-width: 800px; 
-            margin: 0 auto; 
+            margin: 20px auto; 
             padding: 20px; 
+            background: rgba(255, 255, 255, 0.1); 
+            border-radius: 15px; 
         }
         
         .result-card { 
-            background: transparent; 
-            border-left: 5px solid #ff9800; 
+            background: rgba(255, 255, 255, 0.92); 
+            backdrop-filter: blur(10px);
+            border-left: 8px solid #ff9800; 
             padding: 20px; 
-            margin-bottom: 15px; 
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            color: white;
+            margin-bottom: 20px; 
+            border-radius: 12px; 
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2); 
+            color: #333;
         }
-
-        .result-card h3 { color: #ff9800; margin-top: 0; }
-        .result-card p { margin-bottom: 5px; line-height: 1.5; }
 
         .modal { 
             display: none; 
@@ -114,7 +125,7 @@
             padding: 25px; 
             border-radius: 15px; 
             margin-bottom: 20px; 
-            color: #333;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
         }
         
         input, textarea { 
@@ -123,6 +134,7 @@
             margin-top: 10px; 
             border: 1px solid #ddd; 
             border-radius: 10px; 
+            box-sizing: border-box; 
         }
 
         button.green { 
@@ -132,6 +144,7 @@
             padding: 15px;
             border: none;
             border-radius: 10px;
+            font-size: 18px;
             font-weight: bold;
             cursor: pointer;
             margin-top: 15px;
