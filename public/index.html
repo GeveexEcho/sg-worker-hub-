@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SG Worker Hub</title>
     
-    <meta name="theme-color" content="#111111">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#ff9800">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <link rel="manifest" href="/manifest.json">
-    <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/GeveexEcho/sg-worker-hub-/main/public/construction_banner.png">
+    <link rel="apple-touch-icon" href="/icon-192.png">
 
     <style>
         body { 
@@ -187,11 +187,13 @@
     <script src="/src/submit.js"></script>
 
     <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js').catch(() => {});
-            });
-        }
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then(reg => console.log('Service Worker Registered'))
+            .catch(err => console.log('Service Worker Failed', err));
+        });
+      }
     </script>
 
 </body>
