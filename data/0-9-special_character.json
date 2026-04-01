@@ -1,0 +1,998 @@
+[
+    {
+        "name": "#1 DESIGN STUDIO PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 201925566H\nWorkhead: FM02 (Grade: L1)\nAddress: 1085 EUNOS AVENUE 7A, ##03-10, Singapore 409535",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "'A' BUILDERS AND ENGINEERING PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 202320660Z\nWorkhead: CR06 (Grade: L1)\nAddress: 13 KAKI BUKIT INDUSTRIAL TERRACE, #na, Singapore 416096",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "@BSOLUTE AIRCON PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 201326611Z\nWorkhead: ME01 (Grade: L1)\nAddress: 61 KAKI BUKIT AVENUE 1, ##03-05, Singapore 417943",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "@KLEANSG SERVICES PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 202136711K\nWorkhead: FM04 (Grade: L1)\nAddress: 11 PENAGA PLACE, ##01-11, Singapore 757346",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "1 CHUAN PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 200610983D\nWorkhead: CR18 (Grade: Single Grade)\nAddress: 1 YISHUN STREET 23, ##06-06, Singapore 768441",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "1 PLUS PRIVATE LIMITED",
+        "activity": "BCA Registered Company.\nUEN: 201626670R\nWorkhead: FM02 (Grade: L3)\nAddress: 9 TAI SENG LINK, ##08-00, Singapore 534053",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "1 PR PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 202026824H\nWorkhead: CR06 (Grade: L1)\nAddress: 5 5 ANG MO KIO INDUSTRIAL PARK 2A, ##04-27, Singapore 567760",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "1-SOLUTIONING PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 202101635H\nWorkhead: ME05 (Grade: L1)\nAddress: 3 ANG MO KIO STREET 62, ##03-23/24, Singapore 569139",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "100 INFRASTRUCTURE PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 202232100W\nWorkhead: CR14 (Grade: L1)\nAddress: 33 UBI AVENUE 3, ##07-61, Singapore 408868",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "101 CONSTRUCTION PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 201617346W\nWorkhead: TR09 (Grade: Single Grade)\nAddress: 292A COMPASSVALE STREET, ##04-228, Singapore 541292",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "11STAR ENGINEERING PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 202205388K\nWorkhead: ME05 (Grade: L1)\nAddress: 140 UPPER BUKIT TIMAH ROAD, ##03-15, Singapore 588176",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "18 DEGREE SERVICES PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 201534780E\nWorkhead: ME01 (Grade: L1)\nAddress: 20 ANG MO KIO INDUSTRIAL PARK 2A, ##06-04, Singapore 567761",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "18 STEPS PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 202222009D\nWorkhead: ME05 (Grade: L1)\nAddress: 73 73 ubi road 1, ##08-58, Singapore 408733",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "1800NOPESTS PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 201222694E\nWorkhead: FM04 (Grade: L1)\nAddress: 9010 TAMPINES STREET 93, ##02-93, Singapore 528844",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "189 BUILDER PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 200404882W\nWorkhead: CW01 (Grade: C3)\nAddress: 293 RIVER VALLEY ROAD, #na, Singapore 238334",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "1ALPHABET PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 202443242G\nWorkhead: CR06 (Grade: L1)\nAddress: 1014 GEYLANG EAST AVE 3, ##06-204, Singapore 389729",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "1E SERVICES PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 202036560K\nWorkhead: ME01 (Grade: L1)\nAddress: 35 TANNERY ROAD, ##03-06A, Singapore 347740",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "1ESS PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 201626345H\nWorkhead: ME11 (Grade: L1)\nAddress: 1 SOON LEE STREET, ##05-70, Singapore 627605",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "1SOLAR PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 202427321N\nWorkhead: ME03 (Grade: L1)\nAddress: 10 JALAN BESAR, ##08-10, Singapore 208787",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "1ST CLEANING SERVICES PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 202102465N\nWorkhead: FM02 (Grade: L1)\nAddress: 60 KAKI BUKIT PLACE, ##07-04, Singapore 415979",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "1ST ELECTRICAL SERVICES",
+        "activity": "BCA Registered Company.\nUEN: 53206423B\nWorkhead: ME05 (Grade: L1)\nAddress: 60 JALAN LAM HUAT, ##03-42, Singapore 737869",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "1ST POWER ELECTRICAL ENGINEERING",
+        "activity": "BCA Registered Company.\nUEN: 53084591A\nWorkhead: ME05 (Grade: L1)\nAddress: 8 BURN ROAD, #12-12, Singapore 369977",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "1ST SOLUTION GROUP PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 201602498W\nWorkhead: ME04 (Grade: L1)\nAddress: 45 KALLANG PUDDING ROAD, ##09-02, Singapore 349317",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "1STAR ENGINEERING",
+        "activity": "BCA Registered Company.\nUEN: 53394426X\nWorkhead: ME01 (Grade: L1)\nAddress: 1 SUNVIEW ROAD, ##02-02, Singapore 627615",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "1STOP BUILDERS PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 201736774R\nWorkhead: CR06 (Grade: L1)\nAddress: 11 MANDAI ESTATE, ##10-12, Singapore 729908",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "2 BOX DESIGN PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 201420200D\nWorkhead: CR06 (Grade: L1)\nAddress: 6 UBI ROAD, ##08-04, Singapore 408726",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "21 CONSTRUCTION ENGINEERING PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 200301450G\nWorkhead: CW01 (Grade: C3)\nAddress: 25 BUKIT BATOK CRESCENT, ##08-04, Singapore 658066",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "21 SHUTTERS PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 200402960M\nWorkhead: CR18 (Grade: Single Grade)\nAddress: 3018 BEDOK NORTH STREET 5, ##03-12, Singapore 486132",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "21ST DECOR ENGINEERING PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 199905163C\nWorkhead: CR06 (Grade: L1)\nAddress: 1 SOON LEE STREET, ##06-31, Singapore 627605",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "23 DEGREES PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 202412085K\nWorkhead: ME01 (Grade: L1)\nAddress: 23 UBI ROAD 4, ##02-07, Singapore 408620",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "23 TECHNOLOGIES PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 200600912E\nWorkhead: ME04 (Grade: L1)\nAddress: 1004 TOA PAYOH INDUSTRIAL PARK, ##02-1499, Singapore 319076",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "25 DEGREES PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 201802181M\nWorkhead: ME01 (Grade: L1)\nAddress: 2 SIMS CLOSE, ##02-06, Singapore 387298",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "265 FORWARD BUILDERS PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 200812822C\nWorkhead: CR06 (Grade: L1)\nAddress: 20 WOODLANDS WALK, #na, Singapore 738391",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "2BUILDUP PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 201717326R\nWorkhead: CR06 (Grade: L1)\nAddress: 60 PAYA LEBAR ROAD, ##11-25, Singapore 409051",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "2D ENGINEERING PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 202106020R\nWorkhead: CR01 (Grade: Single Grade)\nAddress: 5 ST GEORGE'S LANE, ##02-181, Singapore 320005",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "2E METAL ART",
+        "activity": "BCA Registered Company.\nUEN: 53452570M\nWorkhead: RW01 (Grade: Single Grade)\nAddress: 1030 EUNOS AVE 6, ##01-50, Singapore 409625",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "2HQ BUILDER PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 201809545W\nWorkhead: CR09 (Grade: L1)\nAddress: 100 PECK SEAH STREET, ##08-14, Singapore 079903",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "2J METAL & ELECTRICAL ENGINEERING",
+        "activity": "BCA Registered Company.\nUEN: 53004817E\nWorkhead: CR01 (Grade: Single Grade)\nAddress: 9002 TAMPINES STREET 93, ##01-26, Singapore 528836",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "2K BUILDER PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 198400907Z\nWorkhead: CW02 (Grade: C1)\nAddress: 50 BUKIT BATOK STREET 23, ##07-06, Singapore 659578",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "2K ENGINEERING WORKS PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 202131272D\nWorkhead: CW01 (Grade: C3)\nAddress: 50 BUKIT BATOK STREET 23, ##07-06, Singapore 659578",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "2K INTERNATIONAL PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 200415190C\nWorkhead: CW02 (Grade: C3)\nAddress: 50 BUKIT BATOK STREET 23, ##07-06, Singapore 659578",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "2KBROS ENGINEERING PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 202226660N\nWorkhead: CR06 (Grade: L1)\nAddress: 20 UPPER CIRCULAR ROAD, ##01-09, Singapore 058416",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "2L INTERIOR DESIGN & CONSTRUCTION PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 201115201G\nWorkhead: CW01 (Grade: C3)\nAddress: 37 LORONG 23 GEYLANG, ##03-01A, Singapore 388371",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "2ND PHASE DESIGN INTERIOR PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 201021847Z\nWorkhead: CR06 (Grade: L1)\nAddress: 21 WOODLANDS CLOSE, ##04-05, Singapore 737854",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "2POINTZERO RENOVATIONS",
+        "activity": "BCA Registered Company.\nUEN: 53486659W\nWorkhead: CR06 (Grade: L1)\nAddress: 31 WOODLANDS CLOSE, ##08-34, Singapore 737855",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "2SS ENGINEERING PTE.LTD.",
+        "activity": "BCA Registered Company.\nUEN: 201803443D\nWorkhead: CR01 (Grade: Single Grade)\nAddress: 65 SIMS AVENUE, ##02-01, Singapore 387418",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "2T CONTRACTORS PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 202212955R\nWorkhead: CR06 (Grade: L1)\nAddress: 31 WOODLANDS CLOSE, #na, Singapore 737855",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "2TO PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 202144838M\nWorkhead: CR01 (Grade: Single Grade)\nAddress: 3012 BEDOK INDUSTRIAL PARK E, ##03-2078, Singapore 489978",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "2XK ENGINEERING PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 201718877Z\nWorkhead: CR01 (Grade: Single Grade)\nAddress: 71 WOODLANDS AVENUE 10, ##03-01, Singapore 737743",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "3 ACES ADVERTISING PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 199400922R\nWorkhead: CR11 (Grade: L1)\nAddress: 2 LENG KEE ROAD, ##04-04, Singapore 159086",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "3 C FOUNDATIONS PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 202004018N\nWorkhead: CR08 (Grade: L1)\nAddress: 10 BUROH STREET, ##05-42, Singapore 627564",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "3 CONCEPTS PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 201718193Z\nWorkhead: CR06 (Grade: L1)\nAddress: 19 KIM KEAT ROAD, ##10-01, Singapore 328804",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "3 SQUARE MEDIA SOLUTIONS PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 201219873N\nWorkhead: ME05 (Grade: L1)\nAddress: 2 YISHUN INDUSTRIAL STREET 1, ##06-09, Singapore 768159",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "3 STAR ENGINEERING PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 201015957N\nWorkhead: CW01 (Grade: C3)\nAddress: 48 TOH GUAN ROAD EAST, ##03-142, Singapore 608586",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "3 TOUGH MANAGEMENT PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 202141974E\nWorkhead: CW01 (Grade: C3)\nAddress: 1 CORPORATION DRIVE, ##09-09, Singapore 619775",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "3+I DESIGN STUDIO PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 201833525H\nWorkhead: CR06 (Grade: L1)\nAddress: 35 Kallang Pudding Road, ##04-04F, Singapore 349314",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "3-LINK ENGINEERING PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 200415109E\nWorkhead: CW01 (Grade: B1)\nAddress: 56 KALLANG PUDDING ROAD, ##07-02, Singapore 349328",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "3000IMMUNITY PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 202135812Z\nWorkhead: FM04 (Grade: L1)\nAddress: 126 JOO SENG ROAD, ##04-15C, Singapore 368355",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "338 PRIVATE LIMITED",
+        "activity": "BCA Registered Company.\nUEN: 202022932H\nWorkhead: ME01 (Grade: L1)\nAddress: 331 CLEMENTI AVENUE 2, ##07-154, Singapore 120331",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "360 INTEGRATED FM & SM PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 202212959Z\nWorkhead: FM01 (Grade: M4)\nAddress: 71 BUKIT BATOK CRESCENT, ##06 - 11, Singapore 658071",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "360 INTERIOR AND CONSTRUCTION PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 201903031N\nWorkhead: CR03 (Grade: Single Grade)\nAddress: 8 UBI ROAD 2, ##03-22, Singapore 408538",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "360AIO PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 201023390G\nWorkhead: ME12 (Grade: L1)\nAddress: 3014 UBI ROAD 1, ##01-292, Singapore 408702",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "366 ENVIRONMENTAL TECHNOLOGY PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 201923442M\nWorkhead: CR06 (Grade: L1)\nAddress: 6 CHENG SOON LANE, #na, Singapore 599764",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "366 WORLD PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 202036841Z\nWorkhead: CR06 (Grade: L1)\nAddress: 8 BOON LAY WAY, ##03-14, Singapore 609964",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "369 BUILDERS PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 202200639Z\nWorkhead: CR09 (Grade: L1)\nAddress: 101 KITCHENER ROAD, ##03-13, Singapore 208511",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "37 RENOVATION CONTRACTOR PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 201833262d\nWorkhead: CR06 (Grade: L1)\nAddress: 25 KAKI BUKIT ROAD 4, ##05-60, Singapore 417800",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "37K VOLTS ENGINEERING PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 202326031D\nWorkhead: ME05 (Grade: L1)\nAddress: 1010 DOVER ROAD, ##01-370V, Singapore 139658",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "388 PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 201328419K\nWorkhead: ME12 (Grade: L4)\nAddress: 48 TOH GUAN ROAD EAST, ##02-123, Singapore 608586",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "3CELL PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 201401658M\nWorkhead: ME04 (Grade: L1)\nAddress: 5066 ANG MO KIO INDUSTRIAL PARK 2, ##01-1395, Singapore 569569",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "3D AVE PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 201715269M\nWorkhead: TR10 (Grade: Single Grade)\nAddress: 120 EUNOS AVENUE 7, ##01-05, Singapore 409574",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "3D BUILT PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 202230357N\nWorkhead: CR01 (Grade: Single Grade)\nAddress: 100 JALAN SULTAN, #03-32A, Singapore 199001",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "3D CREATIVE DESIGN PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 201809978G\nWorkhead: CR06 (Grade: L1)\nAddress: 18 BOON LAY WAY, ##01-97, Singapore 609966",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "3D DESIGN BUILDER",
+        "activity": "BCA Registered Company.\nUEN: 53504925X\nWorkhead: CR06 (Grade: L1)\nAddress: 100 LORONG 23 GEYLANG, ##6-03, Singapore 388398",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "3E BUILDER & PREFAB PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 201610276G\nWorkhead: TR02 (Grade: Single Grade)\nAddress: 81 TAGORE LANE, ##04-09B, Singapore 787502",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "3E ENGRG PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 201136331M\nWorkhead: ME05 (Grade: L1)\nAddress: 933 JURONG WEST STREET 91, ##13-367, Singapore 640933",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "3E POWER ENGINEERING PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 201109566H\nWorkhead: ME05 (Grade: L1)\nAddress: 1003 TOA PAYOH INDUSTRIAL PARK, ##04-1525, Singapore 319075",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "3E SG PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 202302118G\nWorkhead: SY08 (Grade: L1)\nAddress: 109 HILLVIEW CRESENT, #na, Singapore 669502",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "3F ENGINEERING & CONSTRUCTION PTE.LTD.",
+        "activity": "BCA Registered Company.\nUEN: 201601376Z\nWorkhead: ME05 (Grade: L1)\nAddress: 640 ROWELL ROAD, ##01-78, Singapore 200640",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "3FR ENTERPRISES PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 201932253H\nWorkhead: CR06 (Grade: L1)\nAddress: 141 CECIL STREET, #07-01, Singapore 069541",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "3G CONSTRUCTION PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 201315660W\nWorkhead: CW01 (Grade: C3)\nAddress: 167 BUKIT BATOK WEST AVENUE 8, ##06-236, Singapore 650167",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "3G ELECTRICAL & DESIGN PTE LTD PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 201807519K\nWorkhead: ME11 (Grade: L1)\nAddress: 11 WOODLANDS CLOSE, ##09-05, Singapore 737853",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "3GP SOLUTIONS PTE.LTD.",
+        "activity": "BCA Registered Company.\nUEN: 201609240M\nWorkhead: ME01 (Grade: L1)\nAddress: 1 THOMSON ROAD, ##04-326F, Singapore 300001",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "3H AIRCONDITIONING & ENGINEERING PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 200201489Z\nWorkhead: ME01 (Grade: L2)\nAddress: 10 ADMIRALTY STREET, ##04-78, Singapore 757695",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "3H DECOR PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 199801628H\nWorkhead: CR06 (Grade: L3)\nAddress: 71 WOODLANDS INDUSTRIAL PARK E9, ##03-02, Singapore 757048",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "3HA CONSTRUCTION PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 202437724D\nWorkhead: CR09 (Grade: L1)\nAddress: 979 JURONG WEST STREET 93, ##03-325, Singapore 640979",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "3I TECHNOLOGIES PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 200403142H\nWorkhead: ME04 (Grade: L2)\nAddress: 8 BOON LAY WAY, ##05-04, Singapore 609964",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "3ISTUDIO CONSULTANTS PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 200918054G\nWorkhead: CR06 (Grade: L3)\nAddress: 5 JALAN KILANG BARAT, ##05-02, Singapore 159349",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "3J CONSTRUCTION (S) PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 201014348H\nWorkhead: ME01 (Grade: L3)\nAddress: 39 WOODLANDS CLOSE, ##04-03/04, Singapore 737856",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "3L E&C PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 201732567C\nWorkhead: ME05 (Grade: L1)\nAddress: 32 ANG MO KIO INDUSTRIAL PARK 2, ##06-06, Singapore 569510",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "3LTY CONSTRUCTION PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 201839852R\nWorkhead: CR06 (Grade: L1)\nAddress: 101 GANGSA ROAD, ##02-05, Singapore 670101",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "3M CONSTRUCTION & ENGINEERING PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 202120446D\nWorkhead: ME06 (Grade: L1)\nAddress: 771 Yishun Avenue 3, ##12-241, Singapore 760771",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "3M TECHNOLOGIES (S) PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 200202548H\nWorkhead: SY05 (Grade: L4)\nAddress: 10 ANG MO KIO STREET 65, ##03-01, Singapore 569059",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "3N ENGINEERING & CONSTRUCTION PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 201703784E\nWorkhead: ME05 (Grade: L1)\nAddress: 735 WOODLANDS CIRCLE, ##03-499, Singapore 730735",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "3P POWER PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 201310078H\nWorkhead: SY05 (Grade: L4)\nAddress: 1 Genting Link, ##04-02, Singapore 349518",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "3PS ELECTRICAL PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 202300944E\nWorkhead: ME05 (Grade: L1)\nAddress: 1 UPPER ALJUNIED LINK, ##02-04, Singapore 367901",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "3R SYSTEMS PRIVATE LIMITED",
+        "activity": "BCA Registered Company.\nUEN: 201230172K\nWorkhead: CR06 (Grade: L1)\nAddress: 8B ADMIRALTY STREET, ##07-13, Singapore 757440",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "3S COMMUNICATION PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 200605052G\nWorkhead: ME04 (Grade: L1)\nAddress: 705 SIMS DRIVE, ##04-15C, Singapore 387384",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "3S CONSTRUCTION & ENGINEERING PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 201505949D\nWorkhead: CR06 (Grade: L1)\nAddress: 5004 ANG MO KIO AVENUE 5, ##04-02, Singapore 569872",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "3S CONSTRUCTION SERVICES PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 200201242D\nWorkhead: CR06 (Grade: L1)\nAddress: 18 BOON LAY WAY, ##03-114, Singapore 609966",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "3S E&C PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 202410284R\nWorkhead: CR01 (Grade: Single Grade)\nAddress: 61 WOODLANDS INDUSTRIAL PARK E9, ##04-19, Singapore 757047",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "3S ENGINEERING PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 202421916E\nWorkhead: ME05 (Grade: L1)\nAddress: 30 ROBERTS LANE, ##02-01, Singapore 218309",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "3S ENTERPRISES PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 201128230C\nWorkhead: ME06 (Grade: L1)\nAddress: 10 JALAN BESAR, ##03-04, Singapore 208787",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "3SI PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 200617526R\nWorkhead: ME04 (Grade: L5)\nAddress: 20 SIN MING LANE, ##07-58, Singapore 573968",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "3SM CONSTRUCTION & ENGINEERING PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 201705461R\nWorkhead: CR01 (Grade: Single Grade)\nAddress: 194 PANDAN LOOP, ##07-28, Singapore 128383",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "3T ECOPLUS PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 202142962G\nWorkhead: ME01 (Grade: L1)\nAddress: 12 ARUMUGAM ROAD, ##02-02L, Singapore 409958",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "3U CONSTRUCTION PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 200202406C\nWorkhead: CR06 (Grade: L1)\nAddress: 1 SUNVIEW ROAD, ##07-48, Singapore 627615",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "3V CREATION PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 201011562H\nWorkhead: ME05 (Grade: L1)\nAddress: 55 SERANGOON NORTH AVENUE 4, ##02-04, Singapore 555859",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "3W ENERGY PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 201317404H\nWorkhead: SY05 (Grade: L1)\nAddress: 3025 UBI ROAD 3, ##02-141, Singapore 408653",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "4 PILLARS CONSTRUCTION PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 202226734N\nWorkhead: CR06 (Grade: L1)\nAddress: 101 WOODLANDS AVENUE 12, ##04-13, Singapore 737719",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "42 DEGREES ASIA PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 201224031C\nWorkhead: SY05 (Grade: L3)\nAddress: 80 GENTING LANE, ##07-06, Singapore 349565",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "4F ENGINEERING AND CONSTRUCTION PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 202431597W\nWorkhead: CR06 (Grade: L1)\nAddress: 200 JALAN SULTAN, ##03-45, Singapore 199018",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "4HK PROJECTS PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 201005572H\nWorkhead: CW01 (Grade: C3)\nAddress: 380 JALAN BESAR, ##06-06, Singapore 209000",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "4HOME ELECTRICAL PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 202115756D\nWorkhead: ME05 (Grade: L1)\nAddress: 39 WOODLANDS CLOSE, ##01-43, Singapore 737865",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "4PLUS8 PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 201909127Z\nWorkhead: CR06 (Grade: L1)\nAddress: 48 KAKI BUKIT CRESCENT, #na, Singapore 416270",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "4R ENGINEERING PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 202143324G\nWorkhead: ME05 (Grade: L1)\nAddress: 30 ROBERTS LANE, ##02-01, Singapore 218309",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "4U ELEVATOR PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 201711618K\nWorkhead: RW03B (Grade: Single Grade)\nAddress: 105 SIMS AVENUE, ##06-07, Singapore 387429",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "4X TECHNOLOGIES PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 201835081C\nWorkhead: ME06 (Grade: L1)\nAddress: 3024 UBI ROAD 3, ##02-51, Singapore 408652",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "4ZOOM ENGINEERING PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 202236230R\nWorkhead: CR06 (Grade: L1)\nAddress: 3 SOON LEE STREET, ##06-27, Singapore 627606",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "5 LANDMARK CONSTRUCTION PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 201119352C\nWorkhead: ME12 (Grade: L2)\nAddress: 3013 BEDOK INDUSTRIAL PARK E, ##04-2124, Singapore 489979",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "5 MASONS PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 202031020E\nWorkhead: CR06 (Grade: L3)\nAddress: 61 Ubi Road 1, ##01-28, Singapore 408727",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "5 STAR CONSTRUCTION AND ENGINEERING PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 202240841G\nWorkhead: CR06 (Grade: L1)\nAddress: 160 ROBINSON ROAD, ##14-04, Singapore 068914",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "5 WAYS ENGINEERING SERVICES PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 201117735N\nWorkhead: ME06 (Grade: L3)\nAddress: 3007 UBI ROAD 1, ##05-410, Singapore 408701",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "500M CONTRACTING PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 202303875H\nWorkhead: CR06 (Grade: L1)\nAddress: 328 UBI AVENUE 1, ##03-613, Singapore 400328",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "5F ENGINEERING PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 202242408G\nWorkhead: CR09 (Grade: L1)\nAddress: 307 SHUNFU ROAD, ##02-127, Singapore 570307",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "5MSQ PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 202405581K\nWorkhead: CR06 (Grade: L1)\nAddress: 61 UBI ROAD, ##01-28, Singapore 408727",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "5S ENGINEERING",
+        "activity": "BCA Registered Company.\nUEN: 53452369B\nWorkhead: ME09 (Grade: L1)\nAddress: 105 CECIL STREET, #18-88, Singapore 069534",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "5ZAL CONSTRUCTION PTE.LTD.",
+        "activity": "BCA Registered Company.\nUEN: 202520099R\nWorkhead: CR06 (Grade: L1)\nAddress: 42 CUFF ROAD, ##42-2A, Singapore 209752",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "6 DEGREE TECHNOLOGY PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 201923904R\nWorkhead: ME01 (Grade: L1)\nAddress: 71 Woodlands Avenue 10, ##08-10, Singapore 737743",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "6 FACE DESIGN CONTRACTORS PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 201801914R\nWorkhead: ME05 (Grade: L1)\nAddress: 03 SOON LEE STREET, ##05-11, Singapore 627606",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "60 COY PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 202322149M\nWorkhead: ME05 (Grade: L1)\nAddress: 60 PAYA LEBAR ROAD, ##07-54, Singapore 409051",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "68 SYSTEMS & PROJECT ENGINEERING PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 199301790G\nWorkhead: ME05 (Grade: L2)\nAddress: 4010 ANG MO KIO AVENUE 10, ##04-02, Singapore 569626",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "6A ENGINEERING PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 201410938M\nWorkhead: ME04 (Grade: L1)\nAddress: 72 TAGORE LANE, #na, Singapore 787497",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "7 SAILS CONSTRUCTION PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 202335296E\nWorkhead: CR06 (Grade: L1)\nAddress: 21 TOH GUAN ROAD EAST, ##06-28, Singapore 608609",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "7 STAR (MEP) ENGINEERING PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 202421884W\nWorkhead: CR06 (Grade: L1)\nAddress: 11 SAM LEONG ROAD, ##01-06, Singapore 207903",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "71 AIRCONDITIONING PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 201615191E\nWorkhead: CR06 (Grade: L1)\nAddress: 31 WOODLANDS CLOSE, ##08-31, Singapore 737855",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "777 CONSTRUCTION PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 202409070Z\nWorkhead: CR06 (Grade: L1)\nAddress: 503 CHOA CHU KANG STREET 51, ##10-157, Singapore 680503",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "78 RENOVATION & CONSTRUCTION PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 202319161G\nWorkhead: CR06 (Grade: L1)\nAddress: 11 SAM LEONG ROAD, ##01-12, Singapore 207903",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "7ENG PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 201940780M\nWorkhead: ME11 (Grade: L1)\nAddress: 31 DESKER ROAD, ##01-31, Singapore 209648",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "7K ELITE PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 202317527G\nWorkhead: CR01 (Grade: Single Grade)\nAddress: 445 ANG MO KIO AVENUE 10, ##07-1643, Singapore 560445",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "7R ENGINEERING PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 202237457D\nWorkhead: CR07 (Grade: L1)\nAddress: 61 WOODLANDS INDUSTRIAL PARK E9, ##02-23, Singapore 757047",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "8 SQUARES PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 199604079W\nWorkhead: CR06 (Grade: L1)\nAddress: 1 CHANG CHARN ROAD, ##04-02, Singapore 159630",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "800 LANDSCAPE PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 200919664D\nWorkhead: FM03 (Grade: L5)\nAddress: 17A SENOKO WAY, #na, Singapore 758056",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "800 SUPER WASTE MANAGEMENT PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 198601155H\nWorkhead: FM04 (Grade: L1)\nAddress: 17A SENOKO WAY, #na, Singapore 758056",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "81 AIRCON PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 201607311G\nWorkhead: ME01 (Grade: L1)\nAddress: 21 TOH GUAN ROAD EAST, ##05-18, Singapore 608609",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "82 DESIGN STUDIO PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 202409119R\nWorkhead: CR06 (Grade: L1)\nAddress: 7 GAMBAS CRESCENT, ##01-08, Singapore 757087",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "82 SCAFFOLDING PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 202422915K\nWorkhead: TR01 (Grade: Single Grade)\nAddress: 3 GAMBAS CRESCENT, ##03-10, Singapore 757088",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "83SERVICES PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 201906718R\nWorkhead: FM01 (Grade: M4)\nAddress: 61 KAKI BUKIT AVENUE 1, ##05-17, Singapore 417943",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "88 POWER PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 201802998W\nWorkhead: CR06 (Grade: L1)\nAddress: 101 WOODLANDS AVE 12, ##02-20, Singapore 737719",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "88 RENOVATION PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 202417290Z\nWorkhead: CR06 (Grade: L1)\nAddress: 236A SERANGOON ROAD, ##02-236A, Singapore 218084",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "89 RENO PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 202426654M\nWorkhead: CR01 (Grade: Single Grade)\nAddress: 10 ANSON ROAD, ##17-20, Singapore 079903",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "8BUILD PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 201015289M\nWorkhead: CR06 (Grade: L4)\nAddress: 10 ANSON ROAD, ##23-14, Singapore 079903",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "8DOORS PRIVATE LIMITED",
+        "activity": "BCA Registered Company.\nUEN: 202025825D\nWorkhead: CR18 (Grade: Single Grade)\nAddress: 10 ADMIRALTY STREET, ##04-77, Singapore 757695",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "8KC CONSTRUCTION",
+        "activity": "BCA Registered Company.\nUEN: 53126548W\nWorkhead: CR03 (Grade: Single Grade)\nAddress: 354 ANG MO KIO STREET 32, ##23-151, Singapore 560354",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "8M ALARM SYSTEM PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 199105371M\nWorkhead: ME04 (Grade: L1)\nAddress: 1002 TOA PAYOH INDUSTRIAL PARK, ##04-1433, Singapore 319074",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "8M ENGINEERING PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 202004215K\nWorkhead: CR06 (Grade: L1)\nAddress: 50 TAGORE LANE, ##05-01, Singapore 787494",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "8PTITUDE PRIVATE LIMITED",
+        "activity": "BCA Registered Company.\nUEN: 201800968G\nWorkhead: CR09 (Grade: L1)\nAddress: 20 BUKIT BATOK CRESCENT, ##07-26, Singapore 658080",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "9 BUILDERS PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 201621592G\nWorkhead: CR09 (Grade: L1)\nAddress: 13 TOA PAYOH LORONG 8, ##02-02, Singapore 319281",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "9 CREATION PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 201305311D\nWorkhead: CR06 (Grade: L1)\nAddress: 18 BOONLAY WAY, ##01-98A, Singapore 609966",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "9 HELIOS PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 202312484N\nWorkhead: ME03 (Grade: L1)\nAddress: 101 Upper Cross Street, ##05-09, Singapore 058357",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "9 POWER ALUMINIUM & GLASS PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 201835588K\nWorkhead: RW01 (Grade: Single Grade)\nAddress: 71 WOODLANDS AVE 10, ##02-07, Singapore 737743",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "9 STAR SERVICES PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 202143845R\nWorkhead: CR06 (Grade: L1)\nAddress: 39 WOODLANDS CLOSE, ##01-55, Singapore 737856",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "932 DESIGN GROUP PRIVATE LIMITED",
+        "activity": "BCA Registered Company.\nUEN: 201526554R\nWorkhead: CR06 (Grade: L1)\nAddress: 3 UBI CRESCENT, ##06-01, Singapore 408558",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "9COMMUNICATIONS PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 201800924M\nWorkhead: ME04 (Grade: L1)\nAddress: 38 LOYANG DRIVE, ##03-03, Singapore 508960",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "9G ELEVATOR PTE. LTD.",
+        "activity": "BCA Registered Company.\nUEN: 200309087N\nWorkhead: RW03B (Grade: Single Grade)\nAddress: 8 KALLANG AVENUE, ##07-01, Singapore 339509",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "9ONE9 TIMBER SOLID DOOR PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 201813959M\nWorkhead: CR18 (Grade: Single Grade)\nAddress: 18 BOON LAY WAY, ##09-123, Singapore 609966",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    },
+    {
+        "name": "9SQUARE SOLUTIONS PTE LTD",
+        "activity": "BCA Registered Company.\nUEN: 201019257W\nWorkhead: ME06 (Grade: L1)\nAddress: 1 YISHUN STREET 23, ##04-29, Singapore 768441",
+        "reviews": [],
+        "timestamp": "2026-03-31T09:43:37.659Z"
+    }
+]
