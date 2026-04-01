@@ -4,15 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SG Worker Hub</title>
+    
+    <meta name="theme-color" content="#111111">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/GeveexEcho/sg-worker-hub-/main/public/construction_banner.png">
+
     <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f4f4f4; }
+        body { 
+            font-family: 'Segoe UI', Arial, sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            background: url('https://raw.githubusercontent.com/GeveexEcho/sg-worker-hub-/main/public/construction_banner.png') no-repeat center center fixed; 
+            background-size: cover;
+        }
+
+        .page-overlay {
+            background: rgba(0, 0, 0, 0.6);
+            min-height: 100vh;
+            width: 100%;
+            padding-bottom: 50px;
+        }
         
         .header { 
-            background: rgba(17, 17, 17, 0.75);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background: rgba(17, 17, 17, 0.8);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             color: white; 
-            padding: 12px 20px; 
+            padding: 15px 20px; 
             display: flex; 
             justify-content: space-between; 
             align-items: center;
@@ -22,130 +42,157 @@
             right: 0;
             z-index: 1000;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
 
         #header-title {
             margin: 0;
-            font-size: 22px;
+            font-size: 20px;
             letter-spacing: 1px;
-            text-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
+            color: #ff9800;
+            text-shadow: 0 0 10px rgba(255, 152, 0, 0.5);
         }
 
         #lang-toggle {
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.3);
             color: white;
-            padding: 6px 14px;
+            padding: 6px 12px;
             border-radius: 20px;
             cursor: pointer;
-            transition: 0.3s;
-            font-size: 14px;
-        }
-
-        #lang-toggle:hover {
-            background: rgba(0, 255, 255, 0.2);
-            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+            font-size: 13px;
         }
 
         .banner { 
-            background: #222 url('https://raw.githubusercontent.com/GeveexEcho/sg-worker-hub-/main/public/construction_banner.png') center/cover no-repeat; 
-            height: 320px;
+            height: 280px;
             display: flex; 
             align-items: center; 
             justify-content: center; 
-            position: relative;
-            padding-top: 50px;
+            padding-top: 60px;
         }
-
-        .banner-overlay { background: rgba(0,0,0,0.4); position: absolute; top:0; left:0; right:0; bottom:0; }
         
-        .search-container { position: relative; z-index: 10; width: 85%; max-width: 600px; }
+        .search-container { width: 90%; max-width: 600px; }
         
         .search-bar { 
             width: 100%; 
-            padding: 16px; 
-            border: 4px solid #ff9800; 
-            border-radius: 12px; 
+            padding: 18px; 
+            border: 3px solid #ff9800; 
+            border-radius: 15px; 
             font-size: 18px; 
             outline: none; 
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             box-sizing: border-box;
+            background: rgba(255, 255, 255, 0.95);
         }
         
         .submit-box { 
-            background: #4caf50; 
+            background: rgba(76, 175, 80, 0.9); 
             color: white; 
-            padding: 20px; 
+            padding: 18px; 
             text-align: center; 
             cursor: pointer; 
-            margin: 25px auto; 
-            width: 85%; 
+            margin: 10px auto; 
+            width: 90%; 
             max-width: 600px; 
-            border-radius: 12px; 
+            border-radius: 15px; 
             font-weight: bold; 
-            font-size: 18px; 
-            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3); 
-            transition: 0.3s; 
+            font-size: 17px; 
+            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
 
-        .submit-box:hover { transform: translateY(-2px); background: #45a049; }
-
-        .container { max-width: 800px; margin: 20px auto; padding: 20px; background: white; border-radius: 12px; }
+        .container { 
+            max-width: 800px; 
+            margin: 20px auto; 
+            padding: 20px; 
+            background: rgba(255, 255, 255, 0.1); 
+            border-radius: 15px; 
+        }
         
-        .modal { display: none; background: #f9f9f9; padding: 20px; border-radius: 12px; border: 1px solid #ddd; margin-bottom: 20px; }
+        .result-card { 
+            background: rgba(255, 255, 255, 0.92); 
+            backdrop-filter: blur(10px);
+            border-left: 8px solid #ff9800; 
+            padding: 20px; 
+            margin-bottom: 20px; 
+            border-radius: 12px; 
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2); 
+            color: #333;
+        }
+
+        .modal { 
+            display: none; 
+            background: white; 
+            padding: 25px; 
+            border-radius: 15px; 
+            margin-bottom: 20px; 
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
         
         input, textarea { 
             width: 100%; 
             padding: 12px; 
             margin-top: 10px; 
-            border: 1px solid #ccc; 
-            border-radius: 8px; 
+            border: 1px solid #ddd; 
+            border-radius: 10px; 
             box-sizing: border-box; 
-            font-size: 16px; 
         }
 
-        button { background: #111; color: white; padding: 12px 20px; border: none; margin-top: 10px; cursor: pointer; border-radius: 8px; font-weight: bold; }
-        
-        button.green { background: #4caf50; width: 100%; font-size: 18px; }
-        
-        .result-card { border-left: 6px solid #ff9800; background: #fff; padding: 15px; margin-top: 15px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        
-        .review-list { margin-top: 10px; padding-left: 20px; color: #555; font-size: 14px; }
+        button.green { 
+            background: #2e7d32; 
+            color: white;
+            width: 100%; 
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+        }
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <h2 id="header-title">SG Worker Hub</h2>
-        <button id="lang-toggle" onclick="toggleLanguage()">বাংলা / English</button>
-    </div>
-
-    <div class="banner">
-        <div class="banner-overlay"></div>
-        <div class="search-container">
-            <input type="text" id="search-input" class="search-bar" placeholder="Search company by name..." onkeyup="handleSearch()">
+    <div class="page-overlay">
+        <div class="header">
+            <h2 id="header-title">SG Worker Hub</h2>
+            <button id="lang-toggle" onclick="toggleLanguage()">বাংলা / English</button>
         </div>
-    </div>
 
-    <div class="submit-box" id="submit-trigger" onclick="toggleSubmitForm()">
-        ➕ Submit Company Name & Activities
-    </div>
-
-    <div class="container">
-        <div id="submit-form" class="modal">
-            <h3 id="form-title">Report a New Company</h3>
-            <input type="text" id="company-name" placeholder="Exact Company Name">
-            <textarea id="company-activity" rows="4" placeholder="Describe the fraudulent activity..."></textarea>
-            <button class="green" onclick="submitCompany()" id="submit-btn">Submit Report</button>
-            <p id="submit-status" style="margin-top:10px; font-weight:bold;"></p>
+        <div class="banner">
+            <div class="search-container">
+                <input type="text" id="search-input" class="search-bar" placeholder="Search company by name..." onkeyup="handleSearch()">
+            </div>
         </div>
-        <div id="results-container"></div>
+
+        <div class="submit-box" id="submit-trigger" onclick="toggleSubmitForm()">
+            ➕ Submit Company Name & Activities
+        </div>
+
+        <div class="container">
+            <div id="submit-form" class="modal">
+                <h3 id="form-title">Report a New Company</h3>
+                <input type="text" id="company-name" placeholder="Exact Company Name">
+                <textarea id="company-activity" rows="4" placeholder="Describe the activities..."></textarea>
+                <button class="green" onclick="submitCompany()" id="submit-btn">Submit Report</button>
+                <p id="submit-status" style="margin-top:10px; font-weight:bold;"></p>
+            </div>
+            
+            <div id="results-container"></div>
+        </div>
     </div>
 
     <script src="/src/app.js"></script>
     <script src="/src/search.js"></script>
     <script src="/src/submit.js"></script>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js').catch(() => {});
+            });
+        }
+    </script>
 
 </body>
 </html>
