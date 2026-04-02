@@ -211,12 +211,22 @@
         async function getMustafaRates() {
             try {
                 const response = await fetch('/.netlify/functions/get-rates');
+                if (!response.ok) throw new Error('Netlify Function Failed');
+                
                 const data = await response.json();
                 if(data.bdt) document.getElementById('bdt-rate').innerText = '৳ ' + data.bdt;
                 if(data.gold) document.getElementById('gold-rate').innerText = '$ ' + data.gold;
             } catch (err) {
-                document.getElementById('bdt-rate').innerText = "N/A";
-                document.getElementById('gold-rate').innerText = "N/A";
+                console.log("Switching to backup rates...");
+                try {
+                    const res = await fetch('https://open.er-api.com/v6/latest/SGD');
+                    const d = await res.json();
+                    document.getElementById('bdt-rate').innerText = '৳ ' + d.rates.BDT.toFixed(2);
+                    document.getElementById('gold-rate').innerText = "Updating...";
+                } catch (e) {
+                    document.getElementById('bdt-rate').innerText = "N/A";
+                    document.getElementById('gold-rate').innerText = "N/A";
+                }
             }
         }
         getMustafaRates();
