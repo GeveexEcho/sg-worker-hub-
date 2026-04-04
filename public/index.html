@@ -359,6 +359,49 @@
                 <button class="green" onclick="submitReviewAction()" id="submit-btn">Submit Review</button>
                 <p id="submit-status" style="margin-top:10px; font-weight:bold;"></p>
             </div>
+          <div id="quick-review-form" class="modal" style="display:none; background: white; padding: 25px; border-radius: 15px; margin-bottom: 20px; border: 2px solid #ff9800;">
+    <h3 id="quick-form-title" style="color:#ff9800; margin-top:0;">Add Company Review</h3>
+    <input type="hidden" id="quick-company-name">
+    
+    <div class="form-group">
+        <label class="title">i) Company Type:</label>
+        <div class="option-grid">
+            <input type="radio" name="qType" value="Supply" id="q-supply"><label for="q-supply">Supply</label>
+            <input type="radio" name="qType" value="Subcon" id="q-subcon"><label for="q-subcon">Subcon</label>
+            <input type="radio" name="qType" value="Maincon" id="q-maincon"><label for="q-maincon">Maincon</label>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="title">ii) Job Type:</label>
+        <input type="text" id="q-job" placeholder="e.g. Welder, Fitter">
+    </div>
+
+    <div class="form-group">
+        <label class="title">iii) Salary pay on time:</label>
+        <div class="option-grid">
+            <input type="radio" name="qTime" value="Yes" id="qt-yes"><label for="qt-yes">Yes ✅</label>
+            <input type="radio" name="qTime" value="No" id="qt-no"><label for="qt-no">No ❌</label>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="title">iv) Sunday/PH Pay:</label>
+        <div class="option-grid">
+            <input type="radio" name="qSun" value="Double" id="qs-d"><label for="qs-d">Double Pay</label>
+            <input type="radio" name="qSun" value="Basic" id="qs-b"><label for="qs-b">Basic Pay</label>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="title">v) Additional Review:</label>
+        <textarea id="q-activity" rows="3" placeholder="Describe your experience..."></textarea>
+    </div>
+    
+    <button class="green" onclick="submitQuickReview()" style="background: #ff9800;">Submit Review</button>
+    <button class="green" onclick="document.getElementById('quick-review-form').style.display='none'" style="background: #666; margin-top: 5px;">Cancel</button>
+                </div>
+            
             <div id="results-container"></div>
         </div>
     </div>
@@ -399,62 +442,49 @@
             }
         }
         
-        function openReviewForm(name) {
-    const nameInput = document.getElementById('company-name');
-    const submitBtn = document.getElementById('submit-btn');
+       function openReviewForm(name) {
+    document.getElementById('quick-company-name').value = name;
+    document.getElementById('quick-form-title').innerText = "Review for: " + name;
+    document.getElementById('quick-review-form').style.display = 'block';
+    document.getElementById('submit-form').style.display = 'none'; // মেইন ফর্ম বন্ধ রাখা
+    window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function submitQuickReview() {
+    const name = document.getElementById('quick-company-name').value;
+    const type = document.querySelector('input[name="qType"]:checked')?.value || 'N/A';
+    const job = document.getElementById('q-job').value || 'N/A';
+    const time = document.querySelector('input[name="qTime"]:checked')?.value || 'N/A';
+    const sun = document.querySelector('input[name="qSun"]:checked')?.value || 'N/A';
+    const activity = document.getElementById('q-activity').value;
+
+    const formatted = `Type: ${type} | Job: ${job} | On-Time: ${time} | Sun/PH: ${sun} | Review: ${activity}`;
     
-    nameInput.value = name;
-    nameInput.readOnly = true; 
-    nameInput.style.background = "#e9ecef"; 
+    document.getElementById('company-name').value = name;
+    document.getElementById('company-activity').value = formatted;
     
-    submitBtn.onclick = function() {
-        submitReviewAction('add_review');
-    };
-    
-    if (typeof toggleSubmitForm === 'function') toggleSubmitForm();
+    window.currentAction = 'add_review'; 
+
+    if (typeof submitCompany === 'function') {
+        submitCompany();
+        document.getElementById('quick-review-form').style.display = 'none';
+    }
 }
 
 function toggleSubmitForm() {
     const modal = document.getElementById('submit-form');
-    const nameInput = document.getElementById('company-name');
-    const submitBtn = document.getElementById('submit-btn');
-
+    document.getElementById('quick-review-form').style.display = 'none';
+    
     if (event && event.target.id === 'submit-trigger') {
-        nameInput.value = ''; 
-        nameInput.readOnly = false;
-        nameInput.style.background = "#ffffff";
-        
-        submitBtn.onclick = function() {
-            submitReviewAction('submit_company');
-        };
+        window.currentAction = 'submit_company';
+        document.getElementById('company-name').value = '';
+        document.getElementById('company-name').readOnly = false;
+        document.getElementById('company-name').style.background = "#ffffff";
     }
     
     modal.style.display = (modal.style.display === 'block') ? 'none' : 'block';
 }
-
-function submitReviewAction(mode) {
-    const cName = document.getElementById('company-name').value;
-    if (!cName) { alert("Company name is required!"); return; }
-
-    const cType = document.querySelector('input[name="coType"]:checked')?.value || 'N/A';
-    const jType = document.getElementById('job-type').value || 'N/A';
-    const onTime = document.querySelector('input[name="onTime"]:checked')?.value || 'N/A';
-    const sunPay = document.querySelector('input[name="sunPay"]:checked')?.value || 'N/A';
-    const deduct = document.querySelector('input[name="deduct"]:checked')?.value || 'N/A';
-    const accom = document.querySelector('input[name="accom"]:checked')?.value || 'N/A';
-    const trans = document.querySelector('input[name="trans"]:checked')?.value || 'N/A';
-    const addRev = document.getElementById('company-activity').value;
-
-    const formattedReview = `Type: ${cType} | Job: ${jType} | On-Time: ${onTime} | Sun/PH: ${sunPay} | Deduct: ${deduct} | Accom: ${accom} | Trans: ${trans} | Review: ${addRev}`;
-    
-    document.getElementById('company-activity').value = formattedReview;
-
-    if (typeof submitCompany === 'function') {
-        window.currentSubmitAction = mode; 
-        submitCompany();
-    }
-}
-                
+        
     </script>
 
     <script>
