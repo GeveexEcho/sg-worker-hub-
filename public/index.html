@@ -399,33 +399,39 @@
             }
         }
         
-        function openReviewForm(companyName) {
-    document.getElementById('company-name').value = companyName;
+        function openReviewForm(name) {
+    const nameInput = document.getElementById('company-name');
+    nameInput.value = name;
+    nameInput.readOnly = true;
+    nameInput.style.background = "#e9ecef";
     if (typeof toggleSubmitForm === 'function') {
         toggleSubmitForm();
     }
 }
 
 function submitReviewAction() {
-    const companyType = document.querySelector('input[name="coType"]:checked')?.value || 'N/A';
-    const jobType = document.getElementById('job-type').value || 'N/A';
+    const cName = document.getElementById('company-name').value;
+   
+    const cType = document.querySelector('input[name="coType"]:checked')?.value || 'N/A';
+    const jType = document.getElementById('job-type').value || 'N/A';
     const onTime = document.querySelector('input[name="onTime"]:checked')?.value || 'N/A';
-    const sundayPay = document.querySelector('input[name="sundayPay"]:checked')?.value || 'N/A';
-    const deduction = document.querySelector('input[name="deduction"]:checked')?.value || 'N/A';
-    const accommodation = document.querySelector('input[name="accommodation"]:checked')?.value || 'N/A';
-    const transport = document.querySelector('input[name="transport"]:checked')?.value || 'N/A';
-    const additionalReview = document.getElementById('company-activity').value;
+    const sunPay = document.querySelector('input[name="sunPay"]:checked')?.value || 'N/A';
+    const deduct = document.querySelector('input[name="deduct"]:checked')?.value || 'N/A';
+    const accom = document.querySelector('input[name="accom"]:checked')?.value || 'N/A';
+    const trans = document.querySelector('input[name="trans"]:checked')?.value || 'N/A';
+    const addRev = document.getElementById('company-activity').value;
 
-    const formattedReview = `Type: ${companyType} | Job: ${jobType} | On-Time: ${onTime} | Sun/PH: ${sundayPay} | Deduct: ${deduction} | Accom: ${accommodation} | Trans: ${transport} | Review: ${additionalReview}`;
+    const formattedReview = `Type: ${cType} | Job: ${jType} | On-Time: ${onTime} | Sun/PH: ${sunPay} | Deduct: ${deduct} | Accom: ${accom} | Trans: ${trans} | Review: ${addRev}`;
     
     document.getElementById('company-activity').value = formattedReview;
     
     if (typeof submitCompany === 'function') {
         submitCompany();
     } else {
-        console.log("Ready to Submit:", formattedReview);
+        console.log("Submitting to:", cName, "Data:", formattedReview);
     }
-}
+        }
+                
     </script>
 
     <script>
