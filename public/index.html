@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SG Worker Hub</title>
     <meta name="description" content="SG Worker Hub - Find Singapore company information, visa details, and skill training guides for workers.">
-<meta name="keywords" content="Singapore Worker Hub, SG Worker, Singapore Visa, BCA SECK, SG Company Search">
-<meta name="robots" content="index, follow">
-<meta name="google-site-verification" content="k0WgHuNWSG1gdvg__6Li7KWuJ9o784OqmfM5E92S5sU" />
+    <meta name="keywords" content="Singapore Worker Hub, SG Worker, Singapore Visa, BCA SECK, SG Company Search">
+    <meta name="robots" content="index, follow">
+    <meta name="google-site-verification" content="k0WgHuNWSG1gdvg__6Li7KWuJ9o784OqmfM5E92S5sU" />
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#ff9800">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -15,154 +15,51 @@
     <link rel="apple-touch-icon" href="/icon-192.png">
     
     <style>
-        body { 
-            font-family: 'Segoe UI', Arial, sans-serif; 
-            margin: 0; 
-            padding: 0; 
-            background: url('https://raw.githubusercontent.com/GeveexEcho/sg-worker-hub-/main/public/construction_banner.png') no-repeat center center fixed; 
-            background-size: cover;
-        }
-        .page-overlay {
-            background: rgba(0, 0, 0, 0.6);
-            min-height: 100vh;
-            width: 100%;
-            padding-bottom: 50px;
-            padding-top: 60px; /* added for fixed header */
-        }
-        .header { 
-            background: rgba(17, 17, 17, 0.8);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            color: white; 
-            padding: 15px 20px; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        /* New Sidebar Header Styles */
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; background: url('https://raw.githubusercontent.com/GeveexEcho/sg-worker-hub-/main/public/construction_banner.png') no-repeat center center fixed; background-size: cover; }
+        .page-overlay { background: rgba(0, 0, 0, 0.6); min-height: 100vh; width: 100%; padding-bottom: 50px; padding-top: 60px; }
+        .header { background: rgba(17, 17, 17, 0.8); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); color: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; position: fixed; top: 0; left: 0; right: 0; z-index: 1000; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
         .header-left { display: flex; align-items: center; gap: 15px; }
         .menu-icon { font-size: 26px; color: #ff9800; cursor: pointer; text-shadow: 0 0 10px rgba(255, 152, 0, 0.5); }
-        
-        #header-title {
-            margin: 0;
-            font-size: 20px;
-            letter-spacing: 1px;
-            color: #ff9800;
-            text-shadow: 0 0 10px rgba(255, 152, 0, 0.5);
-        }
-        #lang-toggle {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            color: white;
-            padding: 6px 12px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 13px;
-        }
-
-        /* ----- SIDEBAR & NEON GLASS CARDS ----- */
-        #sidebar-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-            background: rgba(0,0,0,0.7); z-index: 1999; display: none;
-            backdrop-filter: blur(5px);
-        }
+        #header-title { margin: 0; font-size: 20px; letter-spacing: 1px; color: #ff9800; text-shadow: 0 0 10px rgba(255, 152, 0, 0.5); }
+        #lang-toggle { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.3); color: white; padding: 6px 12px; border-radius: 20px; cursor: pointer; font-size: 13px; }
+        #sidebar-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(0,0,0,0.7); z-index: 1999; display: none; backdrop-filter: blur(5px); }
         #sidebar-overlay.open { display: block; }
-
-        #sidebar {
-            position: fixed; top: 0; left: -100%; width: 85%; max-width: 400px; height: 100vh;
-            background: rgba(10, 10, 15, 0.85);
-            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-            border-right: 1px solid rgba(255, 152, 0, 0.5);
-            box-shadow: 5px 0 25px rgba(0,0,0,0.8);
-            z-index: 2000; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            overflow-y: auto; color: white; padding-bottom: 30px;
-        }
+        #sidebar { position: fixed; top: 0; left: -100%; width: 85%; max-width: 400px; height: 100vh; background: rgba(10, 10, 15, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-right: 1px solid rgba(255, 152, 0, 0.5); box-shadow: 5px 0 25px rgba(0,0,0,0.8); z-index: 2000; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); overflow-y: auto; color: white; padding-bottom: 30px; }
         #sidebar.open { left: 0; }
-
-        .sidebar-header {
-            padding: 20px; border-bottom: 1px solid rgba(255, 152, 0, 0.3);
-            display: flex; justify-content: space-between; align-items: center;
-        }
+        .sidebar-header { padding: 20px; border-bottom: 1px solid rgba(255, 152, 0, 0.3); display: flex; justify-content: space-between; align-items: center; }
         .sidebar-header h3 { margin: 0; color: #ff9800; text-shadow: 0 0 8px rgba(255,152,0,0.4); }
-
         .tabs { display: flex; padding: 15px; gap: 10px; }
-        .tab-btn {
-            flex: 1; padding: 12px; background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1); color: #ccc;
-            border-radius: 8px; cursor: pointer; transition: 0.3s; font-weight: bold;
-        }
-        .tab-btn.active {
-            border-color: #ff9800; background: rgba(255, 152, 0, 0.15);
-            box-shadow: 0 0 15px rgba(255, 152, 0, 0.3); color: white;
-        }
-
+        .tab-btn { flex: 1; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #ccc; border-radius: 8px; cursor: pointer; transition: 0.3s; font-weight: bold; }
+        .tab-btn.active { border-color: #ff9800; background: rgba(255, 152, 0, 0.15); box-shadow: 0 0 15px rgba(255, 152, 0, 0.3); color: white; }
         .tab-content { display: none; padding: 0 15px; }
         .tab-content.active { display: block; animation: fadeIn 0.5s; }
-
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-        /* Neon Glass Card Styles */
-        .neon-card {
-            background: rgba(20, 20, 20, 0.5);
-            border: 1px solid rgba(255, 152, 0, 0.3);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3), inset 0 0 10px rgba(255, 152, 0, 0.05);
-            border-radius: 12px; margin-bottom: 15px; overflow: hidden; transition: 0.3s;
-        }
-        .card-title {
-            padding: 16px; cursor: pointer; font-weight: bold; font-size: 16px;
-            display: flex; justify-content: space-between; align-items: center;
-            background: rgba(255, 152, 0, 0.05); transition: 0.3s;
-        }
+        .neon-card { background: rgba(20, 20, 20, 0.5); border: 1px solid rgba(255, 152, 0, 0.3); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3), inset 0 0 10px rgba(255, 152, 0, 0.05); border-radius: 12px; margin-bottom: 15px; overflow: hidden; transition: 0.3s; }
+        .card-title { padding: 16px; cursor: pointer; font-weight: bold; font-size: 16px; display: flex; justify-content: space-between; align-items: center; background: rgba(255, 152, 0, 0.05); transition: 0.3s; }
         .card-title:hover { background: rgba(255, 152, 0, 0.15); }
         .card-icon { transition: transform 0.3s; color: #ff9800; }
-        
-        .card-info {
-            padding: 0 16px; max-height: 0; overflow: hidden;
-            transition: max-height 0.4s ease-out, padding 0.4s ease-out;
-            font-size: 14px; line-height: 1.6; color: #ddd;
-        }
-                .result-card { 
-            background: #f9f9f9 !important; 
-            border-left: 8px solid #ff9800; 
-            padding: 20px; 
-            margin-bottom: 20px; 
-            border-radius: 12px; 
-            box-shadow: 0 8px 20px rgba(0,0,0,0.4); 
-            color: #111111;
-        }                                                                      
-        .card-info.open {
-            padding: 16px; max-height: 2500px; /* Large enough to hold text */
-            border-top: 1px solid rgba(255, 152, 0, 0.2);
-        }
-
-        /* Sub Cards (For Work Permit inner categories) */
-        .sub-card {
-            border: 1px solid rgba(0, 200, 255, 0.3);
-            box-shadow: inset 0 0 10px rgba(0, 200, 255, 0.05);
-            margin: 10px 0; border-radius: 8px;
-        }
+        .card-info { padding: 0 16px; max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out, padding 0.4s ease-out; font-size: 14px; line-height: 1.6; color: #ddd; }
+        .result-card { background: #f9f9f9 !important; border-left: 8px solid #ff9800; padding: 20px; margin-bottom: 20px; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.4); color: #111111; }                                                                      
+        .card-info.open { padding: 16px; max-height: 2500px; border-top: 1px solid rgba(255, 152, 0, 0.2); }
+        .sub-card { border: 1px solid rgba(0, 200, 255, 0.3); box-shadow: inset 0 0 10px rgba(0, 200, 255, 0.05); margin: 10px 0; border-radius: 8px; }
         .sub-card .card-title { background: rgba(0, 200, 255, 0.05); font-size: 15px; color: #4dc3ff; }
         .sub-card .card-title:hover { background: rgba(0, 200, 255, 0.1); }
         .sub-card .card-icon { color: #00c8ff; }
-
         ul.info-list { padding-left: 20px; margin: 10px 0 0 0; }
         ul.info-list li { margin-bottom: 8px; }
-
-        /* Other existing styles */
         .search-container { width: 90%; max-width: 600px; margin: 0 auto; padding-top: 20px; }
         .search-bar { width: 100%; padding: 18px; border: 3px solid #ff9800; border-radius: 15px; font-size: 18px; outline: none; box-sizing: border-box; background: rgba(255, 255, 255, 0.95); }
         .submit-box { background: rgba(76, 175, 80, 0.9); color: white; padding: 18px; text-align: center; cursor: pointer; margin: 10px auto; width: 90%; max-width: 600px; border-radius: 15px; font-weight: bold; font-size: 17px; }
         .container { max-width: 800px; margin: 20px auto; padding: 20px; background: rgba(255, 255, 255, 0.1); border-radius: 15px; }
         .modal { display: none; background: white; padding: 25px; border-radius: 15px; margin-bottom: 20px; }
-        input, textarea { width: 100%; padding: 12px; margin-top: 10px; border: 1px solid #ddd; border-radius: 10px; box-sizing: border-box; }
+        input[type="text"], textarea { width: 100%; padding: 12px; margin-top: 5px; border: 1px solid #ddd; border-radius: 10px; box-sizing: border-box; }
         button.green { background: #2e7d32; color: white; width: 100%; padding: 15px; border: none; border-radius: 10px; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 15px; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label.title { display: block; font-weight: bold; margin-bottom: 5px; color: #333; }
+        .option-grid { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 5px; }
+        .option-grid input[type="radio"] { display: none; }
+        .option-grid label { padding: 10px 15px; background: #f0f0f0; border: 1px solid #ddd; border-radius: 8px; cursor: pointer; font-size: 14px; transition: 0.3s; color: #333; }
+        .option-grid input[type="radio"]:checked + label { background: #ff9800; color: white; border-color: #ff9800; box-shadow: 0 4px 10px rgba(255, 152, 0, 0.4); }
     </style>
 </head>
 <body>
@@ -185,7 +82,6 @@
             <div class="neon-card">
                 <div class="card-title" onclick="toggleCard(this)">Work Permit <span class="card-icon">▼</span></div>
                 <div class="card-info">
-                    
                     <div class="neon-card sub-card">
                         <div class="card-title" onclick="toggleCard(this)">Construction <span class="card-icon">▼</span></div>
                         <div class="card-info">
@@ -198,7 +94,6 @@
                             </ul>
                         </div>
                     </div>
-
                     <div class="neon-card sub-card">
                         <div class="card-title" onclick="toggleCard(this)">Shipyard <span class="card-icon">▼</span></div>
                         <div class="card-info">
@@ -210,7 +105,6 @@
                             </ul>
                         </div>
                     </div>
-
                     <div class="neon-card sub-card">
                         <div class="card-title" onclick="toggleCard(this)">PCM <span class="card-icon">▼</span></div>
                         <div class="card-info">
@@ -222,7 +116,6 @@
                             </ul>
                         </div>
                     </div>
-
                 </div>
             </div>
 
@@ -308,8 +201,8 @@
                     <ul class="info-list">
                         <li><strong>উদ্দেশ্য:</strong> ঘুরতে যাওয়া, ব্যবসায়িক মিটিং, আত্মীয়ের কাছে যাওয়া।</li>
                         <li><strong>মেয়াদ:</strong> সাধারণত ৩০ দিনের শর্ট-টার্ম ভিজিট পাস (STVP) পাওয়া যায়, চাইলে এক্সটেন্ড করা যায়।</li>
-                        <li><strong>আবেদন:</strong> ঢাকায় সিঙ্গাপুর হাইকমিশন বা অথরাইজড এজেন্টের মাধ্যমে (অনলাইন eVisa নয়, ফিজিক্যাল ফর্ম ১৪এ পূরণ করতে হয়)।</li>
-                        <li><strong>খরচ:</strong> প্রায় ৩০ সিঙ্গাপুর ডলার + এজেন্ট ফি।</li>
+                        <li><strong>আবেদন:</strong> ঢাকায় সিঙ্গাপুর হাইকমিশন বা অথরাইজড এজেন্টের মাধ্যমে (অনলাইন eVisa নয়, ফিজিক্যাল ফর্ম ১৪এ পূরণ করতে হয়)।</li>
+                        <li><strong>খরচ:</strong> প্রায় ৩০ সিঙ্গাপুর ডলার + এজেন্ট ফি।</li>
                         <li><strong>প্রসেসিং:</strong> ৩ কার্যদিবস।</li>
                     </ul>
                 </div>
@@ -401,15 +294,69 @@
         </div>
 
         <div class="submit-box" id="submit-trigger" onclick="toggleSubmitForm()">
-            ➕ Submit Company Name & Activities
+            ➕ Submit Company Review
         </div>
 
         <div class="container">
             <div id="submit-form" class="modal">
-                <h3 id="form-title">Report a New Company</h3>
-                <input type="text" id="company-name" placeholder="Exact Company Name">
-                <textarea id="company-activity" rows="4" placeholder="Describe the activities..."></textarea>
-                <button class="green" onclick="submitCompany()" id="submit-btn">Submit Report</button>
+                <h3 id="form-title">Submit Company Review</h3>
+                <div class="form-group">
+                    <label class="title">Company Name:</label>
+                    <input type="text" id="company-name" placeholder="Exact Company Name">
+                </div>
+                <div class="form-group">
+                    <label class="title">i) Company Type:</label>
+                    <div class="option-grid">
+                        <input type="radio" name="coType" value="Supply" id="type-supply"><label for="type-supply">Supply</label>
+                        <input type="radio" name="coType" value="Subcon" id="type-subcon"><label for="type-subcon">Subcon</label>
+                        <input type="radio" name="coType" value="Maincon" id="type-maincon"><label for="type-maincon">Maincon</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="title">ii) Job Type:</label>
+                    <input type="text" id="job-type" placeholder="e.g. General Worker, Welder">
+                </div>
+                <div class="form-group">
+                    <label class="title">iii) Salary pay on time:</label>
+                    <div class="option-grid">
+                        <input type="radio" name="onTime" value="Yes" id="time-yes"><label for="time-yes">Yes ✅</label>
+                        <input type="radio" name="onTime" value="No" id="time-no"><label for="time-no">No ❌</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="title">iv) Sunday/PH Pay:</label>
+                    <div class="option-grid">
+                        <input type="radio" name="sundayPay" value="Double Pay" id="sun-double"><label for="sun-double">Double Pay</label>
+                        <input type="radio" name="sundayPay" value="Basic Pay" id="sun-basic"><label for="sun-basic">Basic Pay</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="title">v) Deduction:</label>
+                    <div class="option-grid">
+                        <input type="radio" name="deduction" value="Yes" id="deduct-yes"><label for="deduct-yes">Yes</label>
+                        <input type="radio" name="deduction" value="No" id="deduct-no"><label for="deduct-no">No</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="title">vi) Provide Accommodation:</label>
+                    <div class="option-grid">
+                        <input type="radio" name="accommodation" value="Yes" id="accom-yes"><label for="accom-yes">Yes</label>
+                        <input type="radio" name="accommodation" value="No" id="accom-no"><label for="accom-no">No</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="title">vii) Transport:</label>
+                    <div class="option-grid">
+                        <input type="radio" name="transport" value="Lorry" id="trans-lorry"><label for="trans-lorry">Lorry</label>
+                        <input type="radio" name="transport" value="MRT" id="trans-mrt"><label for="trans-mrt">MRT</label>
+                        <input type="radio" name="transport" value="Bus" id="trans-bus"><label for="trans-bus">Bus</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="title">viii) Add your additional review:</label>
+                    <textarea id="company-activity" rows="3" placeholder="Describe your experience..."></textarea>
+                </div>
+                <button class="green" onclick="submitReviewAction()" id="submit-btn">Submit Review</button>
                 <p id="submit-status" style="margin-top:10px; font-weight:bold;"></p>
             </div>
             <div id="results-container"></div>
@@ -421,31 +368,25 @@
     <script src="/src/submit.js"></script>
 
     <script>
-        // Toggle Sidebar Menu
         function toggleSidebar() {
             document.getElementById('sidebar').classList.toggle('open');
             document.getElementById('sidebar-overlay').classList.toggle('open');
         }
 
-        // Switch between Visa Info and Skill & Training
         function switchTab(tabId, element) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
-            
             document.getElementById(tabId).classList.add('active');
             element.classList.add('active');
         }
 
-        // Accordion functionality for Neon Glass Cards
         function toggleCard(element) {
             const infoBox = element.nextElementSibling;
             const icon = element.querySelector('.card-icon');
-            
             if (infoBox.classList.contains('open')) {
                 infoBox.classList.remove('open');
                 icon.style.transform = 'rotate(0deg)';
             } else {
-                // Close other open cards at the same level (optional clean UI logic)
                 const siblings = element.parentElement.parentElement.querySelectorAll('.card-info');
                 siblings.forEach(sibling => {
                     if(sibling !== infoBox && sibling.classList.contains('open')) {
@@ -453,9 +394,30 @@
                         sibling.previousElementSibling.querySelector('.card-icon').style.transform = 'rotate(0deg)';
                     }
                 });
-
                 infoBox.classList.add('open');
                 icon.style.transform = 'rotate(180deg)';
+            }
+        }
+        
+        function submitReviewAction() {
+            const companyName = document.getElementById('company-name').value;
+            const companyType = document.querySelector('input[name="coType"]:checked')?.value || 'N/A';
+            const jobType = document.getElementById('job-type').value || 'N/A';
+            const onTime = document.querySelector('input[name="onTime"]:checked')?.value || 'N/A';
+            const sundayPay = document.querySelector('input[name="sundayPay"]:checked')?.value || 'N/A';
+            const deduction = document.querySelector('input[name="deduction"]:checked')?.value || 'N/A';
+            const accommodation = document.querySelector('input[name="accommodation"]:checked')?.value || 'N/A';
+            const transport = document.querySelector('input[name="transport"]:checked')?.value || 'N/A';
+            const additionalReview = document.getElementById('company-activity').value;
+
+            const formattedReview = `Company Type: ${companyType} | Job: ${jobType} | Salary on Time: ${onTime} | Sunday/PH: ${sundayPay} | Deduction: ${deduction} | Accommodation: ${accommodation} | Transport: ${transport} | Review: ${additionalReview}`;
+            
+            document.getElementById('company-activity').value = formattedReview;
+            
+            if(typeof submitCompany === 'function') {
+                submitCompany();
+            } else {
+                console.log("Review Data Ready to Submit:", formattedReview);
             }
         }
     </script>
@@ -493,4 +455,5 @@
         getMustafaRates();
     </script>
 </body>
-</html>
+                        </html>
+        
