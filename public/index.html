@@ -231,7 +231,7 @@
                     <strong>SEC(K) কেন লাগে?</strong>
                     <ul class="info-list">
                         <li>নতুন Work Permit (WP) নেওয়ার জন্য সবাইকে SEC(K) পাস করতে হয়।</li>
-                        <li>এটা ছাড়া MOM-এর WPOL সিস্টেম আবেদন (IPA) করতে দেয় না।</li>
+                        <li>এটা ছাড়া MOM-এর WPOL সিস্টেম আবেদন (IPA) করতে দেয় গঠন দেয় না।</li>
                         <li>প্রমাণ করে যে আপনার ট্রেডে (যেমন: ওয়েল্ডার, মেসন ইত্যাদি) বেসিক স্কিল আছে।</li>
                         <li>পাস করলে Basic-Skilled (R2) স্ট্যাটাস পান।</li>
                     </ul>
@@ -269,6 +269,7 @@
 
         </div>
     </div>
+    
     <div class="page-overlay">
         <div class="header">
             <div class="header-left">
@@ -284,7 +285,7 @@
 
         <div id="rate-widget" style="background: rgba(0,0,0,0.7); backdrop-filter: blur(10px); border-radius: 15px; padding: 15px; margin: 25px auto; width: 90%; max-width: 600px; display: flex; justify-content: space-around; color: #ff9800; border: 1px solid rgba(255,152,0,0.3); text-align: center;">
             <div>
-                <small style="color: #ccc; display: block; font-size: 10px; margin-bottom: 5px;">SGD ➔ BDT</small>
+               <small style="color: #ccc; display: block; font-size: 10px; margin-bottom: 5px;">SGD ➔ BDT</small>
                 <span id="bdt-rate" style="font-size: 20px; font-weight: bold;">Loading...</span>
             </div>
             <div style="border-left: 1px solid rgba(255,255,255,0.1); padding-left: 20px;">
@@ -359,48 +360,74 @@
                 <button class="green" onclick="submitReviewAction()" id="submit-btn">Submit Review</button>
                 <p id="submit-status" style="margin-top:10px; font-weight:bold;"></p>
             </div>
-          <div id="quick-review-form" class="modal" style="display:none; background: white; padding: 25px; border-radius: 15px; margin-bottom: 20px; border: 2px solid #ff9800;">
-    <h3 id="quick-form-title" style="color:#ff9800; margin-top:0;">Add Company Review</h3>
-    <input type="hidden" id="quick-company-name">
-    
-    <div class="form-group">
-        <label class="title">i) Company Type:</label>
-        <div class="option-grid">
-            <input type="radio" name="qType" value="Supply" id="q-supply"><label for="q-supply">Supply</label>
-            <input type="radio" name="qType" value="Subcon" id="q-subcon"><label for="q-subcon">Subcon</label>
-            <input type="radio" name="qType" value="Maincon" id="q-maincon"><label for="q-maincon">Maincon</label>
-        </div>
-    </div>
 
-    <div class="form-group">
-        <label class="title">ii) Job Type:</label>
-        <input type="text" id="q-job" placeholder="e.g. Welder, Fitter">
-    </div>
-
-    <div class="form-group">
-        <label class="title">iii) Salary pay on time:</label>
-        <div class="option-grid">
-            <input type="radio" name="qTime" value="Yes" id="qt-yes"><label for="qt-yes">Yes ✅</label>
-            <input type="radio" name="qTime" value="No" id="qt-no"><label for="qt-no">No ❌</label>
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label class="title">iv) Sunday/PH Pay:</label>
-        <div class="option-grid">
-            <input type="radio" name="qSun" value="Double" id="qs-d"><label for="qs-d">Double Pay</label>
-            <input type="radio" name="qSun" value="Basic" id="qs-b"><label for="qs-b">Basic Pay</label>
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label class="title">v) Additional Review:</label>
-        <textarea id="q-activity" rows="3" placeholder="Describe your experience..."></textarea>
-    </div>
-    
-    <button class="green" onclick="submitQuickReview()" style="background: #ff9800;">Submit Review</button>
-    <button class="green" onclick="document.getElementById('quick-review-form').style.display='none'" style="background: #666; margin-top: 5px;">Cancel</button>
+            <div id="quick-review-form" class="modal" style="display:none; background: white; padding: 25px; border-radius: 15px; margin-bottom: 20px; border: 2px solid #ff9800;">
+                <h3 id="quick-form-title" style="color:#ff9800; margin-top:0;">Add Company Review</h3>
+                <input type="hidden" id="quick-company-name">
+                
+                <div class="form-group">
+                    <label class="title">i) Company Type:</label>
+                    <div class="option-grid">
+                        <input type="radio" name="qType" value="Supply" id="q-supply"><label for="q-supply">Supply</label>
+                        <input type="radio" name="qType" value="Subcon" id="q-subcon"><label for="q-subcon">Subcon</label>
+                        <input type="radio" name="qType" value="Maincon" id="q-maincon"><label for="q-maincon">Maincon</label>
+                    </div>
                 </div>
+
+                <div class="form-group">
+                    <label class="title">ii) Job Type:</label>
+                    <input type="text" id="q-job" placeholder="e.g. Welder, Fitter">
+                </div>
+
+                <div class="form-group">
+                    <label class="title">iii) Salary pay on time:</label>
+                    <div class="option-grid">
+                        <input type="radio" name="qTime" value="Yes" id="qt-yes"><label for="qt-yes">Yes ✅</label>
+                        <input type="radio" name="qTime" value="No" id="qt-no"><label for="qt-no">No ❌</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="title">iv) Sunday/PH Pay:</label>
+                    <div class="option-grid">
+                        <input type="radio" name="qSun" value="Double Pay" id="qs-d"><label for="qs-d">Double Pay</label>
+                        <input type="radio" name="qSun" value="Basic Pay" id="qs-b"><label for="qs-b">Basic Pay</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="title">v) Deduction:</label>
+                    <div class="option-grid">
+                        <input type="radio" name="qDeduct" value="Yes" id="qd-yes"><label for="qd-yes">Yes</label>
+                        <input type="radio" name="qDeduct" value="No" id="qd-no"><label for="qd-no">No</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="title">vi) Provide Accommodation:</label>
+                    <div class="option-grid">
+                        <input type="radio" name="qAccom" value="Yes" id="qa-yes"><label for="qa-yes">Yes</label>
+                        <input type="radio" name="qAccom" value="No" id="qa-no"><label for="qa-no">No</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="title">vii) Transport:</label>
+                    <div class="option-grid">
+                        <input type="radio" name="qTrans" value="Lorry" id="qt-lorry"><label for="qt-lorry">Lorry</label>
+                        <input type="radio" name="qTrans" value="MRT" id="qt-mrt"><label for="qt-mrt">MRT</label>
+                        <input type="radio" name="qTrans" value="Bus" id="qt-bus"><label for="qt-bus">Bus</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="title">viii) Additional Review:</label>
+                    <textarea id="q-activity" rows="3" placeholder="Describe your experience..."></textarea>
+                </div>
+                
+                <button class="green" onclick="submitQuickReview()" style="background: #ff9800;">Submit Review</button>
+                <button class="green" onclick="document.getElementById('quick-review-form').style.display='none'" style="background: #666; margin-top: 5px;">Cancel</button>
+            </div>
             
             <div id="results-container"></div>
         </div>
@@ -442,49 +469,75 @@
             }
         }
         
-       function openReviewForm(name) {
-    document.getElementById('quick-company-name').value = name;
-    document.getElementById('quick-form-title').innerText = "Review for: " + name;
-    document.getElementById('quick-review-form').style.display = 'block';
-    document.getElementById('submit-form').style.display = 'none'; // মেইন ফর্ম বন্ধ রাখা
-    window.scrollTo({top: 0, behavior: 'smooth'});
-}
+        function openReviewForm(name) {
+            document.getElementById('quick-company-name').value = name;
+            document.getElementById('quick-form-title').innerText = "Review for: " + name;
+            document.getElementById('quick-review-form').style.display = 'block';
+            document.getElementById('submit-form').style.display = 'none'; 
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
 
-function submitQuickReview() {
-    const name = document.getElementById('quick-company-name').value;
-    const type = document.querySelector('input[name="qType"]:checked')?.value || 'N/A';
-    const job = document.getElementById('q-job').value || 'N/A';
-    const time = document.querySelector('input[name="qTime"]:checked')?.value || 'N/A';
-    const sun = document.querySelector('input[name="qSun"]:checked')?.value || 'N/A';
-    const activity = document.getElementById('q-activity').value;
+        function submitQuickReview() {
+            const name = document.getElementById('quick-company-name').value;
+            const type = document.querySelector('input[name="qType"]:checked')?.value || 'N/A';
+            const job = document.getElementById('q-job').value || 'N/A';
+            const time = document.querySelector('input[name="qTime"]:checked')?.value || 'N/A';
+            const sun = document.querySelector('input[name="qSun"]:checked')?.value || 'N/A';
+            const deduct = document.querySelector('input[name="qDeduct"]:checked')?.value || 'N/A';
+            const accom = document.querySelector('input[name="qAccom"]:checked')?.value || 'N/A';
+            const trans = document.querySelector('input[name="qTrans"]:checked')?.value || 'N/A';
+            const activity = document.getElementById('q-activity').value;
 
-    const formatted = `Type: ${type} | Job: ${job} | On-Time: ${time} | Sun/PH: ${sun} | Review: ${activity}`;
-    
-    document.getElementById('company-name').value = name;
-    document.getElementById('company-activity').value = formatted;
-    
-    window.currentAction = 'add_review'; 
+            const formatted = `Type: ${type} | Job: ${job} | On-Time: ${time} | Sun/PH: ${sun} | Deduct: ${deduct} | Accom: ${accom} | Trans: ${trans} | Review: ${activity}`;
+            
+            document.getElementById('company-name').value = name;
+            document.getElementById('company-activity').value = formatted;
+            
+            window.currentAction = 'add_review'; 
 
-    if (typeof submitCompany === 'function') {
-        submitCompany();
-        document.getElementById('quick-review-form').style.display = 'none';
-    }
-}
+            if (typeof submitCompany === 'function') {
+                submitCompany();
+                document.getElementById('quick-review-form').style.display = 'none';
+            }
+        }
 
-function toggleSubmitForm() {
-    const modal = document.getElementById('submit-form');
-    document.getElementById('quick-review-form').style.display = 'none';
-    
-    if (event && event.target.id === 'submit-trigger') {
-        window.currentAction = 'submit_company';
-        document.getElementById('company-name').value = '';
-        document.getElementById('company-name').readOnly = false;
-        document.getElementById('company-name').style.background = "#ffffff";
-    }
-    
-    modal.style.display = (modal.style.display === 'block') ? 'none' : 'block';
-}
-        
+        function submitReviewAction() {
+            const cName = document.getElementById('company-name').value;
+            if (!cName) { alert("Company name is required!"); return; }
+
+            const cType = document.querySelector('input[name="coType"]:checked')?.value || 'N/A';
+            const jType = document.getElementById('job-type').value || 'N/A';
+            const onTime = document.querySelector('input[name="onTime"]:checked')?.value || 'N/A';
+            const sunPay = document.querySelector('input[name="sundayPay"]:checked')?.value || 'N/A';
+            const deduct = document.querySelector('input[name="deduction"]:checked')?.value || 'N/A';
+            const accom = document.querySelector('input[name="accommodation"]:checked')?.value || 'N/A';
+            const trans = document.querySelector('input[name="transport"]:checked')?.value || 'N/A';
+            const addRev = document.getElementById('company-activity').value;
+
+            const formattedReview = `Type: ${cType} | Job: ${jType} | On-Time: ${onTime} | Sun/PH: ${sunPay} | Deduct: ${deduct} | Accom: ${accom} | Trans: ${trans} | Review: ${addRev}`;
+            
+            document.getElementById('company-activity').value = formattedReview;
+
+            window.currentAction = 'submit_company'; 
+
+            if (typeof submitCompany === 'function') {
+                submitCompany();
+            }
+        }
+
+        function toggleSubmitForm() {
+            const modal = document.getElementById('submit-form');
+            document.getElementById('quick-review-form').style.display = 'none';
+            
+            if (event && event.target.id === 'submit-trigger') {
+                window.currentAction = 'submit_company';
+                document.getElementById('company-name').value = '';
+                document.getElementById('company-name').readOnly = false;
+                document.getElementById('company-name').style.background = "#ffffff";
+            }
+            
+            modal.style.display = (modal.style.display === 'block') ? 'none' : 'block';
+        }
     </script>
 
     <script>
@@ -520,5 +573,4 @@ function toggleSubmitForm() {
         getMustafaRates();
     </script>
 </body>
-                        </html>
-        
+    </html>
