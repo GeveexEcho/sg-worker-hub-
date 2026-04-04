@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SG Worker Hub</title>
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#ff9800">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="/icon-192.png">
+    
+    <style>
+        body { 
+            font-family: 'Segoe UI', Arial, sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            background: url('https://raw.githubusercontent.com/GeveexEcho/sg-worker-hub-/main/public/construction_banner.png') no-repeat center center fixed; 
+            background-size: cover;
+        }
+        .page-overlay {
+            background: rgba(0, 0, 0, 0.6);
+            min-height: 100vh;
+            width: 100%;
+            padding-bottom: 50px;
+            padding-top: 60px; /* added for fixed header */
+        }
+        .header { 
+            background: rgba(17, 17, 17, 0.8);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            color: white; 
+            padding: 15px 20px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* New Sidebar Header Styles */
+        .header-left { display: flex; align-items: center; gap: 15px; }
+        .menu-icon { font-size: 26px; color: #ff9800; cursor: pointer; text-shadow: 0 0 10px rgba(255, 152, 0, 0.5); }
+        
+        #header-title {
+            margin: 0;
+            font-size: 20px;
+            letter-spacing: 1px;
+            color: #ff9800;
+            text-shadow: 0 0 10px rgba(255, 152, 0, 0.5);
+        }
+        #lang-toggle {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        /* ----- SIDEBAR & NEON GLASS CARDS ----- */
+        #sidebar-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+            background: rgba(0,0,0,0.7); z-index: 1999; display: none;
+            backdrop-filter: blur(5px);
+        }
+        #sidebar-overlay.open { display: block; }
+
+        #sidebar {
+            position: fixed; top: 0; left: -100%; width: 85%; max-width: 400px; height: 100vh;
+            background: rgba(10, 10, 15, 0.85);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border-right: 1px solid rgba(255, 152, 0, 0.5);
+            box-shadow: 5px 0 25px rgba(0,0,0,0.8);
+            z-index: 2000; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-y: auto; color: white; padding-bottom: 30px;
+        }
+        #sidebar.open { left: 0; }
+
+        .sidebar-header {
+            padding: 20px; border-bottom: 1px solid rgba(255, 152, 0, 0.3);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .sidebar-header h3 { margin: 0; color: #ff9800; text-shadow: 0 0 8px rgba(255,152,0,0.4); }
+
+        .tabs { display: flex; padding: 15px; gap: 10px; }
+        .tab-btn {
+            flex: 1; padding: 12px; background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1); color: #ccc;
+            border-radius: 8px; cursor: pointer; transition: 0.3s; font-weight: bold;
+        }
+        .tab-btn.active {
+            border-color: #ff9800; background: rgba(255, 152, 0, 0.15);
+            box-shadow: 0 0 15px rgba(255, 152, 0, 0.3); color: white;
+        }
+
+        .tab-content { display: none; padding: 0 15px; }
+        .tab-content.active { display: block; animation: fadeIn 0.5s; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Neon Glass Card Styles */
+        .neon-card {
+            background: rgba(20, 20, 20, 0.5);
+            border: 1px solid rgba(255, 152, 0, 0.3);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3), inset 0 0 10px rgba(255, 152, 0, 0.05);
+            border-radius: 12px; margin-bottom: 15px; overflow: hidden; transition: 0.3s;
+        }
+        .card-title {
+            padding: 16px; cursor: pointer; font-weight: bold; font-size: 16px;
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(255, 152, 0, 0.05); transition: 0.3s;
+        }
+        .card-title:hover { background: rgba(255, 152, 0, 0.15); }
+        .card-icon { transition: transform 0.3s; color: #ff9800; }
+        
+        .card-info {
+            padding: 0 16px; max-height: 0; overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+            font-size: 14px; line-height: 1.6; color: #ddd;
+        }
+        .card-info.open {
+            padding: 16px; max-height: 2500px; /* Large enough to hold text */
+            border-top: 1px solid rgba(255, 152, 0, 0.2);
+        }
+
+        /* Sub Cards (For Work Permit inner categories) */
+        .sub-card {
+            border: 1px solid rgba(0, 200, 255, 0.3);
+            box-shadow: inset 0 0 10px rgba(0, 200, 255, 0.05);
+            margin: 10px 0; border-radius: 8px;
+        }
+        .sub-card .card-title { background: rgba(0, 200, 255, 0.05); font-size: 15px; color: #4dc3ff; }
+        .sub-card .card-title:hover { background: rgba(0, 200, 255, 0.1); }
+        .sub-card .card-icon { color: #00c8ff; }
+
+        ul.info-list { padding-left: 20px; margin: 10px 0 0 0; }
+        ul.info-list li { margin-bottom: 8px; }
+
+        /* Other existing styles */
+        .search-container { width: 90%; max-width: 600px; margin: 0 auto; padding-top: 20px; }
+        .search-bar { width: 100%; padding: 18px; border: 3px solid #ff9800; border-radius: 15px; font-size: 18px; outline: none; box-sizing: border-box; background: rgba(255, 255, 255, 0.95); }
+        .submit-box { background: rgba(76, 175, 80, 0.9); color: white; padding: 18px; text-align: center; cursor: pointer; margin: 10px auto; width: 90%; max-width: 600px; border-radius: 15px; font-weight: bold; font-size: 17px; }
+        .container { max-width: 800px; margin: 20px auto; padding: 20px; background: rgba(255, 255, 255, 0.1); border-radius: 15px; }
+        .modal { display: none; background: white; padding: 25px; border-radius: 15px; margin-bottom: 20px; }
+        input, textarea { width: 100%; padding: 12px; margin-top: 10px; border: 1px solid #ddd; border-radius: 10px; box-sizing: border-box; }
+        button.green { background: #2e7d32; color: white; width: 100%; padding: 15px; border: none; border-radius: 10px; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 15px; }
+    </style>
+</head>
+<body>
+
+    <div id="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+    <div id="sidebar">
+        <div class="sidebar-header">
+            <h3>Information Hub</h3>
+            <span onclick="toggleSidebar()" style="font-size: 24px; cursor: pointer; color: #aaa;">✖</span>
+        </div>
+        
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('visa-info', this)">Singapore Visa Info</button>
+            <button class="tab-btn" onclick="switchTab('skill-info', this)">Skill & Training</button>
+        </div>
+
+        <div id="visa-info" class="tab-content active">
+            
+            <div class="neon-card">
+                <div class="card-title" onclick="toggleCard(this)">Work Permit <span class="card-icon">▼</span></div>
+                <div class="card-info">
+                    
+                    <div class="neon-card sub-card">
+                        <div class="card-title" onclick="toggleCard(this)">Construction <span class="card-icon">▼</span></div>
+                        <div class="card-info">
+                            <ul class="info-list">
+                                <li><strong>Job Type:</strong> General Worker</li>
+                                <li><strong>Age Limit:</strong> 18-61 but able to work until 63.</li>
+                                <li><strong>Requirement:</strong> BCA SEC(K) Test Certificate (Must be completed from overseas test centre).</li>
+                                <li>No minimum salary announced by MOM (It'll be decided by Employer).</li>
+                                <li>Only Employer able to apply for this visa.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="neon-card sub-card">
+                        <div class="card-title" onclick="toggleCard(this)">Shipyard <span class="card-icon">▼</span></div>
+                        <div class="card-info">
+                            <ul class="info-list">
+                                <li><strong>Job Type:</strong> General Worker</li>
+                                <li><strong>Age Limit:</strong> 18-61 but able to work until 63.</li>
+                                <li>No minimum salary announced by MOM (It'll be decided by Employer).</li>
+                                <li>Only Employer able to apply for this visa.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="neon-card sub-card">
+                        <div class="card-title" onclick="toggleCard(this)">PCM <span class="card-icon">▼</span></div>
+                        <div class="card-info">
+                            <ul class="info-list">
+                                <li><strong>Job Type:</strong> General Worker</li>
+                                <li><strong>Age Limit:</strong> 18-61 but able to work until 63.</li>
+                                <li>No minimum salary announced by MOM (It'll be decided by Employer).</li>
+                                <li>Only Employer able to apply for this visa.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="neon-card">
+                <div class="card-title" onclick="toggleCard(this)">NTS <span class="card-icon">▼</span></div>
+                <div class="card-info">
+                    <ul class="info-list">
+                        <li><strong>Job Type:</strong> Welders, Cooks, Heavy vehicle drivers, Housekeeping</li>
+                        <li><strong>Age Limit:</strong> 18-61 but able to work until 63.</li>
+                        <li><strong>Minimum salary:</strong> $2000</li>
+                        <li>Only Employer able to apply for this visa.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="neon-card">
+                <div class="card-title" onclick="toggleCard(this)">S Pass <span class="card-icon">▼</span></div>
+                <div class="card-info">
+                    <ul class="info-list">
+                        <li><strong>Job Type:</strong> Supervisory / Heavy Machine Operator / Heavy Vehicle Driver</li>
+                        <li>No strict age limit.</li>
+                        <li><strong>Required:</strong> Degree/Diploma/Work Experience.</li>
+                        <li><strong>Minimal Salary:</strong> $3300</li>
+                        <li>Only Employer able to apply for this visa.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="neon-card">
+                <div class="card-title" onclick="toggleCard(this)">Employment Pass (EP) <span class="card-icon">▼</span></div>
+                <div class="card-info">
+                    <ul class="info-list">
+                        <li><strong>Job Type:</strong> Professional/Managerial</li>
+                        <li>No strict age limit.</li>
+                        <li><strong>Required:</strong> Degree/Qualifications/ Work Experience / Compass point 40+.</li>
+                        <li><strong>Minimum salary:</strong> $5600</li>
+                        <li>Only Employer able to apply for this visa.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="neon-card">
+                <div class="card-title" onclick="toggleCard(this)">PEP <span class="card-icon">▼</span></div>
+                <div class="card-info">
+                    <ul class="info-list">
+                        <li><strong>Job Type:</strong> Higher Skilled Professional</li>
+                        <li>No strict age limit.</li>
+                        <li><strong>Required:</strong> Proof of high salary (Last 6 month), EP Holder current salary proof.</li>
+                        <li><strong>Minimum salary:</strong> $22500</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="neon-card">
+                <div class="card-title" onclick="toggleCard(this)">ONE Pass <span class="card-icon">▼</span></div>
+                <div class="card-info">
+                    <ul class="info-list">
+                        <li><strong>Job Type:</strong> AI/Tech/Research etc.</li>
+                        <li>No strict age limit.</li>
+                        <li><strong>Required:</strong> Proof of last 12 month salary, Established company proof (Business/Arts/Sports/Research Top Talent).</li>
+                        <li><strong>Minimum salary:</strong> $30000</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="neon-card">
+                <div class="card-title" onclick="toggleCard(this)">Dependent Pass <span class="card-icon">▼</span></div>
+                <div class="card-info">
+                    <ul class="info-list">
+                        <li>Only for EP/S Pass holder (Not for WP).</li>
+                        <li>Main Holder fixed monthly salary at least $6000.</li>
+                        <li>Legally married spouse and Unmarried children under 21 will be eligible.</li>
+                        <li>Must require employer sponsor.</li>
+                        <li>If dependent wants to work in Singapore they have to apply new (WP/ S pass/ EP).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="neon-card">
+                <div class="card-title" onclick="toggleCard(this)">Short-term Entry / Visitor Visa <span class="card-icon">▼</span></div>
+                <div class="card-info">
+                    <p>এটাই সবচেয়ে সাধারণ। ট্যুরিজম, বিজনেস, ফ্যামিলি/সোশ্যাল ভিজিট — সবকিছুর জন্য একই ভিসা।</p>
+                    <ul class="info-list">
+                        <li><strong>উদ্দেশ্য:</strong> ঘুরতে যাওয়া, ব্যবসায়িক মিটিং, আত্মীয়ের কাছে যাওয়া।</li>
+                        <li><strong>মেয়াদ:</strong> সাধারণত ৩০ দিনের শর্ট-টার্ম ভিজিট পাস (STVP) পাওয়া যায়, চাইলে এক্সটেন্ড করা যায়।</li>
+                        <li><strong>আবেদন:</strong> ঢাকায় সিঙ্গাপুর হাইকমিশন বা অথরাইজড এজেন্টের মাধ্যমে (অনলাইন eVisa নয়, ফিজিক্যাল ফর্ম ১৪এ পূরণ করতে হয়)।</li>
+                        <li><strong>খরচ:</strong> প্রায় ৩০ সিঙ্গাপুর ডলার + এজেন্ট ফি।</li>
+                        <li><strong>প্রসেসিং:</strong> ৩ কার্যদিবস।</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="neon-card">
+                <div class="card-title" onclick="toggleCard(this)">Student’s Pass <span class="card-icon">▼</span></div>
+                <div class="card-info">
+                    <ul class="info-list">
+                        <li>পূর্ণকালীন পড়াশোনার জন্য (কলেজ/ইউনিভার্সিটিতে অ্যাডমিশন নিয়ে আবেদন করতে হয়)।</li>
+                        <li>ICA-এর মাধ্যমে আবেদন করতে হয়।</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="skill-info" class="tab-content">
+            
+            <div class="neon-card">
+                <div class="card-title" onclick="toggleCard(this)">BCA Skill বা SEC(K) <span class="card-icon">▼</span></div>
+                <div class="card-info">
+                    <p><strong>BCA =</strong> Building and Construction Authority. এরা কনস্ট্রাকশন ইন্ডাস্ট্রির সবকিছু দেখভাল করে।</p>
+                    <p><strong>SEC(K) =</strong> Skills Evaluation Certificate (Knowledge). কনস্ট্রাকশনের বিদেশী কর্মীদের (বাংলাদেশীসহ) জন্য বাধ্যতামূলক।</p>
+                    
+                    <strong>SEC(K) কেন লাগে?</strong>
+                    <ul class="info-list">
+                        <li>নতুন Work Permit (WP) নেওয়ার জন্য সবাইকে SEC(K) পাস করতে হয়।</li>
+                        <li>এটা ছাড়া MOM-এর WPOL সিস্টেম আবেদন (IPA) করতে দেয় না।</li>
+                        <li>প্রমাণ করে যে আপনার ট্রেডে (যেমন: ওয়েল্ডার, মেসন ইত্যাদি) বেসিক স্কিল আছে।</li>
+                        <li>পাস করলে Basic-Skilled (R2) স্ট্যাটাস পান।</li>
+                    </ul>
+
+                    <strong>কোথায় দিতে হয়?</strong>
+                    <ul class="info-list">
+                        <li>ওভারসিজ টেস্টিং সেন্টার (OTC) — বাংলাদেশে BCA-অনুমোদিত সেন্টারে।</li>
+                        <li>প্রথমে CSOC পাস করতে হয়, তারপর SEC(K)।</li>
+                    </ul>
+
+                    <strong>কার জন্য?</strong>
+                    <ul class="info-list">
+                        <li>সব নতুন কনস্ট্রাকশন WP হোল্ডার। বয়স: মিনিমাম ১৮ বছর।</li>
+                        <li>ব্যতিক্রম: ফুল-টাইম হেভি ভেহিকল ড্রাইভার (Lorry/Truck) Class 4 লাইসেন্স থাকলে SEC(K) লাগে না (১ এপ্রিল ২০২৬ থেকে)।</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="neon-card">
+                <div class="card-title" onclick="toggleCard(this)">Higher-Skilled (R1) – Upgrade <span class="card-icon">▼</span></div>
+                <div class="card-info">
+                    <p>SEC(K) থাকলে পরে আপগ্রেড করে R1 হওয়া যায়। এটাই সবচেয়ে ভালো স্ট্যাটাস।</p>
+                    <p><strong>লেভি:</strong> $500/মাস (এমপ্লয়ারের খরচ কম, তাই চাকরি বেশি স্থায়ী ও স্যালারি বেশি হয়)।</p>
+                    
+                    <strong>৪টা আপগ্রেড পথ:</strong>
+                    <ul class="info-list">
+                        <li><strong>CoreTrade:</strong> ৪ বছর অভিজ্ঞতা + সার্টিফিকেশন।</li>
+                        <li><strong>Multi-Skilling Scheme:</strong> ৪-৬ বছর অভিজ্ঞতা + ২টা আলাদা SEC(K) সার্টিফিকেট।</li>
+                        <li><strong>Direct R1 Pathway:</strong> কোনো মিনিমাম অভিজ্ঞতা লাগে না + SEC(K) + ফিক্সড মাসিক স্যালারি কমপক্ষে $1,600।</li>
+                        <li><strong>Market-Based Framework (MBF):</strong> ৬ বছর অভিজ্ঞতা + ফিক্সড মাসিক স্যালারি $1,600।</li>
+                    </ul>
+                    <p><strong>সুবিধা:</strong> এমপ্লয়ার বেশি পছন্দ করে। নতুন R2 WP নেওয়া সহজ হয়। দীর্ঘমেয়াদী চাকরির সুযোগ বেশি।</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="page-overlay">
+        <div class="header">
+            <div class="header-left">
+                <span class="menu-icon" onclick="toggleSidebar()">☰</span>
+                <h2 id="header-title">SG Worker Hub</h2>
+            </div>
+            <button id="lang-toggle" onclick="toggleLanguage()">বাংলা / English</button>
+        </div>
+
+        <div class="search-container">
+            <input type="text" id="search-input" class="search-bar" placeholder="Search company by name..." onkeyup="handleSearch()">
+        </div>
+
+        <div id="rate-widget" style="background: rgba(0,0,0,0.7); backdrop-filter: blur(10px); border-radius: 15px; padding: 15px; margin: 25px auto; width: 90%; max-width: 600px; display: flex; justify-content: space-around; color: #ff9800; border: 1px solid rgba(255,152,0,0.3); text-align: center;">
+            <div>
+                <small style="color: #ccc; display: block; font-size: 10px; margin-bottom: 5px;">SGD ➔ BDT</small>
+                <span id="bdt-rate" style="font-size: 20px; font-weight: bold;">Loading...</span>
+            </div>
+            <div style="border-left: 1px solid rgba(255,255,255,0.1); padding-left: 20px;">
+                <small style="color: #ccc; display: block; font-size: 10px; margin-bottom: 5px;">GOLD 22K / Gram</small>
+                <span id="gold-rate" style="font-size: 20px; font-weight: bold;">Loading...</span>
+            </div>
+        </div>
+
+        <div class="submit-box" id="submit-trigger" onclick="toggleSubmitForm()">
+            ➕ Submit Company Name & Activities
+        </div>
+
+        <div class="container">
+            <div id="submit-form" class="modal">
+                <h3 id="form-title">Report a New Company</h3>
+                <input type="text" id="company-name" placeholder="Exact Company Name">
+                <textarea id="company-activity" rows="4" placeholder="Describe the activities..."></textarea>
+                <button class="green" onclick="submitCompany()" id="submit-btn">Submit Report</button>
+                <p id="submit-status" style="margin-top:10px; font-weight:bold;"></p>
+            </div>
+            <div id="results-container"></div>
+        </div>
+    </div>
+
+    <script src="/src/app.js"></script>
+    <script src="/src/search.js"></script>
+    <script src="/src/submit.js"></script>
+
+    <script>
+        // Toggle Sidebar Menu
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('open');
+            document.getElementById('sidebar-overlay').classList.toggle('open');
+        }
+
+        // Switch between Visa Info and Skill & Training
+        function switchTab(tabId, element) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            
+            document.getElementById(tabId).classList.add('active');
+            element.classList.add('active');
+        }
+
+        // Accordion functionality for Neon Glass Cards
+        function toggleCard(element) {
+            const infoBox = element.nextElementSibling;
+            const icon = element.querySelector('.card-icon');
+            
+            if (infoBox.classList.contains('open')) {
+                infoBox.classList.remove('open');
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                // Close other open cards at the same level (optional clean UI logic)
+                const siblings = element.parentElement.parentElement.querySelectorAll('.card-info');
+                siblings.forEach(sibling => {
+                    if(sibling !== infoBox && sibling.classList.contains('open')) {
+                        sibling.classList.remove('open');
+                        sibling.previousElementSibling.querySelector('.card-icon').style.transform = 'rotate(0deg)';
+                    }
+                });
+
+                infoBox.classList.add('open');
+                icon.style.transform = 'rotate(180deg)';
+            }
+        }
+    </script>
+
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then(reg => console.log('Service Worker Registered'))
+            .catch(err => console.log('Service Worker Failed', err));
+        });
+      }
+    </script>
+
+    <script>
+        async function getMustafaRates() {
+            try {
+                const response = await fetch('/.netlify/functions/get-rates');
+                if (!response.ok) throw new Error('Failed');
+                const data = await response.json();
+                if(data.bdt) document.getElementById('bdt-rate').innerText = '৳ ' + data.bdt;
+                if(data.gold) document.getElementById('gold-rate').innerText = '$ ' + data.gold;
+            } catch (err) {
+                try {
+                    const res = await fetch('https://open.er-api.com/v6/latest/SGD');
+                    const d = await res.json();
+                    document.getElementById('bdt-rate').innerText = '৳ ' + d.rates.BDT.toFixed(2);
+                    document.getElementById('gold-rate').innerText = "Updating...";
+                } catch (e) {
+                    document.getElementById('bdt-rate').innerText = "N/A";
+                    document.getElementById('gold-rate').innerText = "N/A";
+                }
+            }
+        }
+        getMustafaRates();
+    </script>
+</body>
+</html>
