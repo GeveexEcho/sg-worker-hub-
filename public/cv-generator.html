@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Europass CV Generator</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        :root {
+            --europass-blue: #0f4b81;
+            --text-main: #333;
+            --text-light: #666;
+        }
+        body { font-family: 'Segoe UI', Arial, sans-serif; background: #e9ecef; margin: 0; padding: 20px; display: flex; gap: 20px; flex-wrap: wrap; }
+        
+        /* --- Editor Panel (Left) --- */
+        .editor-panel { flex: 1; min-width: 350px; background: white; padding: 25px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); max-height: 95vh; overflow-y: auto; }
+        .editor-panel h2 { color: var(--europass-blue); border-bottom: 2px solid var(--europass-blue); padding-bottom: 10px; margin-top: 0; }
+        .editor-panel h3 { color: #555; font-size: 16px; margin-top: 25px; border-bottom: 1px solid #ddd; padding-bottom: 5px; }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; font-weight: bold; margin-bottom: 5px; color: #444; font-size: 14px; }
+        .form-group input, .form-group textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-family: inherit; }
+        
+        /* Dynamic Sections */
+        .dynamic-box { border: 1px dashed #aaa; padding: 15px; border-radius: 8px; margin-bottom: 15px; background: #fafafa; position: relative; }
+        .btn-add { background: var(--europass-blue); color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; font-size: 13px; }
+        .btn-remove { position: absolute; top: 10px; right: 10px; background: #dc3545; color: white; border: none; padding: 5px 10px; cursor: pointer; border-radius: 4px; font-size: 12px; }
+        .btn-download { background: #28a745; color: white; width: 100%; padding: 15px; border: none; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 30px; box-shadow: 0 4px 10px rgba(40, 167, 69, 0.3); }
+
+        /* --- CV Preview Panel (Right) A4 Size --- */
+        .preview-panel { flex: 1.5; min-width: 600px; display: flex; justify-content: center; }
+        #cv-document { 
+            background: white; 
+            width: 210mm; 
+            min-height: 297mm; 
+            padding: 20mm; 
+            box-sizing: border-box; 
+            box-shadow: 0 0 20px rgba(0,0,0,0.2); 
+            font-family: Arial, sans-serif; 
+            color: var(--text-main); 
+            position: relative; 
+        }
+        
+        /* Europass Watermark/Logo styling */
+        .europass-logo { position: absolute; top: 15mm; right: 20mm; font-size: 24px; color: var(--europass-blue); font-weight: bold; letter-spacing: 1px; }
+        .europass-logo span { color: #ffcc00; }
+
+        /* CV Header */
+        .cv-header { display: flex; gap: 25px; margin-bottom: 30px; }
+        .cv-photo { width: 130px; height: 130px; border-radius: 50%; object-fit: cover; border: 3px solid #eee; display: none; }
+        .cv-header-right { flex: 1; }
+        .cv-name { color: var(--europass-blue); font-size: 28px; font-weight: bold; text-transform: uppercase; margin: 0 0 15px 0; letter-spacing: 1px; }
+        .cv-personal-info { font-size: 13px; line-height: 1.8; color: var(--text-main); }
+        .info-row { display: flex; gap: 15px; flex-wrap: wrap; }
+        .info-item { display: flex; align-items: center; gap: 5px; }
+
+        /* CV Sections */
+        .cv-section { margin-bottom: 25px; }
+        .cv-section-title { color: var(--europass-blue); font-size: 16px; border-bottom: 2px solid var(--europass-blue); padding-bottom: 4px; margin-bottom: 15px; text-transform: uppercase; font-weight: bold; letter-spacing: 0.5px; }
+        
+        .cv-item { margin-bottom: 15px; display: flex; gap: 20px; }
+        .cv-item-left { width: 120px; font-size: 13px; color: var(--text-light); font-style: italic; flex-shrink: 0; }
+        .cv-item-right { flex: 1; }
+        .cv-item-title { font-weight: bold; font-size: 15px; margin-bottom: 3px; }
+        .cv-item-subtitle { color: var(--text-light); font-size: 13px; margin-bottom: 5px; font-weight: bold; }
+        .cv-item-desc { font-size: 13px; line-height: 1.6; white-space: pre-wrap; }
+
+        /* General text block */
+        .cv-text-block { font-size: 13px; line-height: 1.6; white-space: pre-wrap; }
+
+        @media (max-width: 1000px) {
+            body { flex-direction: column; }
+            .preview-panel { overflow-x: auto; justify-content: flex-start; padding-bottom: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="editor-panel">
+        <h2>CV Builder</h2>
+        
+        <h3>Personal Information</h3>
+        <div class="form-group">
+            <label>Profile Photo</label>
+            <input type="file" id="photo-input" accept="image/*" onchange="loadPhoto(event)">
+        </div>
+        <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" oninput="updateText('out-name', this.value)" placeholder="e.g. Mamun Miah">
+        </div>
+        <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" oninput="updateText('out-email', this.value)" placeholder="email@example.com">
+        </div>
+        <div class="form-group">
+            <label>Phone Number</label>
+            <input type="text" oninput="updateText('out-phone', this.value)" placeholder="(+880) 1...">
+        </div>
+        <div class="form-group">
+            <label>Address / Nationality / Passport</label>
+            <textarea rows="3" oninput="updateText('out-personal', this.value)" placeholder="Nationality: Bangladeshi | Address: Dhaka..."></textarea>
+        </div>
+
+        <h3>Professional Summary</h3>
+        <div class="form-group">
+            <textarea rows="4" oninput="updateText('out-summary', this.value)" placeholder="Highly motivated professional with..."></textarea>
+        </div>
+
+        <h3>Work Experience</h3>
+        <div id="exp-editor-container"></div>
+        <button class="btn-add" onclick="addExperience()">+ Add Experience</button>
+
+        <h3>Education</h3>
+        <div id="edu-editor-container"></div>
+        <button class="btn-add" onclick="addEducation()">+ Add Education</button>
+
+        <h3>Skills & Languages</h3>
+        <div class="form-group">
+            <label>Skills (Comma separated)</label>
+            <textarea rows="3" oninput="updateText('out-skills', this.value)" placeholder="P2P Trading, Customer Support, HTML, CSS..."></textarea>
+        </div>
+        <div class="form-group">
+            <label>Languages</label>
+            <textarea rows="2" oninput="updateText('out-languages', this.value)" placeholder="Bengali (Native), English (Fluent)..."></textarea>
+        </div>
+
+        <button class="btn-download" onclick="downloadPDF()">⬇ Download CV (PDF)</button>
+    </div>
+
+    <div class="preview-panel">
+        <div id="cv-document">
+            <div class="europass-logo">euro<span>pass</span></div>
+            
+            <div class="cv-header">
+                <img id="out-photo" class="cv-photo" src="" alt="Profile">
+                <div class="cv-header-right">
+                    <h1 id="out-name" class="cv-name">YOUR NAME</h1>
+                    <div class="cv-personal-info">
+                        <div class="info-row">
+                            <span class="info-item">✉ <span id="out-email">email@example.com</span></span>
+                            <span class="info-item">☎ <span id="out-phone">+00 123 456 789</span></span>
+                        </div>
+                        <div style="margin-top: 5px; white-space: pre-wrap;" id="out-personal">Nationality: ... | Address: ...</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cv-section">
+                <div class="cv-section-title">Professional Summary</div>
+                <div id="out-summary" class="cv-text-block">Write your professional summary here...</div>
+            </div>
+
+            <div class="cv-section">
+                <div class="cv-section-title">Work Experience</div>
+                <div id="out-exp-list"></div>
+            </div>
+
+            <div class="cv-section">
+                <div class="cv-section-title">Education and Training</div>
+                <div id="out-edu-list"></div>
+            </div>
+
+            <div class="cv-section">
+                <div class="cv-section-title">Skills & Languages</div>
+                <div style="margin-bottom: 10px;"><strong>Skills:</strong> <span id="out-skills">Your skills here...</span></div>
+                <div><strong>Languages:</strong> <span id="out-languages">Your languages here...</span></div>
+            </div>
+            
+        </div>
+    </div>
+
+    <script>
+        // Update simple text fields
+        function updateText(id, value) {
+            document.getElementById(id).innerText = value || '';
+        }
+
+        // Handle Profile Photo Upload
+        function loadPhoto(event) {
+            const photoEl = document.getElementById('out-photo');
+            if (event.target.files && event.target.files[0]) {
+                photoEl.src = URL.createObjectURL(event.target.files[0]);
+                photoEl.style.display = 'block';
+            } else {
+                photoEl.style.display = 'none';
+            }
+        }
+
+        // ---- DYNAMIC WORK EXPERIENCE ----
+        let expCount = 0;
+        function addExperience() {
+            expCount++;
+            const id = `exp-${expCount}`;
+            
+            // Add to Editor
+            const editorHTML = `
+                <div class="dynamic-box" id="editor-${id}">
+                    <button class="btn-remove" onclick="removeSection('${id}')">Remove</button>
+                    <input type="text" placeholder="Dates (e.g. 2022 - Present)" oninput="updateDyn('${id}-date', this.value)" style="margin-bottom:8px;">
+                    <input type="text" placeholder="Job Title" oninput="updateDyn('${id}-title', this.value)" style="margin-bottom:8px;">
+                    <input type="text" placeholder="Employer & Location" oninput="updateDyn('${id}-company', this.value)" style="margin-bottom:8px;">
+                    <textarea rows="3" placeholder="Main activities and responsibilities" oninput="updateDyn('${id}-desc', this.value)"></textarea>
+                </div>
+            `;
+            document.getElementById('exp-editor-container').insertAdjacentHTML('beforeend', editorHTML);
+
+            // Add to Preview
+            const previewHTML = `
+                <div class="cv-item" id="preview-${id}">
+                    <div class="cv-item-left" id="${id}-date">Date - Date</div>
+                    <div class="cv-item-right">
+                        <div class="cv-item-title" id="${id}-title">Job Title</div>
+                        <div class="cv-item-subtitle" id="${id}-company">Employer</div>
+                        <div class="cv-item-desc" id="${id}-desc">Responsibilities...</div>
+                    </div>
+                </div>
+            `;
+            document.getElementById('out-exp-list').insertAdjacentHTML('beforeend', previewHTML);
+        }
+
+        // ---- DYNAMIC EDUCATION ----
+        let eduCount = 0;
+        function addEducation() {
+            eduCount++;
+            const id = `edu-${eduCount}`;
+            
+            // Add to Editor
+            const editorHTML = `
+                <div class="dynamic-box" id="editor-${id}">
+                    <button class="btn-remove" onclick="removeSection('${id}')">Remove</button>
+                    <input type="text" placeholder="Dates (e.g. 2018 - 2020)" oninput="updateDyn('${id}-date', this.value)" style="margin-bottom:8px;">
+                    <input type="text" placeholder="Title of Qualification Awarded" oninput="updateDyn('${id}-title', this.value)" style="margin-bottom:8px;">
+                    <input type="text" placeholder="Institution Name & Country" oninput="updateDyn('${id}-company', this.value)" style="margin-bottom:8px;">
+                </div>
+            `;
+            document.getElementById('edu-editor-container').insertAdjacentHTML('beforeend', editorHTML);
+
+            // Add to Preview
+            const previewHTML = `
+                <div class="cv-item" id="preview-${id}">
+                    <div class="cv-item-left" id="${id}-date">Date - Date</div>
+                    <div class="cv-item-right">
+                        <div class="cv-item-title" id="${id}-title">Qualification</div>
+                        <div class="cv-item-subtitle" id="${id}-company">Institution</div>
+                    </div>
+                </div>
+            `;
+            document.getElementById('out-edu-list').insertAdjacentHTML('beforeend', previewHTML);
+        }
+
+        // Update dynamic fields
+        function updateDyn(id, value) {
+            const el = document.getElementById(id);
+            if(el) el.innerText = value;
+        }
+
+        // Remove dynamic section
+        function removeSection(id) {
+            document.getElementById(`editor-${id}`).remove();
+            document.getElementById(`preview-${id}`).remove();
+        }
+
+        // Add 1 blank experience and education by default on load
+        window.onload = function() {
+            addExperience();
+            addEducation();
+        };
+
+        // ---- GENERATE PDF ----
+        function downloadPDF() {
+            const element = document.getElementById('cv-document');
+            const opt = {
+                margin:       0,
+                filename:     'Europass_CV_SGWorkerHub.pdf',
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2, useCORS: true },
+                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+            
+            html2pdf().set(opt).from(element).save();
+        }
+    </script>
+</body>
+              </html>
+
