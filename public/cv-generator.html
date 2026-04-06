@@ -3,283 +3,974 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Europass CV Generator</title>
+    <title>Pro CV & Resume Builder</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    
     <style>
+        /* --- GLOBAL VARIABLES & RESET --- */
         :root {
-            --europass-blue: #0f4b81;
-            --text-main: #333;
-            --text-light: #666;
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --secondary: #475569;
+            --bg-body: #f1f5f9;
+            --bg-editor: #ffffff;
+            --danger: #ef4444;
+            --danger-hover: #dc2626;
+            --success: #10b981;
+            --success-hover: #059669;
+            
+            /* CV Template Colors */
+            --cv-sidebar: #1e293b;
+            --cv-sidebar-text: #f8fafc;
+            --cv-main: #ffffff;
+            --cv-main-text: #334155;
+            --cv-accent: #3b82f6;
         }
-        body { font-family: 'Segoe UI', Arial, sans-serif; background: #e9ecef; margin: 0; padding: 20px; display: flex; gap: 20px; flex-wrap: wrap; }
-        
-        /* --- Editor Panel (Left) --- */
-        .editor-panel { flex: 1; min-width: 350px; background: white; padding: 25px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); max-height: 95vh; overflow-y: auto; }
-        .editor-panel h2 { color: var(--europass-blue); border-bottom: 2px solid var(--europass-blue); padding-bottom: 10px; margin-top: 0; }
-        .editor-panel h3 { color: #555; font-size: 16px; margin-top: 25px; border-bottom: 1px solid #ddd; padding-bottom: 5px; }
-        .form-group { margin-bottom: 15px; }
-        .form-group label { display: block; font-weight: bold; margin-bottom: 5px; color: #444; font-size: 14px; }
-        .form-group input, .form-group textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-family: inherit; }
-        
-        /* Dynamic Sections */
-        .dynamic-box { border: 1px dashed #aaa; padding: 15px; border-radius: 8px; margin-bottom: 15px; background: #fafafa; position: relative; }
-        .btn-add { background: var(--europass-blue); color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; font-size: 13px; }
-        .btn-remove { position: absolute; top: 10px; right: 10px; background: #dc3545; color: white; border: none; padding: 5px 10px; cursor: pointer; border-radius: 4px; font-size: 12px; }
-        .btn-download { background: #28a745; color: white; width: 100%; padding: 15px; border: none; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 30px; box-shadow: 0 4px 10px rgba(40, 167, 69, 0.3); }
 
-        /* --- CV Preview Panel (Right) A4 Size --- */
-        .preview-panel { flex: 1.5; min-width: 600px; display: flex; justify-content: center; }
-        #cv-document { 
-            background: white; 
-            width: 210mm; 
-            min-height: 297mm; 
-            padding: 20mm; 
-            box-sizing: border-box; 
-            box-shadow: 0 0 20px rgba(0,0,0,0.2); 
-            font-family: Arial, sans-serif; 
-            color: var(--text-main); 
-            position: relative; 
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-body);
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* --- LAYOUT --- */
+        .app-container {
+            display: flex;
+            width: 100%;
+            height: 100%;
+        }
+
+        .editor-container {
+            flex: 0 0 450px;
+            background: var(--bg-editor);
+            height: 100%;
+            overflow-y: auto;
+            box-shadow: 4px 0 15px rgba(0,0,0,0.05);
+            padding: 30px;
+            z-index: 10;
+            scrollbar-width: thin;
+        }
+
+        .preview-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            overflow-y: auto;
+            padding: 40px;
+            background: #cbd5e1;
+        }
+
+        /* --- EDITOR STYLING --- */
+        .editor-header {
+            margin-bottom: 30px;
+        }
+
+        .editor-header h1 {
+            font-size: 24px;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .editor-header p {
+            color: var(--secondary);
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            color: #1e293b;
+            margin: 30px 0 15px 0;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e2e8f0;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group.row {
+            display: flex;
+            gap: 15px;
+        }
+
+        .form-group.row > div {
+            flex: 1;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #475569;
+            margin-bottom: 6px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="date"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            transition: all 0.2s ease;
+            background: #f8fafc;
+            color: #0f172a;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: #fff;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .char-count {
+            font-size: 11px;
+            color: #64748b;
+            text-align: right;
+            margin-top: 4px;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 16px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-add {
+            background: var(--primary);
+            color: white;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .btn-add:hover { background: var(--primary-hover); }
+
+        .btn-remove {
+            background: var(--danger);
+            color: white;
+            padding: 6px 10px;
+            font-size: 12px;
+            float: right;
+        }
+
+        .btn-remove:hover { background: var(--danger-hover); }
+
+        .btn-download {
+            background: var(--success);
+            color: white;
+            width: 100%;
+            padding: 16px;
+            font-size: 16px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        }
+
+        .btn-download:hover { background: var(--success-hover); }
+
+        /* Dynamic Item Boxes */
+        .dynamic-item {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
         }
         
-        /* Europass Watermark/Logo styling */
-        .europass-logo { position: absolute; top: 15mm; right: 20mm; font-size: 24px; color: var(--europass-blue); font-weight: bold; letter-spacing: 1px; }
-        .europass-logo span { color: #ffcc00; }
+        .checkbox-group input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
 
-        /* CV Header */
-        .cv-header { display: flex; gap: 25px; margin-bottom: 30px; }
-        .cv-photo { width: 130px; height: 130px; border-radius: 50%; object-fit: cover; border: 3px solid #eee; display: none; }
-        .cv-header-right { flex: 1; }
-        .cv-name { color: var(--europass-blue); font-size: 28px; font-weight: bold; text-transform: uppercase; margin: 0 0 15px 0; letter-spacing: 1px; }
-        .cv-personal-info { font-size: 13px; line-height: 1.8; color: var(--text-main); }
-        .info-row { display: flex; gap: 15px; flex-wrap: wrap; }
-        .info-item { display: flex; align-items: center; gap: 5px; }
+        /* --- CV A4 PREVIEW (PRO DESIGN) --- */
+        .cv-page {
+            width: 210mm;
+            min-height: 297mm;
+            background: var(--cv-main);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            display: flex;
+            position: relative;
+            font-family: 'Inter', sans-serif;
+            color: var(--cv-main-text);
+            /* Important for high-quality PDF rendering */
+            transform-origin: top center;
+        }
 
-        /* CV Sections */
-        .cv-section { margin-bottom: 25px; }
-        .cv-section-title { color: var(--europass-blue); font-size: 16px; border-bottom: 2px solid var(--europass-blue); padding-bottom: 4px; margin-bottom: 15px; text-transform: uppercase; font-weight: bold; letter-spacing: 0.5px; }
+        /* Left Sidebar */
+        .cv-left {
+            width: 33%;
+            background-color: var(--cv-sidebar);
+            color: var(--cv-sidebar-text);
+            padding: 40px 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        /* Right Main Content */
+        .cv-right {
+            width: 67%;
+            padding: 40px 35px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        /* Profile Photo */
+        .photo-container {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 4px solid var(--cv-sidebar-text);
+            overflow: hidden;
+            margin: 0 auto;
+            background: #334155;
+            display: none;
+        }
+
+        .photo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Sidebar Headings */
+        .side-heading {
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            border-bottom: 2px solid var(--cv-accent);
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            color: white;
+            font-weight: 700;
+        }
+
+        /* Sidebar Content */
+        .side-content {
+            font-size: 12px;
+            line-height: 1.6;
+            color: #cbd5e1;
+            word-wrap: break-word;
+        }
+
+        .contact-item {
+            display: flex;
+            margin-bottom: 10px;
+        }
         
-        .cv-item { margin-bottom: 15px; display: flex; gap: 20px; }
-        .cv-item-left { width: 120px; font-size: 13px; color: var(--text-light); font-style: italic; flex-shrink: 0; }
-        .cv-item-right { flex: 1; }
-        .cv-item-title { font-weight: bold; font-size: 15px; margin-bottom: 3px; }
-        .cv-item-subtitle { color: var(--text-light); font-size: 13px; margin-bottom: 5px; font-weight: bold; }
-        .cv-item-desc { font-size: 13px; line-height: 1.6; white-space: pre-wrap; }
+        .contact-label {
+            font-weight: 600;
+            color: #fff;
+            width: 70px;
+            flex-shrink: 0;
+        }
 
-        /* General text block */
-        .cv-text-block { font-size: 13px; line-height: 1.6; white-space: pre-wrap; }
+        /* Main Content Headings */
+        .cv-name {
+            font-family: 'Merriweather', serif;
+            font-size: 38px;
+            font-weight: 700;
+            color: var(--cv-sidebar);
+            line-height: 1.1;
+            text-transform: uppercase;
+        }
 
+        .main-heading {
+            font-size: 18px;
+            color: var(--cv-sidebar);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 2px solid var(--cv-accent);
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .cv-text {
+            font-size: 13px;
+            line-height: 1.6;
+            color: #475569;
+            white-space: pre-wrap;
+        }
+
+        /* Experience & Education Items */
+        .timeline-item {
+            margin-bottom: 20px;
+            page-break-inside: avoid;
+            break-inside: avoid;
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 5px;
+        }
+
+        .timeline-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--cv-sidebar);
+        }
+
+        .timeline-date {
+            font-size: 12px;
+            color: var(--cv-accent);
+            font-weight: 600;
+            background: #eff6ff;
+            padding: 3px 8px;
+            border-radius: 4px;
+        }
+
+        .timeline-subtitle {
+            font-size: 13px;
+            font-weight: 600;
+            color: #64748b;
+            margin-bottom: 8px;
+        }
+
+        /* Responsive Editor */
         @media (max-width: 1000px) {
-            body { flex-direction: column; }
-            .preview-panel { overflow-x: auto; justify-content: flex-start; padding-bottom: 20px; }
+            body {
+                flex-direction: column;
+                overflow: auto;
+            }
+            .editor-container {
+                flex: none;
+                width: 100%;
+                height: auto;
+            }
+            .preview-container {
+                padding: 20px;
+            }
+        }
+        
+        /* Print/PDF adjustments */
+        .avoid-break {
+            page-break-inside: avoid;
+            break-inside: avoid;
         }
     </style>
 </head>
 <body>
 
-    <div class="editor-panel">
-        <h2>CV Builder</h2>
+    <div class="editor-container">
+        <div class="editor-header">
+            <h1>Pro CV Builder</h1>
+            <p>Fill in your details to generate a premium resume.</p>
+        </div>
+
+        <div class="section-title">Profile Info</div>
         
-        <h3>Personal Information</h3>
         <div class="form-group">
             <label>Profile Photo</label>
-            <input type="file" id="photo-input" accept="image/*" onchange="loadPhoto(event)">
+            <input type="file" accept="image/*" onchange="loadPhoto(event)">
         </div>
+
         <div class="form-group">
             <label>Full Name</label>
-            <input type="text" oninput="updateText('out-name', this.value)" placeholder="e.g. Mamun Miah">
-        </div>
-        <div class="form-group">
-            <label>Email Address</label>
-            <input type="email" oninput="updateText('out-email', this.value)" placeholder="email@example.com">
-        </div>
-        <div class="form-group">
-            <label>Phone Number</label>
-            <input type="text" oninput="updateText('out-phone', this.value)" placeholder="(+880) 1...">
-        </div>
-        <div class="form-group">
-            <label>Address / Nationality / Passport</label>
-            <textarea rows="3" oninput="updateText('out-personal', this.value)" placeholder="Nationality: Bangladeshi | Address: Dhaka..."></textarea>
+            <input type="text" id="in-name" oninput="updateText('out-name', this.value)">
         </div>
 
-        <h3>Professional Summary</h3>
-        <div class="form-group">
-            <textarea rows="4" oninput="updateText('out-summary', this.value)" placeholder="Highly motivated professional with..."></textarea>
+        <div class="form-group row">
+            <div>
+                <label>Nationality</label>
+                <select id="in-nationality" onchange="updateText('out-nationality', this.value)">
+                    <option value=""></option>
+                    <option value="🇦🇺 Australia">🇦🇺 Australia</option>
+                    <option value="🇧🇩 Bangladesh">🇧🇩 Bangladesh</option>
+                    <option value="🇨🇦 Canada">🇨🇦 Canada</option>
+                    <option value="🇫🇷 France">🇫🇷 France</option>
+                    <option value="🇩🇪 Germany">🇩🇪 Germany</option>
+                    <option value="🇮🇳 India">🇮🇳 India</option>
+                    <option value="🇮🇹 Italy">🇮🇹 Italy</option>
+                    <option value="🇯🇵 Japan">🇯🇵 Japan</option>
+                    <option value="🇲🇾 Malaysia">🇲🇾 Malaysia</option>
+                    <option value="🇳🇿 New Zealand">🇳🇿 New Zealand</option>
+                    <option value="🇵🇰 Pakistan">🇵🇰 Pakistan</option>
+                    <option value="🇸🇦 Saudi Arabia">🇸🇦 Saudi Arabia</option>
+                    <option value="🇸🇬 Singapore">🇸🇬 Singapore</option>
+                    <option value="🇿🇦 South Africa">🇿🇦 South Africa</option>
+                    <option value="🇪🇸 Spain">🇪🇸 Spain</option>
+                    <option value="🇦🇪 UAE">🇦🇪 UAE</option>
+                    <option value="🇬🇧 United Kingdom">🇬🇧 United Kingdom</option>
+                    <option value="🇺🇸 United States">🇺🇸 United States</option>
+                </select>
+            </div>
+            <div>
+                <label>Gender</label>
+                <select id="in-gender" onchange="updateText('out-gender', this.value)">
+                    <option value=""></option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
         </div>
 
-        <h3>Work Experience</h3>
-        <div id="exp-editor-container"></div>
-        <button class="btn-add" onclick="addExperience()">+ Add Experience</button>
-
-        <h3>Education</h3>
-        <div id="edu-editor-container"></div>
-        <button class="btn-add" onclick="addEducation()">+ Add Education</button>
-
-        <h3>Skills & Languages</h3>
-        <div class="form-group">
-            <label>Skills (Comma separated)</label>
-            <textarea rows="3" oninput="updateText('out-skills', this.value)" placeholder="P2P Trading, Customer Support, HTML, CSS..."></textarea>
-        </div>
-        <div class="form-group">
-            <label>Languages</label>
-            <textarea rows="2" oninput="updateText('out-languages', this.value)" placeholder="Bengali (Native), English (Fluent)..."></textarea>
+        <div class="form-group row">
+            <div>
+                <label>Date of Birth</label>
+                <input type="date" id="in-dob" onchange="updateDate('out-dob', this.value)">
+            </div>
+            <div>
+                <label>Place of Birth</label>
+                <input type="text" id="in-pob" oninput="updateText('out-pob', this.value)">
+            </div>
         </div>
 
-        <button class="btn-download" onclick="downloadPDF()">⬇ Download CV (PDF)</button>
+        <div class="section-title">Contact Information</div>
+        <div class="form-group">
+            <label>Phone</label>
+            <input type="text" oninput="updateContact()">
+        </div>
+        <div class="form-group">
+            <label>Mobile</label>
+            <input type="text" oninput="updateContact()">
+        </div>
+        <div class="form-group">
+            <label>WhatsApp</label>
+            <input type="text" oninput="updateContact()">
+        </div>
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="in-email" oninput="updateText('out-email', this.value)">
+        </div>
+        <div class="form-group">
+            <label>Address</label>
+            <textarea rows="2" id="in-address" oninput="updateText('out-address', this.value)"></textarea>
+        </div>
+
+        <div class="section-title">Career Objective</div>
+        <div class="form-group">
+            <textarea rows="3" oninput="updateText('out-objective', this.value)"></textarea>
+        </div>
+
+        <div class="section-title">Professional Summary</div>
+        <div class="form-group">
+            <textarea rows="4" maxlength="500" id="in-summary" oninput="updateSummary(this)"></textarea>
+            <div class="char-count"><span id="summary-count">0</span> / 500</div>
+        </div>
+
+        <div class="section-title">Work Experience</div>
+        <div id="exp-container"></div>
+        <button class="btn btn-add" onclick="addExperience()">+ Add Work Experience</button>
+
+        <div class="section-title">Education</div>
+        <div id="edu-container"></div>
+        <button class="btn btn-add" onclick="addEducation()">+ Add Education</button>
+
+        <div class="section-title">Languages</div>
+        <div class="form-group">
+            <label>Mother Tongue</label>
+            <input type="text" oninput="updateText('out-lang-mother', this.value)">
+        </div>
+        <div class="form-group">
+            <label>Secondary Tongue(s)</label>
+            <textarea rows="2" oninput="updateText('out-lang-sec', this.value)"></textarea>
+        </div>
+
+        <div class="section-title">Skills</div>
+        <div class="form-group">
+            <textarea rows="4" oninput="updateText('out-skills', this.value)"></textarea>
+        </div>
+
+        <button class="btn btn-download" onclick="downloadPDF()">Download Premium CV</button>
     </div>
 
-    <div class="preview-panel">
-        <div id="cv-document">
-            <div class="europass-logo">euro<span>pass</span></div>
+    <div class="preview-container">
+        <div id="cv-document" class="cv-page">
             
-            <div class="cv-header">
-                <img id="out-photo" class="cv-photo" src="" alt="Profile">
-                <div class="cv-header-right">
-                    <h1 id="out-name" class="cv-name">YOUR NAME</h1>
-                    <div class="cv-personal-info">
-                        <div class="info-row">
-                            <span class="info-item">✉ <span id="out-email">email@example.com</span></span>
-                            <span class="info-item">☎ <span id="out-phone">+00 123 456 789</span></span>
+            <div class="cv-left">
+                <div class="photo-container" id="photo-wrapper">
+                    <img id="out-photo" src="" alt="Profile">
+                </div>
+
+                <div class="avoid-break" id="sec-personal" style="display:none;">
+                    <div class="side-heading">Personal Details</div>
+                    <div class="side-content">
+                        <div id="wrap-dob" style="display:none; margin-bottom: 8px;">
+                            <strong>Date of Birth:</strong><br><span id="out-dob"></span>
                         </div>
-                        <div style="margin-top: 5px; white-space: pre-wrap;" id="out-personal">Nationality: ... | Address: ...</div>
+                        <div id="wrap-pob" style="display:none; margin-bottom: 8px;">
+                            <strong>Place of Birth:</strong><br><span id="out-pob"></span>
+                        </div>
+                        <div id="wrap-nationality" style="display:none; margin-bottom: 8px;">
+                            <strong>Nationality:</strong><br><span id="out-nationality"></span>
+                        </div>
+                        <div id="wrap-gender" style="display:none; margin-bottom: 8px;">
+                            <strong>Gender:</strong><br><span id="out-gender"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="avoid-break" id="sec-contact" style="display:none;">
+                    <div class="side-heading">Contact</div>
+                    <div class="side-content">
+                        <div id="out-contact-list"></div>
+                        <div id="wrap-email" style="display:none; margin-top: 10px;">
+                            <div class="contact-label">Email:</div>
+                            <span id="out-email"></span>
+                        </div>
+                        <div id="wrap-address" style="display:none; margin-top: 10px;">
+                            <div class="contact-label">Address:</div>
+                            <span id="out-address"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="avoid-break" id="sec-skills" style="display:none;">
+                    <div class="side-heading">Skills</div>
+                    <div class="side-content cv-text" id="out-skills" style="color:#cbd5e1;"></div>
+                </div>
+
+                <div class="avoid-break" id="sec-languages" style="display:none;">
+                    <div class="side-heading">Languages</div>
+                    <div class="side-content">
+                        <div id="wrap-lang-mother" style="display:none; margin-bottom: 8px;">
+                            <strong>Mother Tongue:</strong><br><span id="out-lang-mother"></span>
+                        </div>
+                        <div id="wrap-lang-sec" style="display:none;">
+                            <strong>Secondary:</strong><br><span id="out-lang-sec" style="white-space: pre-wrap;"></span>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="cv-section">
-                <div class="cv-section-title">Professional Summary</div>
-                <div id="out-summary" class="cv-text-block">Write your professional summary here...</div>
-            </div>
+            <div class="cv-right">
+                <div>
+                    <h1 class="cv-name" id="out-name"></h1>
+                </div>
 
-            <div class="cv-section">
-                <div class="cv-section-title">Work Experience</div>
-                <div id="out-exp-list"></div>
-            </div>
+                <div class="avoid-break" id="sec-objective" style="display:none;">
+                    <div class="main-heading">Career Objective</div>
+                    <div class="cv-text" id="out-objective"></div>
+                </div>
 
-            <div class="cv-section">
-                <div class="cv-section-title">Education and Training</div>
-                <div id="out-edu-list"></div>
-            </div>
+                <div class="avoid-break" id="sec-summary" style="display:none;">
+                    <div class="main-heading">Professional Summary</div>
+                    <div class="cv-text" id="out-summary"></div>
+                </div>
 
-            <div class="cv-section">
-                <div class="cv-section-title">Skills & Languages</div>
-                <div style="margin-bottom: 10px;"><strong>Skills:</strong> <span id="out-skills">Your skills here...</span></div>
-                <div><strong>Languages:</strong> <span id="out-languages">Your languages here...</span></div>
+                <div class="avoid-break" id="sec-experience" style="display:none;">
+                    <div class="main-heading">Work Experience</div>
+                    <div id="out-exp-list"></div>
+                </div>
+
+                <div class="avoid-break" id="sec-education" style="display:none;">
+                    <div class="main-heading">Education</div>
+                    <div id="out-edu-list"></div>
+                </div>
             </div>
-            
         </div>
     </div>
 
     <script>
-        // Update simple text fields
-        function updateText(id, value) {
-            document.getElementById(id).innerText = value || '';
-        }
+        // -------------------------
+        // Core Text & Visibility Updates
+        // -------------------------
+               function updateText(id, value) {
+            const el = document.getElementById(id);
+            if (el) {
+                el.innerText = value;
+                
+                // Visibility toggles for the wrapper elements
+                const wrapper = document.getElementById('wrap-' + id.replace('out-', ''));
+                if (wrapper) wrapper.style.display = value.trim() ? 'block' : 'none';
 
-        // Handle Profile Photo Upload
-        function loadPhoto(event) {
-            const photoEl = document.getElementById('out-photo');
-            if (event.target.files && event.target.files[0]) {
-                photoEl.src = URL.createObjectURL(event.target.files[0]);
-                photoEl.style.display = 'block';
-            } else {
-                photoEl.style.display = 'none';
+                // Section toggles
+                checkSectionVisibility();
             }
         }
 
-        // ---- DYNAMIC WORK EXPERIENCE ----
+        // -------------------------
+        // Date Formatting Engine
+        // Format: "DD MMM YYYY" (e.g., 05 NOV 2023)
+        // -------------------------
+        const months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+        
+        function formatToCustomDate(dateString) {
+            if (!dateString) return "";
+            const d = new Date(dateString);
+            if (isNaN(d)) return dateString;
+            
+            let day = d.getDate().toString().padStart(2, '0');
+            let month = months[d.getMonth()];
+            let year = d.getFullYear();
+            
+            return `${day} ${month} ${year}`;
+        }
+
+        function updateDate(id, value) {
+            updateText(id, formatToCustomDate(value));
+        }
+
+        // -------------------------
+        // Summary Counter
+        // -------------------------
+        function updateSummary(el) {
+            document.getElementById('summary-count').innerText = el.value.length;
+            updateText('out-summary', el.value);
+        }
+
+        // -------------------------
+        // Profile Photo
+        // -------------------------
+        function loadPhoto(event) {
+            const photoWrapper = document.getElementById('photo-wrapper');
+            const photoEl = document.getElementById('out-photo');
+            if (event.target.files && event.target.files[0]) {
+                photoEl.src = URL.createObjectURL(event.target.files[0]);
+                photoWrapper.style.display = 'block';
+            } else {
+                photoWrapper.style.display = 'none';
+            }
+        }
+
+        // -------------------------
+        // Contact Combiner
+        // -------------------------
+        function updateContact() {
+            const inputs = document.querySelectorAll('.editor-container .form-group:nth-of-type(5) input, .editor-container .form-group:nth-of-type(6) input, .editor-container .form-group:nth-of-type(7) input');
+            
+            // Re-selecting carefully based on DOM structure
+            const phoneStr = document.querySelectorAll('.editor-container input')[5].value; // Phone
+            const mobileStr = document.querySelectorAll('.editor-container input')[6].value; // Mobile
+            const waStr = document.querySelectorAll('.editor-container input')[7].value; // WhatsApp
+            
+            let html = '';
+            if(phoneStr) html += `<div class="contact-item"><span class="contact-label">Phone:</span><span>${phoneStr}</span></div>`;
+            if(mobileStr) html += `<div class="contact-item"><span class="contact-label">Mobile:</span><span>${mobileStr}</span></div>`;
+            if(waStr) html += `<div class="contact-item"><span class="contact-label">WhatsApp:</span><span>${waStr}</span></div>`;
+            
+            document.getElementById('out-contact-list').innerHTML = html;
+            checkSectionVisibility();
+        }
+
+        // -------------------------
+        // Check Empty Sections to Hide Headings
+        // -------------------------
+        function checkSectionVisibility() {
+            // Personal
+            const p1 = document.getElementById('out-dob').innerText;
+            const p2 = document.getElementById('out-pob').innerText;
+            const p3 = document.getElementById('out-nationality').innerText;
+            const p4 = document.getElementById('out-gender').innerText;
+            document.getElementById('sec-personal').style.display = (p1||p2||p3||p4) ? 'flex' : 'none';
+            document.getElementById('sec-personal').style.flexDirection = 'column';
+
+            // Contact
+            const clist = document.getElementById('out-contact-list').innerHTML;
+            const cem = document.getElementById('out-email').innerText;
+            const cad = document.getElementById('out-address').innerText;
+            document.getElementById('sec-contact').style.display = (clist||cem||cad) ? 'flex' : 'none';
+            document.getElementById('sec-contact').style.flexDirection = 'column';
+
+            // Objective, Summary, Skills
+            document.getElementById('sec-objective').style.display = document.getElementById('out-objective').innerText ? 'block' : 'none';
+            document.getElementById('sec-summary').style.display = document.getElementById('out-summary').innerText ? 'block' : 'none';
+            document.getElementById('sec-skills').style.display = document.getElementById('out-skills').innerText ? 'flex' : 'none';
+            document.getElementById('sec-skills').style.flexDirection = 'column';
+
+            // Languages
+            const l1 = document.getElementById('out-lang-mother').innerText;
+            const l2 = document.getElementById('out-lang-sec').innerText;
+            document.getElementById('sec-languages').style.display = (l1||l2) ? 'flex' : 'none';
+            document.getElementById('sec-languages').style.flexDirection = 'column';
+
+            // Exp & Edu
+            document.getElementById('sec-experience').style.display = expCount > 0 ? 'block' : 'none';
+            document.getElementById('sec-education').style.display = eduCount > 0 ? 'block' : 'none';
+        }
+
+        // -------------------------
+        // Dynamic Work Experience
+        // -------------------------
         let expCount = 0;
         function addExperience() {
             expCount++;
             const id = `exp-${expCount}`;
             
-            // Add to Editor
+            // Editor
             const editorHTML = `
-                <div class="dynamic-box" id="editor-${id}">
-                    <button class="btn-remove" onclick="removeSection('${id}')">Remove</button>
-                    <input type="text" placeholder="Dates (e.g. 2022 - Present)" oninput="updateDyn('${id}-date', this.value)" style="margin-bottom:8px;">
-                    <input type="text" placeholder="Job Title" oninput="updateDyn('${id}-title', this.value)" style="margin-bottom:8px;">
-                    <input type="text" placeholder="Employer & Location" oninput="updateDyn('${id}-company', this.value)" style="margin-bottom:8px;">
-                    <textarea rows="3" placeholder="Main activities and responsibilities" oninput="updateDyn('${id}-desc', this.value)"></textarea>
-                </div>
-            `;
-            document.getElementById('exp-editor-container').insertAdjacentHTML('beforeend', editorHTML);
-
-            // Add to Preview
-            const previewHTML = `
-                <div class="cv-item" id="preview-${id}">
-                    <div class="cv-item-left" id="${id}-date">Date - Date</div>
-                    <div class="cv-item-right">
-                        <div class="cv-item-title" id="${id}-title">Job Title</div>
-                        <div class="cv-item-subtitle" id="${id}-company">Employer</div>
-                        <div class="cv-item-desc" id="${id}-desc">Responsibilities...</div>
+                <div class="dynamic-item" id="editor-${id}">
+                    <button class="btn btn-remove" onclick="removeExperience('${id}')">Remove</button>
+                    <div class="form-group row" style="margin-top:10px;">
+                        <div>
+                            <label>Start Date</label>
+                            <input type="date" onchange="updateExpDate('${id}')" id="start-${id}">
+                        </div>
+                        <div>
+                            <label>End Date</label>
+                            <input type="date" onchange="updateExpDate('${id}')" id="end-${id}">
+                            <div class="checkbox-group" style="margin-top:5px;">
+                                <input type="checkbox" id="ongoing-${id}" onchange="toggleOngoing('${id}')">
+                                <label style="margin:0; font-weight:normal;">Ongoing</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div>
+                            <label>Job Title</label>
+                            <input type="text" oninput="updateDyn('${id}-title', this.value)">
+                        </div>
+                        <div>
+                            <label>Employer</label>
+                            <input type="text" oninput="updateDyn('${id}-employer', this.value)">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Location</label>
+                        <input type="text" oninput="updateDyn('${id}-location', this.value)">
+                    </div>
+                    <div class="form-group">
+                        <label>Main Activities and Responsibilities</label>
+                        <textarea rows="3" oninput="updateDyn('${id}-desc', this.value)"></textarea>
                     </div>
                 </div>
             `;
+            document.getElementById('exp-container').insertAdjacentHTML('beforeend', editorHTML);
+
+            // Preview
+            const previewHTML = `
+                <div class="timeline-item" id="preview-${id}">
+                    <div class="timeline-header">
+                        <div class="timeline-title" id="${id}-title"></div>
+                        <div class="timeline-date" id="${id}-date-display" style="display:none;"></div>
+                    </div>
+                    <div class="timeline-subtitle">
+                        <span id="${id}-employer"></span><span id="${id}-sep"></span><span id="${id}-location"></span>
+                    </div>
+                    <div class="cv-text" id="${id}-desc"></div>
+                </div>
+            `;
             document.getElementById('out-exp-list').insertAdjacentHTML('beforeend', previewHTML);
+            checkSectionVisibility();
         }
 
-        // ---- DYNAMIC EDUCATION ----
+        function removeExperience(id) {
+            document.getElementById(`editor-${id}`).remove();
+            document.getElementById(`preview-${id}`).remove();
+            expCount--;
+            checkSectionVisibility();
+        }
+
+        function toggleOngoing(id) {
+            const isOngoing = document.getElementById(`ongoing-${id}`).checked;
+            const endInput = document.getElementById(`end-${id}`);
+            endInput.disabled = isOngoing;
+            if(isOngoing) endInput.value = '';
+            updateExpDate(id);
+        }
+
+        function updateExpDate(id) {
+            const startStr = document.getElementById(`start-${id}`).value;
+            const endStr = document.getElementById(`end-${id}`).value;
+            const isOngoing = document.getElementById(`ongoing-${id}`).checked;
+
+            let display = '';
+            if (startStr) display += formatToCustomDate(startStr);
+            if (startStr && (endStr || isOngoing)) display += ' - ';
+            if (isOngoing) display += 'Ongoing';
+            else if (endStr) display += formatToCustomDate(endStr);
+
+            const displayEl = document.getElementById(`${id}-date-display`);
+            displayEl.innerText = display;
+            displayEl.style.display = display ? 'block' : 'none';
+        }
+
+        // -------------------------
+        // Dynamic Education
+        // -------------------------
         let eduCount = 0;
         function addEducation() {
             eduCount++;
             const id = `edu-${eduCount}`;
             
-            // Add to Editor
+            // Editor
             const editorHTML = `
-                <div class="dynamic-box" id="editor-${id}">
-                    <button class="btn-remove" onclick="removeSection('${id}')">Remove</button>
-                    <input type="text" placeholder="Dates (e.g. 2018 - 2020)" oninput="updateDyn('${id}-date', this.value)" style="margin-bottom:8px;">
-                    <input type="text" placeholder="Title of Qualification Awarded" oninput="updateDyn('${id}-title', this.value)" style="margin-bottom:8px;">
-                    <input type="text" placeholder="Institution Name & Country" oninput="updateDyn('${id}-company', this.value)" style="margin-bottom:8px;">
+                <div class="dynamic-item" id="editor-${id}">
+                    <button class="btn btn-remove" onclick="removeEducation('${id}')">Remove</button>
+                    <div class="form-group row" style="margin-top:10px;">
+                        <div>
+                            <label>Start Date</label>
+                            <input type="date" onchange="updateEduDate('${id}')" id="edustart-${id}">
+                        </div>
+                        <div>
+                            <label>End Date</label>
+                            <input type="date" onchange="updateEduDate('${id}')" id="eduend-${id}">
+                            <div class="checkbox-group" style="margin-top:5px;">
+                                <input type="checkbox" id="eduongoing-${id}" onchange="toggleEduOngoing('${id}')">
+                                <label style="margin:0; font-weight:normal;">Ongoing</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Title of Qualification</label>
+                        <input type="text" oninput="updateDyn('${id}-title', this.value)">
+                    </div>
+                    <div class="form-group row">
+                        <div>
+                            <label>Institute</label>
+                            <input type="text" oninput="updateDyn('${id}-institute', this.value)">
+                        </div>
+                        <div>
+                            <label>Location</label>
+                            <input type="text" oninput="updateDyn('${id}-location', this.value)">
+                        </div>
+                    </div>
                 </div>
             `;
-            document.getElementById('edu-editor-container').insertAdjacentHTML('beforeend', editorHTML);
+            document.getElementById('edu-container').insertAdjacentHTML('beforeend', editorHTML);
 
-            // Add to Preview
+            // Preview
             const previewHTML = `
-                <div class="cv-item" id="preview-${id}">
-                    <div class="cv-item-left" id="${id}-date">Date - Date</div>
-                    <div class="cv-item-right">
-                        <div class="cv-item-title" id="${id}-title">Qualification</div>
-                        <div class="cv-item-subtitle" id="${id}-company">Institution</div>
+                <div class="timeline-item" id="preview-${id}">
+                    <div class="timeline-header">
+                        <div class="timeline-title" id="${id}-title"></div>
+                        <div class="timeline-date" id="${id}-date-display" style="display:none;"></div>
+                    </div>
+                    <div class="timeline-subtitle">
+                        <span id="${id}-institute"></span><span id="${id}-sep"></span><span id="${id}-location"></span>
                     </div>
                 </div>
             `;
             document.getElementById('out-edu-list').insertAdjacentHTML('beforeend', previewHTML);
+            checkSectionVisibility();
         }
 
-        // Update dynamic fields
+        function removeEducation(id) {
+            document.getElementById(`editor-${id}`).remove();
+            document.getElementById(`preview-${id}`).remove();
+            eduCount--;
+            checkSectionVisibility();
+        }
+
+        function toggleEduOngoing(id) {
+            const isOngoing = document.getElementById(`eduongoing-${id}`).checked;
+            const endInput = document.getElementById(`eduend-${id}`);
+            endInput.disabled = isOngoing;
+            if(isOngoing) endInput.value = '';
+            updateEduDate(id);
+        }
+
+        function updateEduDate(id) {
+            const startStr = document.getElementById(`edustart-${id}`).value;
+            const endStr = document.getElementById(`eduend-${id}`).value;
+            const isOngoing = document.getElementById(`eduongoing-${id}`).checked;
+
+            let display = '';
+            if (startStr) display += formatToCustomDate(startStr);
+            if (startStr && (endStr || isOngoing)) display += ' - ';
+            if (isOngoing) display += 'Ongoing';
+            else if (endStr) display += formatToCustomDate(endStr);
+
+            const displayEl = document.getElementById(`${id}-date-display`);
+            displayEl.innerText = display;
+            displayEl.style.display = display ? 'block' : 'none';
+        }
+
+        // Helper for inner dynamic texts + separator logic
         function updateDyn(id, value) {
             const el = document.getElementById(id);
             if(el) el.innerText = value;
+
+            // Handle the comma separator dynamically if both employer/institute and location exist
+            if(id.includes('-employer') || id.includes('-location') || id.includes('-institute')) {
+                const baseId = id.split('-')[0] + '-' + id.split('-')[1]; // e.g., exp-1
+                let entity = '';
+                if(document.getElementById(`${baseId}-employer`)) entity = document.getElementById(`${baseId}-employer`).innerText;
+                if(document.getElementById(`${baseId}-institute`)) entity = document.getElementById(`${baseId}-institute`).innerText;
+                
+                const loc = document.getElementById(`${baseId}-location`).innerText;
+                const sepEl = document.getElementById(`${baseId}-sep`);
+                
+                if(entity && loc) {
+                    sepEl.innerText = ', ';
+                } else {
+                    sepEl.innerText = '';
+                }
+            }
         }
 
-        // Remove dynamic section
-        function removeSection(id) {
-            document.getElementById(`editor-${id}`).remove();
-            document.getElementById(`preview-${id}`).remove();
+        // -------------------------
+        // Generate High-Quality PDF
+        // -------------------------
+        function downloadPDF() {
+            const element = document.getElementById('cv-document');
+            
+            // Get user's name for the filename
+            let userNameInput = document.getElementById('in-name').value.trim();
+            let finalName = "User";
+            if(userNameInput) {
+                // Sanitize filename: replace spaces with _, lowercase
+                finalName = userNameInput.replace(/\s+/g, '_').toLowerCase();
+            }
+            const filename = `cv_${finalName}.pdf`;
+
+            // Setup html2pdf configuration for crisp rendering & layout
+            const opt = {
+                margin:       0,
+                filename:     filename,
+                image:        { type: 'jpeg', quality: 1.0 },
+                html2canvas:  { scale: 3, useCORS: true, logging: false },
+                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
+                pagebreak:    { mode: ['avoid-all', 'css', 'legacy'] }
+            };
+            
+            // Temporarily tweak the container specifically for generation to ensure standard sizing
+            const originalBoxShadow = element.style.boxShadow;
+            element.style.boxShadow = 'none';
+
+            html2pdf().set(opt).from(element).save().then(() => {
+                element.style.boxShadow = originalBoxShadow;
+            });
         }
 
-        // Add 1 blank experience and education by default on load
+        // Init blank items on load
         window.onload = function() {
             addExperience();
             addEducation();
+            checkSectionVisibility();
         };
-
-        // ---- GENERATE PDF ----
-        function downloadPDF() {
-            const element = document.getElementById('cv-document');
-            const opt = {
-                margin:       0,
-                filename:     'Europass_CV_SGWorkerHub.pdf',
-                image:        { type: 'jpeg', quality: 0.98 },
-                html2canvas:  { scale: 2, useCORS: true },
-                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
-            };
-            
-            html2pdf().set(opt).from(element).save();
-        }
     </script>
 </body>
-              </html>
-
+</html>
