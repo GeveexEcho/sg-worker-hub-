@@ -604,14 +604,22 @@
         </div>
     </div>
 
-    <script>
+        <script>
+        // -------------------------
+        // Global Variables (Moved to top to prevent loading issues)
+        // -------------------------
+        let expCount = 0;
+        let eduCount = 0;
+        const months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+
         // -------------------------
         // Core Text & Visibility Updates
         // -------------------------
-               function updateText(id, value) {
+        function updateText(id, value) {
             const el = document.getElementById(id);
             if (el) {
-                el.innerText = value;
+                // innerText এর পরিবর্তে textContent ব্যবহার করা হয়েছে (হিডেন এলিমেন্ট বাগ ফিক্স)
+                el.textContent = value;
                 
                 // Visibility toggles for the wrapper elements
                 const wrapper = document.getElementById('wrap-' + id.replace('out-', ''));
@@ -624,10 +632,7 @@
 
         // -------------------------
         // Date Formatting Engine
-        // Format: "DD MMM YYYY" (e.g., 05 NOV 2023)
         // -------------------------
-        const months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
-        
         function formatToCustomDate(dateString) {
             if (!dateString) return "";
             const d = new Date(dateString);
@@ -648,7 +653,7 @@
         // Summary Counter
         // -------------------------
         function updateSummary(el) {
-            document.getElementById('summary-count').innerText = el.value.length;
+            document.getElementById('summary-count').textContent = el.value.length;
             updateText('out-summary', el.value);
         }
 
@@ -667,67 +672,61 @@
         }
 
         // -------------------------
-// Contact Combiner (Fixed)
-// -------------------------
-function updateContact() {
-    const phoneStr = document.getElementById('in-phone').value;
-    const mobileStr = document.getElementById('in-mobile').value;
-    const waStr = document.getElementById('in-wa').value;
-    
-    let html = '';
-    if(phoneStr) html += `<div class="contact-item"><span class="contact-label">Phone:</span><span>${phoneStr}</span></div>`;
-    if(mobileStr) html += `<div class="contact-item"><span class="contact-label">Mobile:</span><span>${mobileStr}</span></div>`;
-    if(waStr) html += `<div class="contact-item"><span class="contact-label">WhatsApp:</span><span>${waStr}</span></div>`;
-    
-    document.getElementById('out-contact-list').innerHTML = html;
-    checkSectionVisibility();
-}
+        // Contact Combiner 
+        // -------------------------
+        function updateContact() {
+            const phoneStr = document.getElementById('in-phone').value;
+            const mobileStr = document.getElementById('in-mobile').value;
+            const waStr = document.getElementById('in-wa').value;
+            
+            let html = '';
+            if(phoneStr) html += `<div class="contact-item"><span class="contact-label">Phone:</span><span>${phoneStr}</span></div>`;
+            if(mobileStr) html += `<div class="contact-item"><span class="contact-label">Mobile:</span><span>${mobileStr}</span></div>`;
+            if(waStr) html += `<div class="contact-item"><span class="contact-label">WhatsApp:</span><span>${waStr}</span></div>`;
+            
+            document.getElementById('out-contact-list').innerHTML = html;
+            checkSectionVisibility();
+        }
 
-// -------------------------
-// Check Empty Sections to Hide Headings (Fixed with textContent)
-// -------------------------
-function checkSectionVisibility() {
-    // Personal
-    const p1 = document.getElementById('out-dob').textContent;
-    const p2 = document.getElementById('out-pob').textContent;
-    const p3 = document.getElementById('out-nationality').textContent;
-    const p4 = document.getElementById('out-gender').textContent;
-    document.getElementById('sec-personal').style.display = (p1||p2||p3||p4) ? 'flex' : 'none';
-    document.getElementById('sec-personal').style.flexDirection = 'column';
+        // -------------------------
+        // Check Empty Sections to Hide Headings
+        // -------------------------
+        function checkSectionVisibility() {
+            // Trim() যোগ করা হয়েছে যাতে ভুলে স্পেস পড়লে সেকশন ব্ল্যাংক না দেখায়
+            const p1 = document.getElementById('out-dob').textContent.trim();
+            const p2 = document.getElementById('out-pob').textContent.trim();
+            const p3 = document.getElementById('out-nationality').textContent.trim();
+            const p4 = document.getElementById('out-gender').textContent.trim();
+            document.getElementById('sec-personal').style.display = (p1||p2||p3||p4) ? 'flex' : 'none';
+            document.getElementById('sec-personal').style.flexDirection = 'column';
 
-    // Contact
-    const clist = document.getElementById('out-contact-list').innerHTML;
-    const cem = document.getElementById('out-email').textContent;
-    const cad = document.getElementById('out-address').textContent;
-    document.getElementById('sec-contact').style.display = (clist||cem||cad) ? 'flex' : 'none';
-    document.getElementById('sec-contact').style.flexDirection = 'column';
+            const clist = document.getElementById('out-contact-list').innerHTML.trim();
+            const cem = document.getElementById('out-email').textContent.trim();
+            const cad = document.getElementById('out-address').textContent.trim();
+            document.getElementById('sec-contact').style.display = (clist||cem||cad) ? 'flex' : 'none';
+            document.getElementById('sec-contact').style.flexDirection = 'column';
 
-    // Objective, Summary, Skills
-    document.getElementById('sec-objective').style.display = document.getElementById('out-objective').textContent ? 'block' : 'none';
-    document.getElementById('sec-summary').style.display = document.getElementById('out-summary').textContent ? 'block' : 'none';
-    document.getElementById('sec-skills').style.display = document.getElementById('out-skills').textContent ? 'flex' : 'none';
-    document.getElementById('sec-skills').style.flexDirection = 'column';
+            document.getElementById('sec-objective').style.display = document.getElementById('out-objective').textContent.trim() ? 'block' : 'none';
+            document.getElementById('sec-summary').style.display = document.getElementById('out-summary').textContent.trim() ? 'block' : 'none';
+            document.getElementById('sec-skills').style.display = document.getElementById('out-skills').textContent.trim() ? 'flex' : 'none';
+            document.getElementById('sec-skills').style.flexDirection = 'column';
 
-    // Languages
-    const l1 = document.getElementById('out-lang-mother').textContent;
-    const l2 = document.getElementById('out-lang-sec').textContent;
-    document.getElementById('sec-languages').style.display = (l1||l2) ? 'flex' : 'none';
-    document.getElementById('sec-languages').style.flexDirection = 'column';
+            const l1 = document.getElementById('out-lang-mother').textContent.trim();
+            const l2 = document.getElementById('out-lang-sec').textContent.trim();
+            document.getElementById('sec-languages').style.display = (l1||l2) ? 'flex' : 'none';
+            document.getElementById('sec-languages').style.flexDirection = 'column';
 
-    // Exp & Edu
-    document.getElementById('sec-experience').style.display = expCount > 0 ? 'block' : 'none';
-    document.getElementById('sec-education').style.display = eduCount > 0 ? 'block' : 'none';
-                                                                                     }
+            document.getElementById('sec-experience').style.display = expCount > 0 ? 'block' : 'none';
+            document.getElementById('sec-education').style.display = eduCount > 0 ? 'block' : 'none';
+        }
         
         // -------------------------
         // Dynamic Work Experience
         // -------------------------
-        let expCount = 0;
         function addExperience() {
             expCount++;
             const id = `exp-${expCount}`;
             
-            // Editor
             const editorHTML = `
                 <div class="dynamic-item" id="editor-${id}">
                     <button class="btn btn-remove" onclick="removeExperience('${id}')">Remove</button>
@@ -767,7 +766,6 @@ function checkSectionVisibility() {
             `;
             document.getElementById('exp-container').insertAdjacentHTML('beforeend', editorHTML);
 
-            // Preview
             const previewHTML = `
                 <div class="timeline-item" id="preview-${id}">
                     <div class="timeline-header">
@@ -811,19 +809,17 @@ function checkSectionVisibility() {
             else if (endStr) display += formatToCustomDate(endStr);
 
             const displayEl = document.getElementById(`${id}-date-display`);
-            displayEl.innerText = display;
+            displayEl.textContent = display;
             displayEl.style.display = display ? 'block' : 'none';
         }
 
         // -------------------------
         // Dynamic Education
         // -------------------------
-        let eduCount = 0;
         function addEducation() {
             eduCount++;
             const id = `edu-${eduCount}`;
             
-            // Editor
             const editorHTML = `
                 <div class="dynamic-item" id="editor-${id}">
                     <button class="btn btn-remove" onclick="removeEducation('${id}')">Remove</button>
@@ -859,7 +855,6 @@ function checkSectionVisibility() {
             `;
             document.getElementById('edu-container').insertAdjacentHTML('beforeend', editorHTML);
 
-            // Preview
             const previewHTML = `
                 <div class="timeline-item" id="preview-${id}">
                     <div class="timeline-header">
@@ -902,69 +897,63 @@ function checkSectionVisibility() {
             else if (endStr) display += formatToCustomDate(endStr);
 
             const displayEl = document.getElementById(`${id}-date-display`);
-            displayEl.innerText = display;
+            displayEl.textContent = display;
             displayEl.style.display = display ? 'block' : 'none';
         }
 
         // Helper for inner dynamic texts + separator logic
         function updateDyn(id, value) {
             const el = document.getElementById(id);
-            if(el) el.innerText = value;
+            if(el) el.textContent = value;
 
-            // Handle the comma separator dynamically if both employer/institute and location exist
             if(id.includes('-employer') || id.includes('-location') || id.includes('-institute')) {
-                const baseId = id.split('-')[0] + '-' + id.split('-')[1]; // e.g., exp-1
+                const baseId = id.split('-')[0] + '-' + id.split('-')[1]; 
                 let entity = '';
-                if(document.getElementById(`${baseId}-employer`)) entity = document.getElementById(`${baseId}-employer`).innerText;
-                if(document.getElementById(`${baseId}-institute`)) entity = document.getElementById(`${baseId}-institute`).innerText;
+                if(document.getElementById(`${baseId}-employer`)) entity = document.getElementById(`${baseId}-employer`).textContent.trim();
+                if(document.getElementById(`${baseId}-institute`)) entity = document.getElementById(`${baseId}-institute`).textContent.trim();
                 
-                const loc = document.getElementById(`${baseId}-location`).innerText;
+                const loc = document.getElementById(`${baseId}-location`).textContent.trim();
                 const sepEl = document.getElementById(`${baseId}-sep`);
                 
                 if(entity && loc) {
-                    sepEl.innerText = ', ';
+                    sepEl.textContent = ', ';
                 } else {
-                    sepEl.innerText = '';
+                    sepEl.textContent = '';
                 }
             }
         }
 
         // -------------------------
-// Generate High-Quality PDF (Fixed Blank Page Issue)
-// -------------------------
-function downloadPDF() {
-    const element = document.getElementById('cv-document');
-    
-    // বাগ ফিক্স: পিডিএফ রেন্ডার করার আগে স্ক্রল পজিশন একেবারে উপরে (Top) নিয়ে আসা
-    const previewContainer = document.querySelector('.preview-container');
-    if(previewContainer) previewContainer.scrollTop = 0;
-    
-    let userNameInput = document.getElementById('in-name').value.trim();
-    let finalName = "User";
-    if(userNameInput) {
-        finalName = userNameInput.replace(/\s+/g, '_').toLowerCase();
-    }
-    const filename = `cv_${finalName}.pdf`;
+        // Generate High-Quality PDF
+        // -------------------------
+        function downloadPDF() {
+            const element = document.getElementById('cv-document');
+            
+            const previewContainer = document.querySelector('.preview-container');
+            if(previewContainer) previewContainer.scrollTop = 0;
+            
+            let userNameInput = document.getElementById('in-name').value.trim();
+            let finalName = "User";
+            if(userNameInput) {
+                finalName = userNameInput.replace(/\s+/g, '_').toLowerCase();
+            }
+            const filename = `cv_${finalName}.pdf`;
 
-    // html2pdf কনফিগারেশন আপডেট
-    const opt = {
-        margin:       0,
-        filename:     filename,
-        image:        { type: 'jpeg', quality: 1.0 },
-        // scale 2 করা হয়েছে এবং scrollY: 0 যোগ করা হয়েছে যাতে ভিউপোর্ট মিসম্যাচ না হয়
-        html2canvas:  { scale: 2, useCORS: true, logging: false, scrollY: 0 }, 
-        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
-        // Note: pagebreak অপশনটি রিমুভ করা হয়েছে কারণ Flexbox এ এটি ব্ল্যাংক পেজ তৈরি করে
-    };
-    
-    const originalBoxShadow = element.style.boxShadow;
-    element.style.boxShadow = 'none';
+            const opt = {
+                margin:       0,
+                filename:     filename,
+                image:        { type: 'jpeg', quality: 1.0 },
+                html2canvas:  { scale: 2, useCORS: true, logging: false, scrollY: 0 }, 
+                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+            
+            const originalBoxShadow = element.style.boxShadow;
+            element.style.boxShadow = 'none';
 
-    html2pdf().set(opt).from(element).save().then(() => {
-        element.style.boxShadow = originalBoxShadow;
-    });
-}
-        
+            html2pdf().set(opt).from(element).save().then(() => {
+                element.style.boxShadow = originalBoxShadow;
+            });
+        }
 
         // Init blank items on load
         window.onload = function() {
@@ -972,6 +961,6 @@ function downloadPDF() {
             addEducation();
             checkSectionVisibility();
         };
-    </script>
+                                    </script>
 </body>
 </html>
