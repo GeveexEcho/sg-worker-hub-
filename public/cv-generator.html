@@ -367,7 +367,7 @@
             margin-bottom: 8px;
         }
 
-        /* Responsive Editor */
+                /* Responsive Editor & Mobile Preview Fix */
         @media (max-width: 1000px) {
             body {
                 flex-direction: column;
@@ -379,7 +379,23 @@
                 height: auto;
             }
             .preview-container {
-                padding: 20px;
+                padding: 20px 10px;
+                display: block; /* Flexbox রিমুভ করা হয়েছে যাতে স্কেলিং ঠিক থাকে */
+                overflow-x: auto;
+            }
+            .cv-page {
+                margin: 0 auto;
+                transform: scale(0.65);
+                transform-origin: top center;
+                margin-bottom: -35%; 
+            }
+        }
+        
+        /* ছোট মোবাইল স্ক্রিনের জন্য */
+        @media (max-width: 600px) {
+            .cv-page {
+                transform: scale(0.42); /* স্ক্রিন অনুযায়ী জুম আউট */
+                margin-bottom: -55%; /* স্কেল করার কারণে তৈরি হওয়া অতিরিক্ত ফাঁকা জায়গা কমানো */
             }
         }
         
@@ -415,24 +431,24 @@
                 <label>Nationality</label>
                 <select id="in-nationality" onchange="updateText('out-nationality', this.value)">
                     <option value=""></option>
-                    <option value="🇦🇺 Australia">🇦🇺 Australia</option>
-                    <option value="🇧🇩 Bangladesh">🇧🇩 Bangladesh</option>
-                    <option value="🇨🇦 Canada">🇨🇦 Canada</option>
-                    <option value="🇫🇷 France">🇫🇷 France</option>
-                    <option value="🇩🇪 Germany">🇩🇪 Germany</option>
-                    <option value="🇮🇳 India">🇮🇳 India</option>
-                    <option value="🇮🇹 Italy">🇮🇹 Italy</option>
-                    <option value="🇯🇵 Japan">🇯🇵 Japan</option>
-                    <option value="🇲🇾 Malaysia">🇲🇾 Malaysia</option>
-                    <option value="🇳🇿 New Zealand">🇳🇿 New Zealand</option>
-                    <option value="🇵🇰 Pakistan">🇵🇰 Pakistan</option>
-                    <option value="🇸🇦 Saudi Arabia">🇸🇦 Saudi Arabia</option>
-                    <option value="🇸🇬 Singapore">🇸🇬 Singapore</option>
-                    <option value="🇿🇦 South Africa">🇿🇦 South Africa</option>
-                    <option value="🇪🇸 Spain">🇪🇸 Spain</option>
-                    <option value="🇦🇪 UAE">🇦🇪 UAE</option>
-                    <option value="🇬🇧 United Kingdom">🇬🇧 United Kingdom</option>
-                    <option value="🇺🇸 United States">🇺🇸 United States</option>
+                    <option value="🇦🇺 Australian">🇦🇺 Australian</option>
+                    <option value="🇧🇩 Bangladeshi">🇧🇩 Bangladeshi</option>
+                    <option value="🇨🇦 Canadian">🇨🇦 Canadian</option>
+                    <option value="🇫🇷 Frence">🇫🇷 Frence</option>
+                    <option value="🇩🇪 German">🇩🇪 German</option>
+                    <option value="🇮🇳 Indian">🇮🇳 Indian</option>
+                    <option value="🇮🇹 Italian">🇮🇹 Italian</option>
+                    <option value="🇯🇵 Japanese">🇯🇵 Japanese</option>
+                    <option value="🇲🇾 Malaysian">🇲🇾 Malaysian</option>
+                    <option value="🇳🇿 New Zealander">🇳🇿 New Zealander</option>
+                    <option value="🇵🇰 Pakistani">🇵🇰 Pakistani</option>
+                    <option value="🇸🇦 Saudi Arabian">🇸🇦 Saudi Arabian</option>
+                    <option value="🇸🇬 Singaporean">🇸🇬 Singaporean</option>
+                    <option value="🇿🇦 South African">🇿🇦 South African</option>
+                    <option value="🇪🇸 Spanish">🇪🇸 Spanish</option>
+                    <option value="🇦🇪 Emirati">🇦🇪 Emirati</option>
+                    <option value="🇬🇧 British">🇬🇧 British</option>
+                    <option value="🇺🇸 American">🇺🇸 American</option>
                 </select>
             </div>
             <div>
