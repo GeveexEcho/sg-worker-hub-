@@ -183,6 +183,20 @@
 
         .btn-remove:hover { background: var(--danger-hover); }
 
+                .btn-preview {
+            background: var(--primary);
+            color: white;
+            width: 100%;
+            padding: 16px;
+            font-size: 16px;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .btn-preview:hover { 
+            background: var(--primary-hover); 
+        }
+        
         .btn-download {
             background: var(--success);
             color: white;
@@ -367,7 +381,7 @@
             margin-bottom: 8px;
         }
 
-                /* Responsive Editor & Mobile Preview Fix */
+                /* Responsive Editor */
         @media (max-width: 1000px) {
             body {
                 flex-direction: column;
@@ -379,23 +393,7 @@
                 height: auto;
             }
             .preview-container {
-                padding: 20px 10px;
-                display: block; /* Flexbox রিমুভ করা হয়েছে যাতে স্কেলিং ঠিক থাকে */
-                overflow-x: auto;
-            }
-            .cv-page {
-                margin: 0 auto;
-                transform: scale(0.65);
-                transform-origin: top center;
-                margin-bottom: -35%; 
-            }
-        }
-        
-        /* ছোট মোবাইল স্ক্রিনের জন্য */
-        @media (max-width: 600px) {
-            .cv-page {
-                transform: scale(0.42); /* স্ক্রিন অনুযায়ী জুম আউট */
-                margin-bottom: -55%; /* স্কেল করার কারণে তৈরি হওয়া অতিরিক্ত ফাঁকা জায়গা কমানো */
+                padding: 20px;
             }
         }
         
@@ -939,6 +937,28 @@
             }
         }
 
+       // -------------------------
+// Smooth Scroll to Preview
+// -------------------------
+function viewPreview() {
+    const previewContainer = document.querySelector('.preview-container');
+    
+    if (previewContainer) {
+        // স্মুথলি প্রিভিউ সেকশনে স্ক্রল করে নিয়ে যাবে
+        previewContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        
+        // প্রিভিউ সেকশনে একটি হাইলাইট ইফেক্ট দেওয়ার জন্য (যাতে ইউজারের ফোকাস যায়)
+        const originalShadow = previewContainer.style.boxShadow;
+        previewContainer.style.boxShadow = "0 0 20px rgba(37, 99, 235, 0.6)"; // নীল গ্লো ইফেক্ট
+        
+        // ১.৫ সেকেন্ড পর আগের অবস্থায় ফিরে যাবে
+        setTimeout(() => {
+            previewContainer.style.boxShadow = originalShadow;
+        }, 1500);
+    }
+                                                    }
+            
+            
         // -------------------------
         // Generate High-Quality PDF
         // -------------------------
