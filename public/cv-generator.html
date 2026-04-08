@@ -939,34 +939,80 @@
             }
         }
 
-       // -------------------------
-// Smooth Scroll to Preview
-// -------------------------
+       // -------------------------------------------
+// Open Preview in a New Window (Mobile View)
+// -------------------------------------------
 function viewPreview() {
-    const previewContainer = document.querySelector('.preview-container');
-    const cvDocument = document.getElementById('cv-document');
-    
-    if (previewContainer && cvDocument) {
-        // ১. মোবাইল এবং ডেস্কটপের জন্য স্ক্রলিং লজিক
-        if (window.innerWidth <= 1000) {
-            // মোবাইলে স্ক্রিন ছোট থাকায় পুরো কন্টেইনার স্ক্রল করে সামনে আনবে
-            previewContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        } else {
-            // ডেস্কটপে প্রিভিউ সেকশনের ভেতরে একেবারে উপরে (Top) নিয়ে যাবে
-            previewContainer.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-        
-        // ২. মূল CV পেজে একটি সুন্দর হাইলাইট (Glow) ইফেক্ট দেওয়া
-        const originalShadow = cvDocument.style.boxShadow;
-        cvDocument.style.transition = "box-shadow 0.3s ease"; // স্মুথ ইফেক্টের জন্য
-        cvDocument.style.boxShadow = "0 0 30px rgba(37, 99, 235, 0.6)"; // নীল গ্লো ইফেক্ট
-        
-        // ১.৫ সেকেন্ড পর আগের অবস্থায় (ডিফল্ট শ্যাডো) ফিরে যাবে
-        setTimeout(() => {
-            cvDocument.style.boxShadow = originalShadow || "0 10px 25px rgba(0,0,0,0.15)";
-        }, 1500);
-    }
+    // ১. বর্তমানে সিভিতে যা যা ডেটা আছে তার এইচটিএমএল কপি করা
+    const cvContent = document.getElementById('cv-document').innerHTML;
+    const styles = document.getElementsByTagName('style')[0].innerHTML;
+
+    // ২. একটি নতুন উইন্ডো বা ট্যাব ওপেন করা
+    const previewWindow = window.open('', '_blank');
+
+    // ৩. নতুন উইন্ডোতে সিভির এইচটিএমএল এবং সিএসএস রাইট করা
+    previewWindow.document.write(`
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>CV Preview</title>
+            <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+            <style>
+                ${styles} /* মেইন পেজের সব স্টাইল কপি করা হলো */
+                
+                body { 
+                    height: auto; 
+                    overflow: auto; 
+                    background: #f1f5f9; 
+                    display: block; 
+                    padding: 0;
+                    margin: 0;
+                }
+                
+                .cv-page {
+                    transform: none !important;
+                    margin: 0 auto !important;
+                    box-shadow: none !important;
+                    width: 100% !important; /* ফুল স্ক্রিন ভিউ */
+                    min-height: 100vh;
+                }
+
+                /* মোবাইল ভিউ অপ্টিমাইজেশন */
+                @media (max-width: 600px) {
+                    .cv-page {
+                        flex-direction: column !important;
+                    }
+                    .cv-left {
+                        width: 100% !important;
+                        padding: 30px 20px !important;
+                    }
+                    .cv-right {
+                        width: 100% !important;
+                        padding: 30px 20px !important;
+                    }
+                    .cv-name {
+                        font-size: 28px !important;
+                    }
+                }
+            </style>
+        </head>
+        <body>
+            <div class="cv-page">
+                ${cvContent}
+            </div>
+            <script>
+                // নতুন পেজ লোড হওয়ার পর ইমেজ লোড হতে সময় লাগতে পারে, তাই একটু চেক করা
+                window.onload = function() {
+                    console.log("Preview Loaded");
+                };
+            <\/script>
+        </body>
+        </html>
+    `);
+
+    previewWindow.document.close();
 }
+            
                                                         
             
         // -------------------------
