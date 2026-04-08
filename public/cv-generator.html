@@ -413,6 +413,19 @@
             <p>Fill in your details to generate a premium resume.</p>
         </div>
 
+                <div id="google_translate_element" style="margin-bottom: 20px; text-align: right;"></div>
+        <script type="text/javascript">
+            function googleTranslateElementInit() {
+                new google.translate.TranslateElement({
+                    pageLanguage: 'en', 
+                    // bn=Bengali, en=English, ta=Tamil, my=Burmese, zh-CN=Chinese, id=Bahasa Indonesia, tl=Filipino
+                    includedLanguages: 'bn,en,ta,my,zh-CN,id,tl', 
+                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+                }, 'google_translate_element');
+            }
+        </script>
+        <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+        
         <div class="section-title">Profile Info</div>
         
         <div class="form-group">
@@ -495,16 +508,36 @@
             <textarea rows="2" id="in-address" oninput="updateText('out-address', this.value)"></textarea>
         </div>
 
+                <div class="dynamic-item" style="background: #eff6ff; border-color: #bfdbfe; margin-top: 30px;">
+            <p style="font-size: 13px; color: #1e3a8a; margin-bottom: 12px; line-height: 1.5;">
+                <strong>Need help writing your profile?</strong><br> 
+                Enter your details below and click "Use Template" in the sections below to auto-generate professional text. You can edit the text after generating it.
+            </p>
+            <div class="form-group row">
+                <div>
+                    <label>Working Fields</label>
+                    <input type="text" id="tpl-fields" placeholder="e.g., Marketing, Retail, IT">
+                </div>
+                <div>
+                    <label>Seeking Position</label>
+                    <input type="text" id="tpl-position" placeholder="e.g., Team Leader, Specialist">
+                </div>
+            </div>
+        </div>
+
         <div class="section-title">Career Objective</div>
         <div class="form-group">
-            <textarea rows="3" oninput="updateText('out-objective', this.value)"></textarea>
+            <button class="btn" style="background:#e2e8f0; color:#1e293b; margin-bottom:10px; font-size:12px; padding: 6px 12px;" onclick="generateObjective()">+ Auto-Generate Objective</button>
+            <textarea rows="3" id="in-objective" oninput="updateText('out-objective', this.value)"></textarea>
         </div>
 
         <div class="section-title">Professional Summary</div>
         <div class="form-group">
+            <button class="btn" style="background:#e2e8f0; color:#1e293b; margin-bottom:10px; font-size:12px; padding: 6px 12px;" onclick="generateSummary()">+ Auto-Generate Summary</button>
             <textarea rows="4" maxlength="500" id="in-summary" oninput="updateSummary(this)"></textarea>
             <div class="char-count"><span id="summary-count">0</span> / 500</div>
         </div>
+        
 
         <div class="section-title">Work Experience</div>
         <div id="exp-container"></div>
@@ -1053,6 +1086,32 @@ function viewPreview() {
             addEducation();
             checkSectionVisibility();
         };
+
+
+                    // -------------------------
+        // Custom Template Generators
+        // -------------------------
+        function generateObjective() {
+            const fields = document.getElementById('tpl-fields').value || '[WORKING_FIELDS]';
+            const position = document.getElementById('tpl-position').value || '[SEEKING_POSITION]';
+            
+            const template = `A dedicated and proactive professional specializing in ${fields}, seeking a ${position} position where I can utilize my supervisory experience and technical knowledge to drive operational excellence and achieve organizational goals.`;
+            
+            const objTextArea = document.getElementById('in-objective');
+            objTextArea.value = template;
+            updateText('out-objective', template); // Updates the live preview
+        }
+
+        function generateSummary() {
+            const fields = document.getElementById('tpl-fields').value || '[WORKING_FIELDS]';
+            const position = document.getElementById('tpl-position').value || '[SEEKING_POSITION]';
+            
+            const template = `Results-driven ${position} with solid background in ${fields}. Proven ability to lead frontline teams, optimize processes, resolve operational challenges, and maintain consistent performance standards. Focused on team development, quality control, and delivering high standards in dynamic work environments.`;
+            
+            const sumTextArea = document.getElementById('in-summary');
+            sumTextArea.value = template;
+            updateSummary(sumTextArea); // Updates the live preview and char count
+        }
                                     </script>
 </body>
 </html>
