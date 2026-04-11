@@ -403,6 +403,200 @@
             page-break-inside: avoid;
             break-inside: avoid;
         }
+
+        .modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 23, 42, 0.8);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+}
+
+.modal-content {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 700px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.modal-title {
+    font-size: 22px;
+    margin-bottom: 25px;
+    font-weight: 700;
+    color: #1e293b;
+    text-align: center;
+}
+
+.template-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.template-card {
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 10px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s ease;
+    font-size: 13px;
+    font-weight: 600;
+    color: #475569;
+}
+
+.template-card:hover {
+    border-color: #3b82f6;
+    transform: translateY(-2px);
+}
+
+.template-card.active {
+    border-color: #3b82f6;
+    background: #eff6ff;
+    color: #1d4ed8;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+}
+
+.t-color-1 { background: #1e293b; height: 60px; border-radius: 4px; margin-bottom: 8px; }
+.t-color-2 { background: #f8fafc; border: 1px solid #cbd5e1; height: 60px; border-radius: 4px; margin-bottom: 8px; }
+.t-color-3 { background: #ffffff; border-top: 12px solid #1e293b; height: 48px; border-radius: 4px; margin-bottom: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+.t-color-4 { background: #0ea5e9; height: 60px; border-radius: 4px; margin-bottom: 8px; }
+.t-color-5 { background: #27272a; border-left: 6px solid #d4af37; height: 60px; border-radius: 4px; margin-bottom: 8px; }
+
+.modal-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end;
+}
+
+.btn-cancel {
+    background: #e2e8f0;
+    color: #475569;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.btn-cancel:hover {
+    background: #cbd5e1;
+}
+
+.theme-modern .cv-left {
+    background-color: #f8fafc;
+    color: #334155;
+    border-right: 1px solid #e2e8f0;
+}
+
+.theme-modern .side-heading {
+    color: #0f172a;
+    border-bottom: 2px solid #3b82f6;
+}
+
+.theme-modern .contact-label {
+    color: #475569;
+}
+
+.theme-modern .cv-name {
+    color: #0f172a;
+}
+
+.theme-classic {
+    flex-direction: column;
+}
+
+.theme-classic .cv-left {
+    width: 100%;
+    padding: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    background: #ffffff;
+    color: #1e293b;
+    border-bottom: 3px solid #1e293b;
+}
+
+.theme-classic .cv-right {
+    width: 100%;
+    padding: 30px;
+}
+
+.theme-classic .side-heading {
+    color: #1e293b;
+    border-bottom: 2px solid #1e293b;
+}
+
+.theme-classic .contact-label {
+    color: #1e293b;
+}
+
+.theme-classic .cv-name {
+    text-align: left;
+    margin-bottom: 0;
+}
+
+.theme-classic .photo-container {
+    margin: 0;
+}
+
+.theme-creative .cv-left {
+    background-color: #0ea5e9;
+    color: #ffffff;
+}
+
+.theme-creative .side-heading {
+    border-bottom: 2px solid #ffffff;
+}
+
+.theme-creative .cv-right {
+    background-color: #f0f9ff;
+}
+
+.theme-creative .cv-name {
+    color: #0284c7;
+}
+
+.theme-creative .main-heading {
+    color: #0284c7;
+    border-bottom: 2px solid #0284c7;
+}
+
+.theme-elegant .cv-left {
+    background-color: #27272a;
+    color: #e4e4e7;
+    border-right: 3px solid #d4af37;
+}
+
+.theme-elegant .side-heading {
+    color: #d4af37;
+    border-bottom: 1px solid #d4af37;
+}
+
+.theme-elegant .cv-name {
+    color: #27272a;
+}
+
+.theme-elegant .main-heading {
+    color: #27272a;
+    border-bottom: 1px solid #d4af37;
+}
+
+.theme-elegant .timeline-date {
+    background: #fef9c3;
+    color: #a16207;
+            }
     </style>
 </head>
 <body>
@@ -649,6 +843,35 @@
                     <div class="main-heading">Education</div>
                     <div id="out-edu-list"></div>
                 </div>
+
+                <div class="modal-overlay" id="template-modal">
+    <div class="modal-content">
+        <div class="modal-title">Choose Your CV Template</div>
+        <div class="template-grid">
+            <div class="template-card active" onclick="selectTemplate('theme-default', this)">
+                <div class="t-color-1"></div>
+                <div>Pro Default</div>
+            </div>
+            <div class="template-card" onclick="selectTemplate('theme-modern', this)">
+                <div class="t-color-2"></div>
+                <div>Modern Light</div>
+            </div>
+            <div class="template-card" onclick="selectTemplate('theme-classic', this)">
+                <div class="t-color-3"></div>
+                <div>Classic Top</div>
+            </div>
+            <div class="template-card" onclick="selectTemplate('theme-creative', this)">
+                <div class="t-color-4"></div>
+                <div>Creative Blue</div>
+            </div>
+            <div class="template-card" onclick="selectTemplate('theme-elegant', this)">
+                <div class="t-color-5"></div>
+                <div>Elegant Gold</div>
+            </div>
+        </div>
+        <div class="modal-actions">
+            <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+            <button class="btn btn-download" style="margin: 0; width: auto; padding: 12px 24px;" onclick="executeDownload()">Download Selected PDF</button>
             </div>
         </div>
     </div>
@@ -1052,33 +1275,53 @@ function viewPreview() {
         // Generate High-Quality PDF
         // -------------------------
         function downloadPDF() {
-            const element = document.getElementById('cv-document');
-            
-            const previewContainer = document.querySelector('.preview-container');
-            if(previewContainer) previewContainer.scrollTop = 0;
-            
-            let userNameInput = document.getElementById('in-name').value.trim();
-            let finalName = "User";
-            if(userNameInput) {
-                finalName = userNameInput.replace(/\s+/g, '_').toLowerCase();
-            }
-            const filename = `cv_${finalName}.pdf`;
+    document.getElementById('template-modal').style.display = 'flex';
+}
 
-            const opt = {
-                margin:       0,
-                filename:     filename,
-                image:        { type: 'jpeg', quality: 1.0 },
-                html2canvas:  { scale: 2, useCORS: true, logging: false, scrollY: 0 }, 
-                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
-            };
-            
-            const originalBoxShadow = element.style.boxShadow;
-            element.style.boxShadow = 'none';
+function closeModal() {
+    document.getElementById('template-modal').style.display = 'none';
+}
 
-            html2pdf().set(opt).from(element).save().then(() => {
-                element.style.boxShadow = originalBoxShadow;
-            });
-        }
+function selectTemplate(theme, element) {
+    document.querySelectorAll('.template-card').forEach(el => el.classList.remove('active'));
+    element.classList.add('active');
+    
+    const cvDoc = document.getElementById('cv-document');
+    cvDoc.className = 'cv-page';
+    if(theme !== 'theme-default') {
+        cvDoc.classList.add(theme);
+    }
+}
+
+function executeDownload() {
+    closeModal();
+    const element = document.getElementById('cv-document');
+    const previewContainer = document.querySelector('.preview-container');
+    if(previewContainer) previewContainer.scrollTop = 0;
+    
+    let userNameInput = document.getElementById('in-name').value.trim();
+    let finalName = "User";
+    if(userNameInput) {
+        finalName = userNameInput.replace(/\s+/g, '_').toLowerCase();
+    }
+    const filename = `cv_${finalName}.pdf`;
+
+    const opt = {
+        margin:       0,
+        filename:     filename,
+        image:        { type: 'jpeg', quality: 1.0 },
+        html2canvas:  { scale: 2, useCORS: true, logging: false, scrollY: 0 }, 
+        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    };
+    
+    const originalBoxShadow = element.style.boxShadow;
+    element.style.boxShadow = 'none';
+
+    html2pdf().set(opt).from(element).save().then(() => {
+        element.style.boxShadow = originalBoxShadow;
+    });
+}
+            
 
         // Init blank items on load
         window.onload = function() {
