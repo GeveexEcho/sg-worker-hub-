@@ -494,61 +494,57 @@
     background: #cbd5e1;
 }
 
-.theme-modern .cv-left {
-    background-color: #f8fafc;
+/* --- 1. Euro Pro Template (Europass Style 1) --- */
+.theme-euro-pro .cv-left {
+    background-color: #ffffff;
+    color: #0f4b81;
+    border-right: 2px solid #0f4b81;
+}
+.theme-euro-pro .side-heading {
+    color: #0f4b81;
+    border-bottom: 2px solid #0f4b81;
+}
+.theme-euro-pro .contact-label {
+    color: #0f4b81;
+}
+.theme-euro-pro .cv-name {
+    color: #0f4b81;
+    font-family: Arial, sans-serif;
+    letter-spacing: 1px;
+}
+.theme-euro-pro .main-heading {
+    color: #0f4b81;
+    border-bottom: 2px solid #0f4b81;
+}
+.theme-euro-pro .photo-container {
+    border-radius: 8px; /* Europass uses squarish photos */
+    border: 3px solid #0f4b81;
+}
+
+/* --- 2. Euro Minimal Template (Europass Style 2) --- */
+.theme-euro-minimal .cv-left {
+    background-color: #f0f4f8; /* Soft Europass background */
     color: #334155;
-    border-right: 1px solid #e2e8f0;
+    border-right: none;
 }
-
-.theme-modern .side-heading {
-    color: #0f172a;
-    border-bottom: 2px solid #3b82f6;
+.theme-euro-minimal .side-heading {
+    color: #0f4b81;
+    border-bottom: 2px solid #0f4b81;
 }
-
-.theme-modern .contact-label {
-    color: #475569;
+.theme-euro-minimal .contact-label {
+    color: #0f4b81;
 }
-
-.theme-modern .cv-name {
-    color: #0f172a;
+.theme-euro-minimal .cv-name {
+    color: #0f4b81;
+    font-family: Arial, sans-serif;
 }
-
-.theme-classic {
-    flex-direction: column;
+.theme-euro-minimal .main-heading {
+    color: #0f4b81;
+    border-bottom: 2px solid #0f4b81;
 }
-
-.theme-classic .cv-left {
-    width: 100%;
-    padding: 30px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    background: #ffffff;
-    color: #1e293b;
-    border-bottom: 3px solid #1e293b;
-}
-
-.theme-classic .cv-right {
-    width: 100%;
-    padding: 30px;
-}
-
-.theme-classic .side-heading {
-    color: #1e293b;
-    border-bottom: 2px solid #1e293b;
-}
-
-.theme-classic .contact-label {
-    color: #1e293b;
-}
-
-.theme-classic .cv-name {
-    text-align: left;
-    margin-bottom: 0;
-}
-
-.theme-classic .photo-container {
-    margin: 0;
+.theme-euro-minimal .timeline-date {
+    background: #0f4b81;
+    color: #ffffff;
 }
 
 .theme-creative .cv-left {
@@ -852,14 +848,15 @@
                 <div class="t-color-1"></div>
                 <div>Pro Default</div>
             </div>
-            <div class="template-card" onclick="selectTemplate('theme-modern', this)">
-                <div class="t-color-2"></div>
-                <div>Modern Light</div>
+                        <div class="template-card" onclick="selectTemplate('theme-euro-pro', this)">
+                <div class="t-color-2" style="background: #ffffff; border: 2px solid #0f4b81;"></div>
+                <div>Euro Pro</div>
             </div>
-            <div class="template-card" onclick="selectTemplate('theme-classic', this)">
-                <div class="t-color-3"></div>
-                <div>Classic Top</div>
+            <div class="template-card" onclick="selectTemplate('theme-euro-minimal', this)">
+                <div class="t-color-3" style="background: #f0f4f8; border-left: 12px solid #0f4b81; border-top: none;"></div>
+                <div>Euro Minimal</div>
             </div>
+            
             <div class="template-card" onclick="selectTemplate('theme-creative', this)">
                 <div class="t-color-4"></div>
                 <div>Creative Blue</div>
