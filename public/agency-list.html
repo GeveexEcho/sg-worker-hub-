@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BAIRA Agency List - SG Worker Hub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --neon-blue: #00f3ff;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+        body {
+            background: #0f172a;
+            color: #f8fafc;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+        }
+        .search-box {
+            width: 100%;
+            padding: 15px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--neon-blue);
+            color: white;
+            font-size: 16px;
+            outline: none;
+            box-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
+        }
+        .agency-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid var(--glass-border);
+            transition: 0.3s;
+            text-decoration: none;
+            color: inherit;
+        }
+        .agency-item:hover {
+            background: rgba(0, 243, 255, 0.1);
+            border-radius: 10px;
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        .btn-neon {
+            padding: 10px 20px;
+            border: 1px solid var(--neon-blue);
+            background: transparent;
+            color: var(--neon-blue);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn-neon:hover:not(:disabled) {
+            background: var(--neon-blue);
+            color: #000;
+            box-shadow: 0 0 15px var(--neon-blue);
+        }
+        .btn-neon:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 style="text-align: center; color: var(--neon-blue); text-shadow: 0 0 10px var(--neon-blue);">BAIRA Agency Directory</h2>
+        <div class="glass-card">
+            <input type="text" id="searchInput" class="search-box" placeholder="Search by name or RL number...">
+        </div>
+        <div id="agencyList" class="glass-card"></div>
+        <div class="pagination">
+            <button id="prevBtn" class="btn-neon">Previous</button>
+            <span id="pageInfo" style="align-self: center;"></span>
+            <button id="nextBtn" class="btn-neon">Next</button>
+        </div>
+    </div>
+    <script src="src/agency-handler.js"></script>
+</body>
+</html>
+
