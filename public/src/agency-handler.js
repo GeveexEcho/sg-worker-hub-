@@ -145,13 +145,19 @@ async function submitReview(rl) {
     try {
         const res = await fetch('/.netlify/functions/submit-review', {
             method: 'POST',
+            headers: {
+                'Content-Type': 'application/json' // এই লাইনটি যুক্ত করা খুবই জরুরি
+            },
             body: JSON.stringify({ rl, user, comment })
         });
+        
         if (res.ok) {
             alert("Review Submitted! It will appear after update.");
             document.getElementById('revUser').value = '';
             document.getElementById('revComment').value = '';
         } else {
+            // ডিবাগ করার জন্য রেসপন্স স্ট্যাটাস প্রিন্ট করে দেখতে পারেন
+            console.error("Server returned status:", res.status);
             alert("Failed to submit review.");
         }
     } catch (err) {
